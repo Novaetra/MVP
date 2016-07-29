@@ -1,0 +1,1085 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!91 &9100000
+AnimatorController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: StealthChar
+  serializedVersion: 2
+  m_AnimatorParameters: []
+  m_AnimatorLayers:
+  - serializedVersion: 3
+    m_Name: Base Layer
+    m_StateMachine: {fileID: 110700000}
+    m_Mask: {fileID: 0}
+    m_BlendingMode: 0
+    m_SyncedLayerIndex: -1
+    m_StateMachineMotionSetIndex: 0
+    m_DefaultWeight: 0
+    m_IKPass: 0
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
+--- !u!1102 &110200000
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: walk00
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 7ac52189e0c3786468a78faac9e51edc, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: -120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110202542
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attack_cutThroat
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 7014ef4c3c7a50d4d88bca969e0e828c, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: 408, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110203467
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: get2WEPback_get
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: ef6cb702f25fa924b9c256e9929a5f4b, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: -24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110204868
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: get2WEPback_save
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: ef6cb702f25fa924b9c256e9929a5f4b, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: 24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110204908
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCrouchLookLidle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 2fc5956e83d40ca4781a9d1f0fa931bb, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 348, y: 360, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110205868
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: throwcrouch_end
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400004, guid: 3c2d69138f285fc48910cdb1244c4f88, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: 240, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110206539
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCrouchLookL_in
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 6ed624afbc58ba84d818b7330f776ef4, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 348, y: 312, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110211137
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCrouchLookR_out
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: 1b0144d2bcb2b20428d2376c0b065d8d, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 348, y: 216, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110217164
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attack07
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: fdab0099a88337a439e4e3a50397eb4c, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: 408, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110217607
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attack02
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: c8fff3d8a1ff70846b4d51ed9c87ecb8, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: 168, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110218847
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: die00
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 3ec9fdafc47e20841a7129001f74d623, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: 24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110220168
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: idle02
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 27922cc984a3e484fba4bf30051995f0, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: 216, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110224460
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: walk01
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 71ba66bda5e2f9a40aa0f3d45cfb6e60, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: -72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110227382
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCrouchIdle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: aab022f012670544c870e04e8f86c80c, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 348, y: -72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110229236
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attackcross00
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 7955b30cd73f1f647aaab538cbd822e2, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: 360, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110230073
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverLookR_in
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: e51b83dd701a4094c9a9ed9ecda834df, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 132, y: 72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110232139
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: getknifefromboot
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: f982bf3c7dd23064eaa487dafcddd595, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: 72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110233014
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: idle01
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: de987026585c7dc41bda1c459d05dc03, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: 168, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110234228
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: lookright
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 0a9c32788dbc4d941ace341d5984b9e3, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: 264, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110236884
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCrouchLookL_out
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: 6ed624afbc58ba84d818b7330f776ef4, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 348, y: 408, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110237762
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: combatidle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: ee7b78d70506c6a449852ca547e3d6f7, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: 72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110241572
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: jump00
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 1daee0338e20f9843935d360456f275c, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: 360, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110241809
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: getWEPback_save
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: d2fb0172d1463814fada2c554ab31b8c, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: -72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110242060
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: idle03
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 5e242f8533674144b836168a3a43398f, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: 264, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110242841
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attack04
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: e80f897f31cecea41a88e097a6cf5164, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: 264, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110243460
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCrouchLookR_in
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 1b0144d2bcb2b20428d2376c0b065d8d, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 348, y: 120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110246048
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverMoveR
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 16a899a9496989f4f91088217a94b498, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: 120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110247041
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCouch
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: f157b8364a4b4f542bdb51c234ad8cae, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 348, y: -120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110248667
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: idlecrouch00
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: f8a0e6f864c27d647aeef8b81d74842f, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: 408, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110249548
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverLookL_out
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: 6e862884a66a2b64589832d7796c0ed1, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 132, y: -24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110253306
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: gethit01
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: f5d7bbf2c4830bc44b5d8b6c753f9721, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: -72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110254040
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverLookLidle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 762708ce0b633514eb9c128af322690f, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 132, y: -72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110254570
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: walk_sneak
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 023cb36daa691a844a4a990093951b21, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: -24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110255209
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverLookR_out
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: e51b83dd701a4094c9a9ed9ecda834df, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 132, y: 168, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110258821
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverLookRidle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 90e47c38bd2f0304bbbb0070b748ee34, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 132, y: 120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110259153
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: throwcrouch_idle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 3c2d69138f285fc48910cdb1244c4f88, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: 192, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110265270
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverMoveL
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: b1f3fbca9f8a6a44db69d1138d6302be, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: 72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110267459
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attackstab00
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: b0ea8a9e0e024bc4f97762bfe6840261, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: 312, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110267955
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attack05
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 5b75c9aa23c48a54599e0c1fb6887759, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: 312, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110269095
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCrouchMoveR
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: d7ff7e30d42f46645a7e626f61a10767, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 132, y: 408, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110271241
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: idlecrouch01
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 79ea908d605e1054c901832dea3c0f5b, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: 360, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110272880
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: gethit00
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: b89cf2a0a6714a140b87a6b096f3ffa9, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: -120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110272990
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCrouchMoveL
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: ec231ac9a594e5a4bb9629efcc468991, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 132, y: 360, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110274307
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: uncoverCouch
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: f157b8364a4b4f542bdb51c234ad8cae, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 348, y: -24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110276394
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attack01
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: ec6dd7cd42c8b5c458faacee3bbb2bf9, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: 120, z: 0}
+  m_IKOnFeet: 1
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110277432
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: uncover
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: 9487dfcd226fd6243ba7630c8ae51c1a, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: -24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110277887
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attack03
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 8174d2c78c28fda4098772fc781675ff, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: 216, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110278604
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverLookL_in
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 6e862884a66a2b64589832d7796c0ed1, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 132, y: -120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110278638
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: idle00
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 9cc1c1375a914684ca80913085d107f0, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -300, y: 120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110281210
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: lookleft
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 9d6be135f64a3fb4d8a63bef1aa3f8ca, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: 216, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110283890
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coverCrouchLookRidle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: d23d25ef2ff2f6446aeb720f08fff024, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 348, y: 168, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110284410
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: cover
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 9487dfcd226fd6243ba7630c8ae51c1a, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: -120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110287463
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: jump01
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: b9a164bdee34eea48a8decddd688cd6a, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: 408, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110287884
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: gethit02
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 21d4bf679fc1da243acbb74c58d515b5, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: -24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110291814
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: throwcrouch_start
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: 3c2d69138f285fc48910cdb1244c4f88, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: 144, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110296759
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: attack06
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: adfc24d82b8103e4c97e110c4a6181e1, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -516, y: 360, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110299112
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: getWEPback_get
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: d2fb0172d1463814fada2c554ab31b8c, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -732, y: -120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110299905
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: coveridle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 67dd0b798d5d0644c8e699f5d97ea712, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: -72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1107 &110700000
+StateMachine:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Base Layer
+  m_DefaultState: {fileID: 110242060}
+  m_States:
+  - {fileID: 110254570}
+  - {fileID: 110200000}
+  - {fileID: 110234228}
+  - {fileID: 110281210}
+  - {fileID: 110287463}
+  - {fileID: 110241572}
+  - {fileID: 110278638}
+  - {fileID: 110233014}
+  - {fileID: 110272880}
+  - {fileID: 110253306}
+  - {fileID: 110287884}
+  - {fileID: 110218847}
+  - {fileID: 110237762}
+  - {fileID: 110217164}
+  - {fileID: 110296759}
+  - {fileID: 110267955}
+  - {fileID: 110242841}
+  - {fileID: 110277887}
+  - {fileID: 110217607}
+  - {fileID: 110276394}
+  - {fileID: 110202542}
+  - {fileID: 110229236}
+  - {fileID: 110232139}
+  - {fileID: 110220168}
+  - {fileID: 110242060}
+  - {fileID: 110248667}
+  - {fileID: 110271241}
+  - {fileID: 110267459}
+  - {fileID: 110227382}
+  - {fileID: 110204908}
+  - {fileID: 110283890}
+  - {fileID: 110272990}
+  - {fileID: 110269095}
+  - {fileID: 110299905}
+  - {fileID: 110254040}
+  - {fileID: 110258821}
+  - {fileID: 110265270}
+  - {fileID: 110246048}
+  - {fileID: 110284410}
+  - {fileID: 110277432}
+  - {fileID: 110247041}
+  - {fileID: 110274307}
+  - {fileID: 110206539}
+  - {fileID: 110236884}
+  - {fileID: 110243460}
+  - {fileID: 110211137}
+  - {fileID: 110278604}
+  - {fileID: 110249548}
+  - {fileID: 110230073}
+  - {fileID: 110255209}
+  - {fileID: 110203467}
+  - {fileID: 110204868}
+  - {fileID: 110299112}
+  - {fileID: 110241809}
+  - {fileID: 110291814}
+  - {fileID: 110259153}
+  - {fileID: 110205868}
+  - {fileID: 110224460}
+  m_ChildStateMachine: []
+  m_ChildStateMachinePosition: []
+  m_OrderedTransitions:
+    data:
+      first: {fileID: 0}
+      second: []
+    data:
+      first: {fileID: 110242060}
+      second: []
+    data:
+      first: {fileID: 110254570}
+      second: []
+    data:
+      first: {fileID: 110200000}
+      second: []
+    data:
+      first: {fileID: 110234228}
+      second: []
+    data:
+      first: {fileID: 110281210}
+      second: []
+    data:
+      first: {fileID: 110287463}
+      second: []
+    data:
+      first: {fileID: 110241572}
+      second: []
+    data:
+      first: {fileID: 110278638}
+      second: []
+    data:
+      first: {fileID: 110233014}
+      second: []
+    data:
+      first: {fileID: 110272880}
+      second: []
+    data:
+      first: {fileID: 110253306}
+      second: []
+    data:
+      first: {fileID: 110287884}
+      second: []
+    data:
+      first: {fileID: 110218847}
+      second: []
+    data:
+      first: {fileID: 110237762}
+      second: []
+    data:
+      first: {fileID: 110217164}
+      second: []
+    data:
+      first: {fileID: 110296759}
+      second: []
+    data:
+      first: {fileID: 110267955}
+      second: []
+    data:
+      first: {fileID: 110242841}
+      second: []
+    data:
+      first: {fileID: 110277887}
+      second: []
+    data:
+      first: {fileID: 110217607}
+      second: []
+    data:
+      first: {fileID: 110276394}
+      second: []
+    data:
+      first: {fileID: 110202542}
+      second: []
+    data:
+      first: {fileID: 110229236}
+      second: []
+    data:
+      first: {fileID: 110232139}
+      second: []
+    data:
+      first: {fileID: 110220168}
+      second: []
+    data:
+      first: {fileID: 110248667}
+      second: []
+    data:
+      first: {fileID: 110271241}
+      second: []
+    data:
+      first: {fileID: 110267459}
+      second: []
+    data:
+      first: {fileID: 110227382}
+      second: []
+    data:
+      first: {fileID: 110204908}
+      second: []
+    data:
+      first: {fileID: 110283890}
+      second: []
+    data:
+      first: {fileID: 110272990}
+      second: []
+    data:
+      first: {fileID: 110269095}
+      second: []
+    data:
+      first: {fileID: 110299905}
+      second: []
+    data:
+      first: {fileID: 110254040}
+      second: []
+    data:
+      first: {fileID: 110258821}
+      second: []
+    data:
+      first: {fileID: 110265270}
+      second: []
+    data:
+      first: {fileID: 110246048}
+      second: []
+    data:
+      first: {fileID: 110278604}
+      second: []
+  m_MotionSetCount: 1
+  m_AnyStatePosition: {x: -192, y: -204, z: 0}
+  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
