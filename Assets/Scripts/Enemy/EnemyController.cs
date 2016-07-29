@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class EnemyController : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
     private Player[] players;
-    private List<Player> livePlayers;
     private float distanceToPlayer;
     private float minDistance = Mathf.Infinity;
     private float playerDistance;
@@ -29,7 +29,6 @@ public class EnemyController : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetFloat("Health", health);
         casters = GetComponentsInChildren<Raycaster>();
-        livePlayers = new List<Player>();
         doneSettingUp = true;
     }
 
@@ -54,16 +53,9 @@ public class EnemyController : MonoBehaviour
     private void chasePlayer()
     {
         players = PhotonView.FindObjectsOfType<Player>();
-        livePlayers.Clear();
-        for (int x = 0; x < players.Length; x++)
-        {
-            if (players[x].transform.GetComponent<StatsManager>().getAlive() == true)
-            {
-                livePlayers.Add(players[x]);
-            }
-        }
-
-        targetPlayer = GetClosestEnemy(livePlayers);
+        IEnumerable<Player> livePlayers = from player in players where player.GetComponent<StatsManager>().getAlive() select player;
+        List<Player> playersList = new List<Player>(players);
+        targetPlayer = GetClosestEnemy(livePlayers.ToList());
         if (targetPlayer != null && isAlive == true)
         {
             playerDistance = Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position);
