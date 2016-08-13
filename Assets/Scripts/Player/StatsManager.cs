@@ -14,6 +14,7 @@ public class StatsManager : MonoBehaviour
     private float meleeCost;
     private int currentLevel;
     private float currentExp;
+    private float currentPoints;
     private float totalExpRequiredToLvlUp;
     private int upgradePoints;
     private bool isAlive;
@@ -51,9 +52,10 @@ public class StatsManager : MonoBehaviour
         currentStamina = 100f;
         sprintStamCost = 20f;
         meleeCost = 5f;
-        currentLevel = 0;
+        currentLevel = 1;
         currentExp = 0f;
         totalExpRequiredToLvlUp = 10f;
+        currentPoints = 0f;
         upgradePoints = 0;
         reviveDistance = 1f;
 
@@ -134,9 +136,7 @@ public class StatsManager : MonoBehaviour
         currentLevel++;
         upgradePoints++;
         activateUnlockable();
-        hudman.displayMsg("You have reached level " + currentLevel, 3f);
-        StartCoroutine(wait(3.5f));
-        hudman.displayMsg("You can now unlock a new skill!", 3f);
+        StartCoroutine(lvlUpTxt());
         if (currentExp >= totalExpRequiredToLvlUp)
         {
             levelUp(currentExp - totalExpRequiredToLvlUp);
@@ -146,6 +146,7 @@ public class StatsManager : MonoBehaviour
     public void recieveDamage(float dmg)
     {
         currentHealth -= dmg;
+        hudman.updateBars();
         checkDeath();
     }
 
@@ -331,14 +332,33 @@ public class StatsManager : MonoBehaviour
 		return totalExpRequiredToLvlUp;
 	}
 
+    public float getCurrentPoints()
+    {
+        return currentPoints;
+    }
+
+    public void addCurrentPoints(float pnts)
+    {
+        currentPoints += pnts;
+        hudman.updatePntsTxt();
+    }
+
+    public void subtractCurrentPoints(float pnts)
+    {
+        currentPoints -= pnts;
+        hudman.updatePntsTxt();
+    }
+
 	public float getSprintStamCost()
 	{
 		return sprintStamCost;
 	}
 	#endregion
 
-	private IEnumerator wait(float dur)
+	private IEnumerator lvlUpTxt()
 	{
-		yield return new WaitForSeconds (dur);
+        hudman.displayMsg("You have reached level " + currentLevel, 2f);
+        yield return new WaitForSeconds(2);
+        hudman.displayMsg("You can now unlock a new skill!",2f);
 	}
 }

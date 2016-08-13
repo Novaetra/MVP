@@ -69,7 +69,7 @@ public class PhotonGameManager : MonoBehaviour
 
         if(playersAlive<= 0)
         {
-            GetComponent<PhotonView>().RPC("endGame", PhotonTargets.AllBuffered, null);
+            //GetComponent<PhotonView>().RPC("endGame", PhotonTargets.AllBuffered, null);
         }
 
         Debug.Log("players aliveL: " + playersAlive + " out of " + players.Length);

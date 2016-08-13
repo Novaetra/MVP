@@ -18,7 +18,7 @@ public class PersonControlller : MonoBehaviour
 	private float YSensitivity = 2f;
 	private float MinimumY = 80f;
 	private float MaximumY = 70f;
-    private float meleeDistance = 1f;
+    private float meleeDistance = 2f;
     private float meleeDamage = 100f;
     private float interactDistance = 1f;
     private StatsManager sm;
@@ -100,7 +100,7 @@ public class PersonControlller : MonoBehaviour
         //Check if E is pressed down
         if(Input.GetKey(KeyCode.E) )
         {
-            checkRevive();
+            throwRays();
         }
         //If its not, then set anything that relies on it to false
         else
@@ -109,9 +109,8 @@ public class PersonControlller : MonoBehaviour
         }
     }
 
-    private void checkRevive()
+    private void throwRays()
     {
-
         RaycastHit hit;
         foreach (Raycaster caster in raycasters)
         {
@@ -119,15 +118,35 @@ public class PersonControlller : MonoBehaviour
             Debug.DrawRay(raycaster.transform.position, -raycaster.transform.forward * interactDistance, Color.blue);
             if (Physics.Raycast(raycaster.transform.position, -raycaster.transform.forward, out hit, interactDistance))
             {
-                if (hit.transform.tag == "Player")
-                {
-                    if(hit.transform.GetComponent<StatsManager>().getAlive() == false)
-                    {
-                        isReviving = true;
-                        personReviving = hit.transform.gameObject;
-                        hit.transform.GetComponent<StatsManager>().startRevive(gameObject);
-                    }
-                }
+                checkRevive(hit);
+                checkDoor(hit);
+            }
+        }
+    }
+
+    private void checkRevive(RaycastHit hit)
+    {
+
+        if (hit.transform.tag == "Player")
+        {
+            if (hit.transform.GetComponent<StatsManager>().getAlive() == false)
+            {
+                isReviving = true;
+                personReviving = hit.transform.gameObject;
+                hit.transform.GetComponent<StatsManager>().startRevive(gameObject);
+            }
+        }
+    }
+
+
+    private void checkDoor(RaycastHit hit)
+    {
+        if (hit.transform.tag == "Door")
+        {
+            if (sm.getCurrentPoints() - hit.transform.GetComponentInParent<Door>().getCost() >= 0)
+            {
+                hit.transform.GetComponentInParent<Door>().openDoor();
+                sm.subtractCurrentPoints(hit.transform.GetComponentInParent<Door>().getCost());
             }
         }
     }

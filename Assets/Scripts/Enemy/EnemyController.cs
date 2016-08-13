@@ -13,10 +13,11 @@ public class EnemyController : MonoBehaviour
     private float distanceToPlayer;
     private float minDistance = Mathf.Infinity;
     private float playerDistance;
-    private float meleeRange = 1.0f;
+    private float meleeRange = 4.0f;
     private float meleeDamage = 20f;
     private float health = 100f;
     private int expOnKill = 10;
+    private float pntValue = 100;
     private bool doneSettingUp = false;
     private bool isAlive = true;
     [SerializeField]
@@ -154,6 +155,7 @@ public class EnemyController : MonoBehaviour
     void sendPlayersExp()
     {
         PhotonGameManager.currentplayer.GetComponent<StatsManager>().recieveExp(expOnKill);
+        PhotonGameManager.currentplayer.GetComponent<StatsManager>().addCurrentPoints(pntValue);
     }
 
     [PunRPC]

@@ -23,6 +23,7 @@ public class HUDManager : MonoBehaviour
     private Text upgradePnts;
 	private Text shortMsg;
     private Text roundsTxt;
+    private Text pntsTxt;
 	private float timer;
 	private float currentTime;
 
@@ -40,6 +41,8 @@ public class HUDManager : MonoBehaviour
 		panel = canvasObj.transform.FindChild ("Panel").gameObject;
         roundsTxt = canvasObj.transform.FindChild("RoundsTxt").GetComponent<Text>();
         roundsTxt.enabled = false;
+        pntsTxt = canvasObj.transform.FindChild("PointsTxt").GetComponent<Text>();
+        pntsTxt.text = "0";
 		shortMsg = canvasObj.transform.FindChild ("ShortMessage").GetComponent<Text> ();
         upgradePnts = panel.transform.FindChild("UpgradePoints").GetComponent<Text>();
         revivingBarBG = canvasObj.transform.FindChild("ReviveBarBG").GetComponent<Image>();
@@ -85,7 +88,7 @@ public class HUDManager : MonoBehaviour
 		}
 	}
 
-	private void updateBars()
+	public void updateBars()
 	{
 		if (sm != null) 
 		{
@@ -154,6 +157,11 @@ public class HUDManager : MonoBehaviour
     {
         roundsTxt.enabled = true;
         roundsTxt.text = "Round " + round;
+    }
+
+    public void updatePntsTxt()
+    {
+        pntsTxt.text = sm.getCurrentPoints().ToString();
     }
 
 }

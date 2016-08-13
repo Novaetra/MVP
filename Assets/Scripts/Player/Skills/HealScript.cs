@@ -12,7 +12,6 @@ public class HealScript : MonoBehaviour
     void Start()
     {
         sm = GetComponentInParent<StatsManager>();
-        Debug.Log("sm " + sm);
         currentHealTimer = 0f;
         foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
         {

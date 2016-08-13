@@ -186,7 +186,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.050104383
+        functionName: createHeal
+        data: 
+        objectReferenceParameter: {fileID: 104502, guid: 96adb2ec07b91406cacbba4a033313b9,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
