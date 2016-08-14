@@ -43,7 +43,9 @@ public class Skill
             stats.useStamina(cost, false);
         }
         startCooldown();
-        PhotonGameManager.currentplayer.GetComponent<PhotonView>().RPC("rpcUse", PhotonTargets.All, (int)currentEnumSkill);
+
+        anim.SetInteger("Skill", (int)currentEnumSkill);
+        // PhotonGameManager.currentplayer.GetComponent<PhotonView>().RPC("rpcUse", PhotonTargets.AllBuffered, (int)currentEnumSkill);
     }
 
 

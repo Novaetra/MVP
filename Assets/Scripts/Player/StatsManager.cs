@@ -5,6 +5,7 @@ public class StatsManager : MonoBehaviour
 {
     //Attributes
     private float totalHealth;
+    [SerializeField]
     private float currentHealth;
     private float totalMana;
     private float currentMana;
@@ -57,7 +58,7 @@ public class StatsManager : MonoBehaviour
         totalExpRequiredToLvlUp = 10f;
         currentPoints = 0f;
         upgradePoints = 0;
-        reviveDistance = 1f;
+        reviveDistance = 3.5f;
 
         healthRegen = 0f;
         manaRegen = 2.5f;
@@ -161,8 +162,9 @@ public class StatsManager : MonoBehaviour
 
     public void startRevive(GameObject reviver)
     {
-        if(isReviving==false)
-        {
+        //So it doesn't get called more than once
+           if(isReviving==false)
+           {
             currentReviver = reviver;
             currentReviveTimer = 0f;
             isReviving = true;
@@ -171,7 +173,7 @@ public class StatsManager : MonoBehaviour
 
     public void checkRevive()
     {
-        if(isReviving == true)
+        if (isReviving == true)
         {
             float distance = Vector3.Distance(transform.position, currentReviver.transform.position);
             if (distance <= reviveDistance && currentReviver.GetComponent<PersonControlller>().getReviving() == true && isAlive == false)
@@ -179,19 +181,18 @@ public class StatsManager : MonoBehaviour
                 if (currentReviveTimer < reviveTimer)
                 {
                     currentReviveTimer += 2 * Time.deltaTime;
-                    Debug.Log("reviving " + currentReviveTimer + "?" + reviveTimer);
                 }
                 else if (currentReviveTimer >= reviveTimer)
                 {
                     GetComponent<PhotonView>().RPC("revive", PhotonTargets.AllBuffered, null);
                 }
             }
-        }
-        else
-        {
-            isReviving = false;
-            currentReviveTimer = 0;
-            currentReviver.GetComponent<PersonControlller>().setPersonReviving(null);
+            else
+            {
+                isReviving = false;
+                currentReviveTimer = 0;
+                currentReviver.GetComponent<PersonControlller>().setPersonReviving(null);
+            }
         }
     }
 

@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Door
+  - 0
+  - 1
+  - 2
+  - 3
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -15,11 +20,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
   - 
   - 
   - 

@@ -2382,7 +2382,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153526}
   m_LocalRotation: {x: 0.7147852, y: 0, z: 0, w: 0.69934404}
-  m_LocalPosition: {x: 0.018, y: 0.238, z: 0.153}
+  m_LocalPosition: {x: 0.018, y: 0.235, z: 0.282}
   m_LocalScale: {x: 0.10477365, y: 0.1194587, z: 0.051960412}
   m_LocalEulerAnglesHint: {x: 88.748795, y: 180, z: 180}
   m_Children: []
@@ -2717,7 +2717,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104502}
   m_LocalRotation: {x: 0, y: -0.010238085, z: 0, w: 0.9999476}
-  m_LocalPosition: {x: -5.2296, y: -5.5348663, z: 6.337033}
+  m_LocalPosition: {x: 13.386127, y: -5.5348663, z: -7.662647}
   m_LocalScale: {x: 3.32291, y: 3.3229084, z: 3.3229084}
   m_LocalEulerAnglesHint: {x: 0, y: 358.82678, z: 0}
   m_Children:
@@ -3361,7 +3361,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.2
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 92
   orthographic: 0
@@ -4605,11 +4605,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 229
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 50
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4755,11 +4755,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 229
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
-    m_MaxSize: 50
+    m_MinSize: 2
+    m_MaxSize: 229
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4815,11 +4815,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 64
+    m_FontSize: 191
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 127
+    m_MaxSize: 229
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -6796,15 +6796,15 @@ RectTransform:
   m_GameObject: {fileID: 182760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.44786307, y: 0.4478633, z: 0.4478633}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 22444590}
   m_RootOrder: 8
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1, y: 477}
-  m_SizeDelta: {x: 1000, y: 100}
+  m_AnchoredPosition: {x: 0, y: 477}
+  m_SizeDelta: {x: 3251.7, y: 455.1}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &22408878
 RectTransform:
@@ -7140,15 +7140,15 @@ RectTransform:
   m_GameObject: {fileID: 196738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.12766689, y: 0.1276669, z: 0.1276669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 22444590}
   m_RootOrder: 9
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 205, y: 180}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 240, y: 180}
+  m_SizeDelta: {x: 1800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22449694
 RectTransform:
@@ -7176,7 +7176,7 @@ RectTransform:
   m_GameObject: {fileID: 166770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.12766689, y: 0.1276669, z: 0.1276669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 22444590}
@@ -7184,7 +7184,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 180}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 1800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22452904
 RectTransform:

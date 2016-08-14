@@ -67,6 +67,7 @@ public class SkillManager : MonoBehaviour
                     Skill skill = slot.transform.FindChild("SlotContent").GetComponent<SkillTreePiece>().getSkill();
                     if (skill != null && skill.getCurrentCooldown() >= skill.getCooldown())
                     {
+                        Debug.LogError(sm.getCurrentMana()-skill.getCost() + " / " + sm.getTotalMana());
                         if(sm.getCurrentMana() - skill.getCost() >= 0 && anim.GetInteger("Skill") == -1)
                         {
                             skill.use();
@@ -95,12 +96,15 @@ public class SkillManager : MonoBehaviour
     private void updateCooldowns()
     {
         //Update cooldowns by incremementing the current cooldown and updating the fill amount of image
-        foreach (Skill s in knownSkills)
+        if(knownSkills != null)
         {
-            if (s.getCurrentCooldown() < s.getCooldown())
+            foreach (Skill s in knownSkills)
             {
-                s.setCurrentCooldown(s.getCurrentCooldown() + 1 * Time.deltaTime);
-                s.getSlot().GetComponent<Image>().fillAmount = (s.getCurrentCooldown() / s.getCooldown());
+                if (s.getCurrentCooldown() < s.getCooldown())
+                {
+                    s.setCurrentCooldown(s.getCurrentCooldown() + 1 * Time.deltaTime);
+                    s.getSlot().GetComponent<Image>().fillAmount = (s.getCurrentCooldown() / s.getCooldown());
+                }
             }
         }
     }
@@ -108,9 +112,9 @@ public class SkillManager : MonoBehaviour
     private void setUpList()
     {
         //(string name, string description, float dmg, float cost, float cd, Skills enumSkill, SkillType type int requirement, StatsManager sm)
-        allSkills.Add(new Skill("Fireball", "Hurls a flaming ball of fire forward", 100f, 25f, 4f, Skills.Fireball, SkillType.Magic, 1, sm));
-        allSkills.Add(new Skill("Heal", "Heals self", 0f, 25f, 5f, Skills.Heal, SkillType.Magic, 2, sm));
-        allSkills.Add(new Skill("Flamethrower", "Throws flames ._.", 50f, 35f, 10f, Skills.Flamethrower, SkillType.Magic, 3, sm));
+        allSkills.Add(new Skill("Fireball", "Hurls a flaming ball of fire forward", 100f, 25f, 4f, Skills.Fireball, SkillType.Magic, 2, sm));
+        allSkills.Add(new Skill("Heal", "Heals self", 0f, 25f, 5f, Skills.Heal, SkillType.Magic, 3, sm));
+        allSkills.Add(new Skill("Flamethrower", "Throws flames ._.", 50f, 35f, 10f, Skills.Flamethrower, SkillType.Magic, 4, sm));
         allSkills.Add(new Skill("", "Empty", 0f, 0f, 0f, Skills.Empty, SkillType.Empty, 0, sm));
         //Links all the skill tree pieces to the actual skill 
         gameObject.BroadcastMessage("setSkill");
@@ -144,10 +148,11 @@ public class SkillManager : MonoBehaviour
         return knownSkills;
     }
 
-
+    /*
     [PunRPC]
     void rpcUse(int currentEnumSkill)
     {
         anim.SetInteger("Skill", (int)currentEnumSkill);
     }
+    */
 }

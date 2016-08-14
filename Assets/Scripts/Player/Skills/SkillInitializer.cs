@@ -15,7 +15,7 @@ public class SkillInitializer : MonoBehaviour
 		GameObject spellSpawner = (GameObject)PhotonNetwork.Instantiate ("Spawner", leftSpawner.position, leftSpawner.rotation, 0);
 		GameObject fireBall = (GameObject)PhotonNetwork.Instantiate ("Fireball", spellSpawner.transform.position, spellSpawner.transform.rotation, 0);
 		fireBall.transform.SetParent(spellSpawner.transform);
-		fireBall.transform.localScale = new Vector3(1,1,1);
+		fireBall.transform.localScale = new Vector3(2.4f,2.4f,2.4f);
 	}
 
     public void createFlamethrower()
@@ -23,7 +23,7 @@ public class SkillInitializer : MonoBehaviour
         GameObject flameThrower = (GameObject)PhotonNetwork.Instantiate("Flamethrower", middleSpawner.transform.position, middleSpawner.transform.rotation, 0);
         flameThrower.transform.SetParent(middleSpawner.transform);
         flameThrower.transform.eulerAngles += new Vector3(0f, 180f, 0f);
-        flameThrower.transform.localScale = new Vector3(1, 1, 1);
+        flameThrower.transform.localScale = new Vector3(3, 3, 3);
     }
 
     public void createHeal()

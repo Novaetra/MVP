@@ -27,10 +27,11 @@ public class FireballScript : MonoBehaviour
 	private IEnumerator destroyFire()
 	{
 		GetComponent<ParticleSystem> ().Stop ();
+        GetComponentInChildren<ParticleSystem>().Stop();
 
 		yield return new WaitForSeconds (1f);
 
-		Destroy (gameObject);
+		Destroy (transform.parent.gameObject);
 	}
 
 	public void destroyFireball()

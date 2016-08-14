@@ -20,7 +20,7 @@ public class PersonControlller : MonoBehaviour
 	private float MaximumY = 70f;
     private float meleeDistance = 2f;
     private float meleeDamage = 100f;
-    private float interactDistance = 1f;
+    private float interactDistance = 2f;
     private StatsManager sm;
 
     private Raycaster[] raycasters;
@@ -126,7 +126,6 @@ public class PersonControlller : MonoBehaviour
 
     private void checkRevive(RaycastHit hit)
     {
-
         if (hit.transform.tag == "Player")
         {
             if (hit.transform.GetComponent<StatsManager>().getAlive() == false)
@@ -143,9 +142,9 @@ public class PersonControlller : MonoBehaviour
     {
         if (hit.transform.tag == "Door")
         {
-            if (sm.getCurrentPoints() - hit.transform.GetComponentInParent<Door>().getCost() >= 0)
+            if (sm.getCurrentPoints() - hit.transform.GetComponentInParent<Door>().getCost() >= 0 && hit.transform.GetComponentInParent<Door>().getOpen() == false)
             {
-                hit.transform.GetComponentInParent<Door>().openDoor();
+                hit.transform.GetComponentInParent<PhotonView>().RPC("openDoor",PhotonTargets.AllBuffered,null);
                 sm.subtractCurrentPoints(hit.transform.GetComponentInParent<Door>().getCost());
             }
         }
@@ -154,18 +153,22 @@ public class PersonControlller : MonoBehaviour
     public void checkMelee()
     {
         RaycastHit hit;
-        foreach(Raycaster caster in raycasters)
+        if(raycasters != null)
         {
-            Debug.DrawRay(caster.transform.position, -caster.transform.forward * meleeDistance, Color.red, 1);
-            if(Physics.Raycast(caster.transform.position,-caster.transform.forward,out hit, meleeDistance))
+            foreach (Raycaster caster in raycasters)
             {
-                if(hit.transform.tag == "Enemy")
+                Debug.DrawRay(caster.transform.position, -caster.transform.forward * meleeDistance, Color.red, 1);
+                if (Physics.Raycast(caster.transform.position, -caster.transform.forward, out hit, meleeDistance))
                 {
-                    hit.transform.SendMessage("recieveDamage", meleeDamage);
-                    return;
+                    if (hit.transform.tag == "Enemy")
+                    {
+                        hit.transform.SendMessage("recieveDamage", meleeDamage);
+                        return;
+                    }
                 }
             }
         }
+       
     }
 
 	private void checkSprint()

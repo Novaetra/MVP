@@ -197,7 +197,7 @@ Material:
       data:
         first:
           name: _subdermal
-        second: {r: 0.7941176, g: 0.21359028, b: 0, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _emissivecolor
@@ -205,4 +205,4 @@ Material:
       data:
         first:
           name: _speccolor
-        second: {r: 0.022058845, g: 0.019765709, b: 0.01800391, a: 1}
+        second: {r: 0.007352948, g: 0.0038368057, b: 0.0011353819, a: 1}
