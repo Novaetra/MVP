@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
 {
+    public bool spawnEnemies;
+
     private int currentEnemyCount;
     private int currentWaveCount;
     private int enemysToSpawn;
@@ -24,14 +26,17 @@ public class EnemyManager : MonoBehaviour
     //Sets starting values
     public void setUp()
     {
-        hudMan = PhotonGameManager.currentplayer.GetComponent<HUDManager>();
-        enemysToSpawn = 3;
-        currentWaveCount = 0;
-        timeBetweenRounds = 3f;
-        timeBetweenSpawns = 2f;
-        setupSpawnLists();
-        StartCoroutine(waitToStartNewRound());
-        doors = GameObject.FindObjectsOfType<Door>();
+        if(spawnEnemies == true)
+        {
+            hudMan = PhotonGameManager.currentplayer.GetComponent<HUDManager>();
+            enemysToSpawn = 3;
+            currentWaveCount = 0;
+            timeBetweenRounds = 3f;
+            timeBetweenSpawns = 2f;
+            setupSpawnLists();
+            StartCoroutine(waitToStartNewRound());
+            doors = GameObject.FindObjectsOfType<Door>();
+        }
     }
     
     //Fills the list that contains all adjacent rooms and links the room to its spawn points

@@ -57,7 +57,13 @@ public class PersonControlller : MonoBehaviour
                 debugControls();
             }
         }
-	}
+
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            toggleCursorLock(!cursorLocked);
+        }
+    }
     
     void debugControls()
     {
@@ -203,12 +209,6 @@ public class PersonControlller : MonoBehaviour
         Vector3 finalMove = new Vector3 (direction, 0f, speed);
 		finalMove = transform.rotation * finalMove;
 		cs.SimpleMove (finalMove);
-
-		if (Input.GetKeyUp(KeyCode.Escape)) 
-		{
-			toggleCursorLock (!cursorLocked);
-		}
-        
 	}
 	private void cameraRot()
 	{
@@ -219,19 +219,19 @@ public class PersonControlller : MonoBehaviour
             
 			if ((lastUpperRot - vertical < MinimumY && lastUpperRot - vertical > -MaximumY)) 
 			{
-				upperBody.transform.Rotate (0f, 0f, -(lastUpperRot - vertical));
+				upperBody.transform.Rotate ((lastUpperRot - vertical),0f, 0f);
 				lastUpperRot = lastUpperRot - vertical;
                 
             }
-			else 
-			{
-				upperBody.transform.Rotate (0f, 0f, -lastUpperRot);
+			else
+            {
+                upperBody.transform.Rotate((lastUpperRot), 0f, 0f);
             }
             transform.Rotate(0f, horizontal, 0f);
         }
-		else 
-		{
-			upperBody.transform.Rotate (0f, 0f, -lastUpperRot);
+		else
+        {
+            upperBody.transform.Rotate((lastUpperRot), 0f, 0f);
         }
 	}
 

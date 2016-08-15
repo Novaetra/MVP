@@ -67,7 +67,6 @@ public class SkillManager : MonoBehaviour
                     Skill skill = slot.transform.FindChild("SlotContent").GetComponent<SkillTreePiece>().getSkill();
                     if (skill != null && skill.getCurrentCooldown() >= skill.getCooldown())
                     {
-                        Debug.LogError(sm.getCurrentMana()-skill.getCost() + " / " + sm.getTotalMana());
                         if(sm.getCurrentMana() - skill.getCost() >= 0 && anim.GetInteger("Skill") == -1)
                         {
                             skill.use();
