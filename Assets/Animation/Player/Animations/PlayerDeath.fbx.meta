@@ -151,7 +151,7 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
       improve retargeting quality.\n\t'Spine2' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n"
@@ -209,7 +209,15 @@ ModelImporter:
           preInfinity: 3
           postInfinity: 3
           rotationOrder: 0
-      events: []
+      events:
+      - time: 0.12667896
+        functionName: lowerDead
+        data: 
+        objectReferenceParameter: {fileID: 167750, guid: b754e523db2a7f94dbc0292ed3cc7ac7,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

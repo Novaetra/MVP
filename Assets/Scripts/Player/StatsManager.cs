@@ -5,7 +5,6 @@ public class StatsManager : MonoBehaviour
 {
     //Attributes
     private float totalHealth;
-    [SerializeField]
     private float currentHealth;
     private float totalMana;
     private float currentMana;
@@ -55,7 +54,7 @@ public class StatsManager : MonoBehaviour
         meleeCost = 5f;
         currentLevel = 1;
         currentExp = 0f;
-        totalExpRequiredToLvlUp = 10f;
+        totalExpRequiredToLvlUp = 40f;
         currentPoints = 0f;
         upgradePoints = 0;
         reviveDistance = 3.5f;
