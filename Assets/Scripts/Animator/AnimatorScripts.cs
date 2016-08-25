@@ -25,7 +25,6 @@ public class AnimatorScripts : MonoBehaviour
 	void Update ()
     {
         updateColliderHeight();
-        Debug.Log(startY - transform.position.y + " : " + lowerRaiseAmnt);
         if(isRaising == true && startY-transform.position.y < lowerRaiseAmnt)
         {
             transform.position += new Vector3(0f, lowerRaiseAmnt) * Time.deltaTime;
