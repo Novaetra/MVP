@@ -29,6 +29,7 @@ GameObject:
   - 199: {fileID: 19994940}
   - 114: {fileID: 11421458}
   - 114: {fileID: 11424316}
+  - 65: {fileID: 6567570}
   m_Layer: 0
   m_Name: Flamethrower
   m_TagString: Untagged
@@ -63,6 +64,18 @@ Transform:
   - {fileID: 474026}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!65 &6567570
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199602}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.1158786, y: 3.2399378, z: 20.114298}
+  m_Center: {x: 0.000024948442, y: 0.15572685, z: 11.748585}
 --- !u!114 &11421458
 MonoBehaviour:
   m_ObjectHideFlags: 1

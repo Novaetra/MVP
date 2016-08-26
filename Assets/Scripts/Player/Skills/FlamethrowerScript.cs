@@ -5,11 +5,24 @@ public class FlamethrowerScript : MonoBehaviour {
 
     private float currentTime, totalTimer;
     private bool doneSetup = false;
-
+    private SkillManager sm;
+    [SerializeField]
+    private float dmg;
 	void Start ()
     {
         currentTime = 0f;
-        totalTimer = 2f;
+        totalTimer = 3f;
+
+        sm = PhotonGameManager.currentplayer.GetComponent<SkillManager>();
+        for (int i = 0; i < sm.getKnownSkills().Count; i++)
+        {
+            if (sm.getKnownSkills()[i].getName().Equals("Flamethrower"))
+            {
+                dmg = sm.getKnownSkills()[i].getDmg();
+            }
+        }
+
+
         doneSetup = true;
 	}
     
@@ -35,6 +48,15 @@ public class FlamethrowerScript : MonoBehaviour {
         yield return new WaitForSeconds(1f);
 
         Destroy(gameObject);
+    }
+    
+
+    private void OnTriggerStay(Collider col)
+    {
+        if(col.tag == "Enemy")
+        {
+            col.transform.GetComponent<EnemyController>().recieveDamage(dmg);
+        }
     }
 
 }

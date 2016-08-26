@@ -11,7 +11,7 @@ public class PhotonGameManager : MonoBehaviour
 
 	void Start () 
 	{
-		/*
+		
 		if (PhotonNetwork.connected) 
 		{
 			addPlayer ();
@@ -21,10 +21,10 @@ public class PhotonGameManager : MonoBehaviour
 			PhotonNetwork.autoJoinLobby = true;
 			PhotonNetwork.ConnectUsingSettings ("1.0");
 		}
-		*/
+		
 
-		PhotonNetwork.offlineMode = true;
-		PhotonNetwork.CreateRoom ("room");
+		//PhotonNetwork.offlineMode = true;
+		//PhotonNetwork.CreateRoom ("room");
 		//addPlayer ();
 	}
 
@@ -77,7 +77,8 @@ public class PhotonGameManager : MonoBehaviour
 
         if(playersAlive<= 0)
         {
-            //GetComponent<PhotonView>().RPC("endGame", PhotonTargets.AllBuffered, null);
+            currentplayer.GetComponent<PersonControlller>().toggleCursorLock(false);
+            GetComponent<PhotonView>().RPC("endGame", PhotonTargets.AllBuffered, null);
         }
 
         Debug.Log("players aliveL: " + playersAlive + " out of " + players.Length);

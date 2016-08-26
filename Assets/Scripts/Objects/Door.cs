@@ -22,7 +22,7 @@ public class Door : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.transform.GetComponent<HUDManager>().displayMsg("Door costs " + doorCost,1f);
+            col.transform.GetComponent<HUDManager>().displayMsg("Door costs " + doorCost,.1f);
         }
     }
     //Plays the open door animation and removes the colliders

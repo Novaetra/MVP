@@ -7,6 +7,8 @@ public class SkillInitializer : MonoBehaviour
 	public Transform leftSpawner;
     public Transform middleSpawner;
     public Transform floorSpawner;
+    [SerializeField]
+    public float rotateNum;
 
 	public void createFireball()
 	{
@@ -20,10 +22,10 @@ public class SkillInitializer : MonoBehaviour
 
     public void createFlamethrower()
     {
-        GameObject flameThrower = (GameObject)PhotonNetwork.Instantiate("Flamethrower", middleSpawner.transform.position, middleSpawner.transform.rotation, 0);
-        flameThrower.transform.SetParent(middleSpawner.transform);
-        flameThrower.transform.eulerAngles += new Vector3(0f, 180f, 0f);
+        GameObject flameThrower = (GameObject)PhotonNetwork.Instantiate("Flamethrower", leftSpawner.transform.position, leftSpawner.transform.rotation, 0);
+        flameThrower.transform.SetParent(leftSpawner.transform);
         flameThrower.transform.localScale = new Vector3(3, 3, 3);
+        flameThrower.transform.localEulerAngles += new Vector3(0f, 180, 0f);
     }
 
     public void createHeal()

@@ -8,9 +8,16 @@ public class PhotonInitialConnect : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		PhotonNetwork.autoJoinLobby = true;
-		PhotonNetwork.automaticallySyncScene = true;
-		PhotonNetwork.ConnectUsingSettings ("1.0");
+        if(PhotonNetwork.connected == false)
+        {
+            PhotonNetwork.autoJoinLobby = true;
+            PhotonNetwork.automaticallySyncScene = true;
+            PhotonNetwork.ConnectUsingSettings("1.0");
+        }
+        else
+        {
+            PhotonNetwork.LoadLevel(1);
+        }
 	}
 
 	private void OnJoinedLobby() 

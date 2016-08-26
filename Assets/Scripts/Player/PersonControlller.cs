@@ -238,6 +238,7 @@ public class PersonControlller : MonoBehaviour
 	public void toggleCursorLock(bool val)
 	{
 		cursorLocked = val;
+        updateCursorLock();
 	}
 
 	private void updateCursorLock()

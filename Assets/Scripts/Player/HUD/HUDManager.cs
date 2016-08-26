@@ -150,7 +150,14 @@ public class HUDManager : MonoBehaviour
 
 	private void hideMsg()
 	{
-		shortMsg.enabled = false;
+        try
+        {
+            shortMsg.enabled = false;
+        }
+		catch(System.NullReferenceException o)
+        {
+            Debug.LogError("Error msg null");
+        }
 	}
 
     public void updateRoundsTxt(int round)
