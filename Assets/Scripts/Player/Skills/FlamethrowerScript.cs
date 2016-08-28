@@ -8,10 +8,13 @@ public class FlamethrowerScript : MonoBehaviour {
     private SkillManager sm;
     [SerializeField]
     private float dmg;
+
+	private PersonControlller ps;
+
 	void Start ()
     {
-        currentTime = 0f;
-        totalTimer = 3f;
+		currentTime = 0f;
+		totalTimer = 3f;
 
         sm = PhotonGameManager.currentplayer.GetComponent<SkillManager>();
         for (int i = 0; i < sm.getKnownSkills().Count; i++)
@@ -22,6 +25,7 @@ public class FlamethrowerScript : MonoBehaviour {
             }
         }
 
+		ps = GetComponentInParent<PersonControlller> ();
 
         doneSetup = true;
 	}

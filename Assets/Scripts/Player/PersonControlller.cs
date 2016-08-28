@@ -269,4 +269,5 @@ public class PersonControlller : MonoBehaviour
     {
         personReviving = g;
     }
+
 }

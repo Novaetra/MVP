@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SkillTreePiece : MonoBehaviour 
 {
@@ -12,6 +13,7 @@ public class SkillTreePiece : MonoBehaviour
 	private List<Skill> skillList;
 	private Image img;
     private StatsManager sm;
+	private HUDManager hudman;
     private bool isUnlocked;
     
     //Links the skill name to the actual skill in the list of all skills
@@ -20,6 +22,7 @@ public class SkillTreePiece : MonoBehaviour
         isUnlocked = false;
 		skillList = PhotonView.Find (PhotonGameManager.playerID).gameObject.GetComponent<SkillManager> ().getAllSkills ();
         sm = GetComponentInParent<StatsManager>();
+		hudman = GetComponentInParent<HUDManager> ();
 		img = gameObject.GetComponent<Image> ();
 		foreach (Skill s in skillList) 
 		{
@@ -38,7 +41,13 @@ public class SkillTreePiece : MonoBehaviour
         sm.addUpgradePoint(-1);
         sm.activateUnlockable();
         GetComponentInParent<HUDManager>().updateUpgradePoints();
+		GetComponentInParent<SkillTree> ().unlockSkill (sm);
     }
+
+	public void showTooltip()
+	{
+		hudman.showTooltip (skill.getName(),skill.getDescription() + " ~ It deals " + skill.getDmg() + " damage",skill.getRequirement().ToString(), transform);
+	}
 
     public bool getUnlocked()
     {

@@ -11,7 +11,7 @@ public class PhotonGameManager : MonoBehaviour
 
 	void Start () 
 	{
-		
+		/*
 		if (PhotonNetwork.connected) 
 		{
 			addPlayer ();
@@ -21,11 +21,10 @@ public class PhotonGameManager : MonoBehaviour
 			PhotonNetwork.autoJoinLobby = true;
 			PhotonNetwork.ConnectUsingSettings ("1.0");
 		}
-		
+		*/
 
-		//PhotonNetwork.offlineMode = true;
-		//PhotonNetwork.CreateRoom ("room");
-		//addPlayer ();
+		PhotonNetwork.offlineMode = true;
+		PhotonNetwork.CreateRoom ("room");
 	}
 
 	#region temporary

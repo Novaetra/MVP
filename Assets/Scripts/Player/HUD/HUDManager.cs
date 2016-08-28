@@ -24,6 +24,10 @@ public class HUDManager : MonoBehaviour
 	private Text shortMsg;
     private Text roundsTxt;
     private Text pntsTxt;
+	private GameObject tooltip;
+	private Text tooltipName;
+	private Text tooltipDesc;
+	private Text tooltipLvl;
 	private float timer;
 	private float currentTime;
 
@@ -48,6 +52,11 @@ public class HUDManager : MonoBehaviour
         revivingBarBG = canvasObj.transform.FindChild("ReviveBarBG").GetComponent<Image>();
         revivingTxt = revivingBarBG.transform.FindChild("Text").GetComponent<Text>();
         revivingBar = revivingBarBG.transform.FindChild("Image").GetComponent<Image>();
+		tooltip = canvasObj.transform.FindChild ("Tooltip").gameObject;
+		tooltipName = tooltip.transform.FindChild ("Name").GetComponent<Text> ();;
+		tooltipDesc = tooltip.transform.FindChild ("Description").GetComponent<Text> ();;
+		tooltipLvl = tooltip.transform.FindChild ("LvlRequired").GetComponent<Text> ();;
+		tooltip.SetActive (false);
         panel.SetActive(false);
         upgradePnts.enabled = false;
 		setUpDone = true;
@@ -170,5 +179,21 @@ public class HUDManager : MonoBehaviour
     {
         pntsTxt.text = sm.getCurrentPoints().ToString();
     }
+
+	//Fills in tooltip information and adds it to screen
+	public void showTooltip(string name, string desc, string lvlRequired, Transform transform)
+	{
+		tooltipName.text = name;
+		tooltipDesc.text = desc;
+		tooltipLvl.text = "Level: " + lvlRequired;
+		tooltip.SetActive(true);
+	}
+
+	public void hideTooltip()
+	{
+		//Hides tooltip 
+		tooltip.SetActive(false);
+	}
+
 
 }
