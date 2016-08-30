@@ -23,7 +23,6 @@ public class HUDManager : MonoBehaviour
     private Text upgradePnts;
 	private Text shortMsg;
     private Text roundsTxt;
-    private Text pntsTxt;
 	private GameObject tooltip;
 	private Text tooltipName;
 	private Text tooltipDesc;
@@ -45,8 +44,6 @@ public class HUDManager : MonoBehaviour
 		panel = canvasObj.transform.FindChild ("Panel").gameObject;
         roundsTxt = canvasObj.transform.FindChild("RoundsTxt").GetComponent<Text>();
         roundsTxt.enabled = false;
-        pntsTxt = canvasObj.transform.FindChild("PointsTxt").GetComponent<Text>();
-        pntsTxt.text = "0";
 		shortMsg = canvasObj.transform.FindChild ("ShortMessage").GetComponent<Text> ();
         upgradePnts = panel.transform.FindChild("UpgradePoints").GetComponent<Text>();
         revivingBarBG = canvasObj.transform.FindChild("ReviveBarBG").GetComponent<Image>();
@@ -173,11 +170,6 @@ public class HUDManager : MonoBehaviour
     {
         roundsTxt.enabled = true;
         roundsTxt.text = "Round " + round;
-    }
-
-    public void updatePntsTxt()
-    {
-        pntsTxt.text = sm.getCurrentPoints().ToString();
     }
 
 	//Fills in tooltip information and adds it to screen

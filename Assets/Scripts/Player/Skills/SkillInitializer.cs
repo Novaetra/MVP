@@ -7,8 +7,6 @@ public class SkillInitializer : MonoBehaviour
 	public Transform leftSpawner;
     public Transform middleSpawner;
     public Transform floorSpawner;
-    [SerializeField]
-    public float rotateNum;
 
 	public void createFireball()
 	{

@@ -13,8 +13,10 @@ public class StatsManager : MonoBehaviour
     private float sprintStamCost;
     private float meleeCost;
     private int currentLevel;
+	[SerializeField]
     private float currentExp;
-    private float currentPoints;
+	private float currentPoints;
+	[SerializeField]
     private float totalExpRequiredToLvlUp;
     private int upgradePoints;
     private bool isAlive;
@@ -340,13 +342,12 @@ public class StatsManager : MonoBehaviour
     public void addCurrentPoints(float pnts)
     {
         currentPoints += pnts;
-        hudman.updatePntsTxt();
     }
 
-    public void subtractCurrentPoints(float pnts)
+    public void subtractExp(float pnts)
     {
-        currentPoints -= pnts;
-        hudman.updatePntsTxt();
+		currentExp -= pnts;
+        //hudman.updatePntsTxt();
     }
 
 	public float getSprintStamCost()

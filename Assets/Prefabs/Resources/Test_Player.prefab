@@ -842,23 +842,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &145124
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 22444936}
-  - 222: {fileID: 22298190}
-  - 114: {fileID: 11426200}
-  m_Layer: 0
-  m_Name: PointsTxt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &145258
 GameObject:
   m_ObjectHideFlags: 1
@@ -2188,7 +2171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167750}
   m_LocalRotation: {x: 0, y: -0.010238085, z: 0, w: 0.9999476}
-  m_LocalPosition: {x: 25.405996, y: -5.5348663, z: -21.812487}
+  m_LocalPosition: {x: 37.174644, y: -1.3285244, z: -9.434261}
   m_LocalScale: {x: 3.32291, y: 3.3229084, z: 3.3229084}
   m_LocalEulerAnglesHint: {x: 0, y: 358.82678, z: 0}
   m_Children:
@@ -3770,12 +3753,12 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 11461930}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -3795,8 +3778,8 @@ MonoBehaviour:
   manabar: {fileID: 11428174}
   staminabar: {fileID: 11497346}
   expbar: {fileID: 11433550}
-  revivingBar: {fileID: 0}
-  revivingBarBG: {fileID: 0}
+  revivingBar: {fileID: 11404444}
+  revivingBarBG: {fileID: 11430488}
 --- !u!114 &11415672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3895,39 +3878,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDraggable: 0
---- !u!114 &11426200
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 229
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 3
-    m_MaxSize: 300
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: POINTS
 --- !u!114 &11426222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4270,7 +4220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3c004e0753948c69dbe9d050357d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Fireball
+  skillName: 
 --- !u!114 &11435640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5075,7 +5025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3c004e0753948c69dbe9d050357d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Heal
+  skillName: 
 --- !u!114 &11469848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5087,8 +5037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb627a32fdf24ebfa4762688f293cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 10
-  runSpeed: 15
+  walkSpeed: 5
+  runSpeed: 8
   currentSpeed: 0
   upperBody: {fileID: 493050}
   lastUpperRot: 0
@@ -5120,12 +5070,11 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 430918}
+  ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -5470,10 +5419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c60f9112762f4d33b17779334ce1078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftSpawner: {fileID: 430918}
+  leftSpawner: {fileID: 436248}
   middleSpawner: {fileID: 448380}
   floorSpawner: {fileID: 446774}
-  rotateNum: 0
 --- !u!114 &11487910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5946,7 +5894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3c004e0753948c69dbe9d050357d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Flamethrower
+  skillName: 
 --- !u!124 &12402976
 Behaviour:
   m_ObjectHideFlags: 1
@@ -6456,12 +6404,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112930}
---- !u!222 &22298190
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145124}
 --- !u!222 &22299460
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -6474,7 +6416,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163034}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_RenderMode: 1
   m_Camera: {fileID: 2000754}
@@ -6909,7 +6851,7 @@ RectTransform:
   - {fileID: 22453746}
   - {fileID: 22473360}
   m_Father: {fileID: 22462766}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0, y: -116.1}
@@ -6950,24 +6892,6 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 37.5, y: -150}
   m_SizeDelta: {x: 75, y: 300}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &22444936
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12766689, y: 0.1276669, z: 0.1276669}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 22462766}
-  m_RootOrder: 10
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 180}
-  m_SizeDelta: {x: 1800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22446804
 RectTransform:
@@ -7179,7 +7103,6 @@ RectTransform:
   - {fileID: 22491638}
   - {fileID: 22422588}
   - {fileID: 22471022}
-  - {fileID: 22444936}
   - {fileID: 22434682}
   m_Father: {fileID: 424052}
   m_RootOrder: 4

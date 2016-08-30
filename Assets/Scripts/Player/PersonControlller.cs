@@ -129,7 +129,6 @@ public class PersonControlller : MonoBehaviour
             }
         }
     }
-
     private void checkRevive(RaycastHit hit)
     {
         if (hit.transform.tag == "Player")
@@ -148,10 +147,10 @@ public class PersonControlller : MonoBehaviour
     {
         if (hit.transform.tag == "Door")
         {
-            if (sm.getCurrentPoints() - hit.transform.GetComponentInParent<Door>().getCost() >= 0 && hit.transform.GetComponentInParent<Door>().getOpen() == false)
+			if (sm.getCurrentExp() - hit.transform.GetComponentInParent<Door>().getCost() >= 0 && hit.transform.GetComponentInParent<Door>().getOpen() == false)
             {
                 hit.transform.GetComponentInParent<PhotonView>().RPC("openDoor",PhotonTargets.AllBuffered,null);
-                sm.subtractCurrentPoints(hit.transform.GetComponentInParent<Door>().getCost());
+                sm.subtractExp(hit.transform.GetComponentInParent<Door>().getCost());
             }
         }
     }
