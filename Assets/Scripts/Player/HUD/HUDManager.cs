@@ -173,12 +173,15 @@ public class HUDManager : MonoBehaviour
     }
 
 	//Fills in tooltip information and adds it to screen
+
 	public void showTooltip(string name, string desc, string lvlRequired, Transform transform)
 	{
+		
 		tooltipName.text = name;
 		tooltipDesc.text = desc;
 		tooltipLvl.text = "Level: " + lvlRequired;
 		tooltip.SetActive(true);
+
 	}
 
 	public void hideTooltip()

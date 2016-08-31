@@ -34,19 +34,31 @@ public class SkillTreePiece : MonoBehaviour
 		}
 	}
 
-	public void unlockSkill()
+	public void unlockOrUpgradeSkill()
     {
-        isUnlocked = true;
-        GetComponentInParent<Toggle>().interactable = false;
-        sm.addUpgradePoint(-1);
-        sm.activateUnlockable();
-        GetComponentInParent<HUDManager>().updateUpgradePoints();
-		GetComponentInParent<SkillTree> ().unlockSkill (sm);
+		if (!isUnlocked) {
+			Debug.Log ("already");
+			isUnlocked = true;
+			GetComponentInParent<Toggle> ().interactable = false;
+			sm.addUpgradePoint (-1);
+			sm.activateUnlockable ();
+			GetComponentInParent<HUDManager> ().updateUpgradePoints ();
+			GetComponentInParent<SkillTree> ().unlockSkill (sm);
+		} 
+		else 
+		{
+			Debug.Log ("upgrade");
+		}
     }
 
 	public void showTooltip()
 	{
-		hudman.showTooltip (skill.getName(),skill.getDescription() + " ~ It deals " + skill.getDmg() + " damage",skill.getRequirement().ToString(), transform);
+		hudman.showTooltip (skill.getName(),skill.getDescription(),skill.getRequirement().ToString(), transform);
+	}
+
+	public void hideTooltip()
+	{
+		hudman.hideTooltip ();
 	}
 
     public bool getUnlocked()

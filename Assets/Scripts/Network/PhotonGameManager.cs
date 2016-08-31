@@ -48,7 +48,7 @@ public class PhotonGameManager : MonoBehaviour
 	private void addPlayer()
 	{
 		GameObject spawn = GameObject.Find("Spawn"+(int)Random.Range (1f, 4f)).gameObject;
-        currentplayer = (GameObject)PhotonNetwork.Instantiate("Test_Player", spawn.transform.position, spawn.transform.rotation, 0);
+        currentplayer = (GameObject)PhotonNetwork.Instantiate("Player", spawn.transform.position, spawn.transform.rotation, 0);
         playerID = currentplayer.GetComponent<PhotonView> ().viewID;
 		currentplayer.GetComponent<PersonControlller> ().enabled = true;
 		currentplayer.GetComponent<CharacterController> ().enabled = true;

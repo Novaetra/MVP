@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
 	public static Skill skillBeingDragged;
 	public static Sprite imgBeingDragged;
@@ -55,5 +55,15 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		gameObject.transform.SetParent(originalParent);
 		//Reset object to start position
 		transform.localPosition = startPos;
+	}
+
+	public void OnPointerEnter(PointerEventData data)
+	{
+		GetComponent<SkillTreePiece> ().showTooltip ();
+	}
+
+	public void OnPointerExit(PointerEventData data)
+	{
+		GetComponent<SkillTreePiece> ().hideTooltip ();
 	}
 }

@@ -16,8 +16,9 @@ public class Skill
     private SkillType skillType;
     private StatsManager stats;
     private int requirement;
+	private int numUpgrades;
 
-    public Skill(string n, string d, float dmg,  float c, float cd, Skills enumSkill, SkillType st, int req, StatsManager sm)
+    public Skill(string n, string d, float dmg,  float c, float cd, Skills enumSkill, SkillType st, int req, int upgrades, StatsManager sm)
     {
         name = n;
         description = d;
@@ -30,6 +31,7 @@ public class Skill
         stats = sm;
         requirement = req;
         skillType = st;
+		numUpgrades = upgrades;
     }
 
     public void use()
@@ -47,6 +49,11 @@ public class Skill
         anim.SetInteger("Skill", (int)currentEnumSkill);
         // PhotonGameManager.currentplayer.GetComponent<PhotonView>().RPC("rpcUse", PhotonTargets.AllBuffered, (int)currentEnumSkill);
     }
+
+	public void upgradeSkill()
+	{
+		damage += damage;
+	}
 
 
     private void startCooldown()
