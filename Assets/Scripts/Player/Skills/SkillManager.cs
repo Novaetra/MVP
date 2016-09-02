@@ -110,9 +110,9 @@ public class SkillManager : MonoBehaviour
 
     private void setUpList()
     {
-        //(string name, string description, float dmg, float cost, float cd, Skills enumSkill, SkillType type int requirement, int numUpgrades, StatsManager sm)
+        //(string name, string description, float effect amount, float cost, float cd, Skills enumSkill, SkillType type int requirement, int numUpgrades, StatsManager sm)
         allSkills.Add(new Skill("Fireball", "Hurls a flaming ball of fire forward", 100f, 25f, 4f, Skills.Fireball, SkillType.Magic, 2, 3,sm));
-        allSkills.Add(new Skill("Heal", "Heals self", 0f, 25f, 5f, Skills.Heal, SkillType.Magic, 2, 3,sm));
+        allSkills.Add(new Skill("Heal", "Heals self", 50f, 25f, 5f, Skills.Heal, SkillType.Magic, 2, 3,sm));
         allSkills.Add(new Skill("Flamethrower", "Throws flames ._.", 10f, 35f, 10f, Skills.Flamethrower, SkillType.Magic, 4, 3,sm));
         allSkills.Add(new Skill("", "Empty", 0f, 0f, 0f, Skills.Empty, SkillType.Empty, 0, 0,sm));
         //Links all the skill tree pieces to the actual skill 

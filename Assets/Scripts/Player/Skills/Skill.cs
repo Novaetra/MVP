@@ -6,7 +6,7 @@ public class Skill
 
     private string name;
     private string description;
-    private float damage;
+	private float effectAmount;
     private float cost;
     private float cooldown;
     private float currentCooldown;
@@ -18,11 +18,11 @@ public class Skill
     private int requirement;
 	private int numUpgrades;
 
-    public Skill(string n, string d, float dmg,  float c, float cd, Skills enumSkill, SkillType st, int req, int upgrades, StatsManager sm)
+    public Skill(string n, string d, float effectAmnt,  float c, float cd, Skills enumSkill, SkillType st, int req, int upgrades, StatsManager sm)
     {
         name = n;
         description = d;
-        damage = dmg;
+        effectAmount = effectAmnt;
         cost = c;
         cooldown = cd;
         currentCooldown = cooldown;
@@ -52,7 +52,7 @@ public class Skill
 
 	public void upgradeSkill()
 	{
-		damage += damage;
+		effectAmount += effectAmount;
 	}
 
 
@@ -66,9 +66,9 @@ public class Skill
         return requirement;
     }
 
-    public float getDmg()
+    public float getEffectAmount()
     {
-        return damage;
+        return effectAmount;
     }
 
 	public string getName()

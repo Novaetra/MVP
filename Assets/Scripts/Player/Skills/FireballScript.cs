@@ -15,7 +15,7 @@ public class FireballScript : MonoBehaviour
         {
             if(sm.getKnownSkills()[i].getName().Equals("Fireball"))
             {
-                dmg = sm.getKnownSkills()[i].getDmg();
+                dmg = sm.getKnownSkills()[i].getEffectAmount();
             }
         }
 
