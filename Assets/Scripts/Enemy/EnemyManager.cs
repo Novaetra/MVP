@@ -9,25 +9,34 @@ public class EnemyManager : MonoBehaviour
     private int currentEnemyCount;
     private int currentWaveCount;
     private int enemysToSpawn;
+
     private float timeBetweenRounds;
     private float timeBetweenSpawns;
 
-    private Transform currentRoom;
+    private Transform currentRoom; //This is to detect which room the player is in, and spawn enemies accordingly
 
+	//This dictionary holds all the spawn points per room
     private Dictionary<string, Transform[]> spawnPointsInRoom = new Dictionary<string, Transform[]>();
+
+	//This list keeps track of the rooms are adjacent to other rooms and which ones
     private List<Transform[]> adjacentRooms = new List<Transform[]>();
 
+	//This list is the list that holds all the spawn points an enemy can spawn in
     private List<Transform> spawnPointsAvailable = new List<Transform>();
 
+	//List of doors so we can figure out the adjacent rooms
     private Door[] doors;
 
+	//Refrence to the player's HUD Manager
     private HUDManager hudMan;
 
     //Sets starting values
     public void setUp()
     {
+		//This if statement is for development purposes
         if(spawnEnemies == true)
         {
+			//Sets all the starting values for the variables
             hudMan = PhotonGameManager.currentplayer.GetComponent<HUDManager>();
             enemysToSpawn = 3;
             currentWaveCount = 0;
@@ -43,46 +52,61 @@ public class EnemyManager : MonoBehaviour
     private void setupSpawnLists()
     {
         GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
+		//For each floor
         for (int i = 0; i < floors.Length; i++)
         {
-            Transform rooms = floors[i].transform.FindChild("Rooms");
+			Transform rooms = floors[i].transform.FindChild("Rooms");
+			//For each room
             for (int r = 0; r < rooms.childCount; r++)
             {
+				//Add the room's spawns to the list "spawnPointsInRoom"
                 Transform room = rooms.GetChild(r);
                 linkRoomsToSpawns(room);
             }
+			//Add the rooms that are adjacent to each other to the list "adjacentRooms"
             addAdjacentRooms(floors[i].transform);
         }
     }
-    //Adds the adjacent rooms to list
+    
+	//Adds the adjacent rooms to list "adjacent rooms"
     private void addAdjacentRooms(Transform floor)
     {
+		//For each door
         foreach(Transform door in floor.FindChild("Doors"))
         {
+			//Temporary list to store adjacent rooms for later use
             Transform[] _adjacentRooms = new Transform[3];
             int i = 0;
+			//For each adjacent room
             foreach (Transform t in door.GetComponent<Door>().getAdjacentRooms())
             {
+				//Add the adjacent rooms to the temporary list of adjacent rooms
                 _adjacentRooms[i] = t;
                 i++;
             }
 
+			//Use the temporary list of adjacent rooms to populate the dictionary storing the adjacent rooms
             adjacentRooms.Add(new Transform[] { _adjacentRooms[0], _adjacentRooms[1], _adjacentRooms[2] } );
         }
     }
-    //Links room to the spawn points inside it
+    
+	//Links room to the spawn points inside it
     private void linkRoomsToSpawns(Transform room)
     {
+		//Makes sure there are spawns in the room
         if (room.FindChild("Spawns") != null)
         {
-
+			//temporary list to store the spawn points per room for later use
             Transform[] spawns = new Transform[room.FindChild("Spawns").childCount];
             int z = 0;
+			//For each spawn in room
             foreach (Transform spawn in room.FindChild("Spawns"))
             {
+				//Add the spawn point to the temporary list
                 spawns[z] = spawn;
                 z++;
             }
+			//Use temporary list to populate the list of spawnPointsInRoom
             spawnPointsInRoom.Add(room.name, spawns);
         }
     }
@@ -95,6 +119,7 @@ public class EnemyManager : MonoBehaviour
         //Then it goes through the list of adjacent rooms and picks out all the elements that contain the player's current location (room)
         for(int i = 0; i<adjacentRooms.Count;i++)
         {
+			//If you are in a room with an adjacent room
             if(adjacentRooms[i][0] == currentRoom)
             {
                 //If the door linking the two rooms is open, then it adds the spawn points of that adjacent room to the list of available points
@@ -109,9 +134,12 @@ public class EnemyManager : MonoBehaviour
                     }
                 }
             }
+
+			//If you are in a room with an adjacent room
             else if(adjacentRooms[i][1] == currentRoom)
             {
-                if (adjacentRooms[i][2].GetComponentInChildren<Door>().getOpen())
+				//If the door linking the two rooms is open, then it adds the spawn points of that adjacent room to the list of available points
+				if (adjacentRooms[i][2].GetComponentInChildren<Door>().getOpen())
                 {
                     foreach (Transform spawn in spawnPointsInRoom[adjacentRooms[i][0].name])
                     {
@@ -132,6 +160,8 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+	//Increases the current round by one, and starts spawning more enemies.
+	//The number of enemies to spawn increases as well
     private void startNextRound()
     {
         currentWaveCount++;
@@ -141,6 +171,8 @@ public class EnemyManager : MonoBehaviour
         StartCoroutine(spawnWave());
     }
     
+	//Checks if there are any enemies left
+	//If there are no more enemies left, then start the next round
     private void checkIfRoundEnd()
     {
         if (currentEnemyCount <= 0)
@@ -149,12 +181,15 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+	//Decreases the number of enemies alive 
+	//Is called every time an enemy is killed
     public void decreaseEnemyCount()
     {
         currentEnemyCount--;
         checkIfRoundEnd();
     }
 
+	//Spawns an enemy at a random spawn point
     public void spawnEnemy()
     {
         //Change this so it uses any of the spawn points in the array
@@ -166,6 +201,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+	//Spawns the whole wave of enemies
     private IEnumerator spawnWave()
     {
         for(int x = 0; x<enemysToSpawn; x++)
@@ -175,12 +211,14 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+	//Waits x seconds before starting the next round
     private IEnumerator waitToStartNewRound()
     {
         yield return new WaitForSeconds(timeBetweenRounds);
         startNextRound();
     }
 
+	//Sets the room the player is currently in
     public void setCurrentRoom(Transform room)
     {
         currentRoom = room;

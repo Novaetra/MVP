@@ -6,18 +6,17 @@ public class Door : MonoBehaviour
     Animation anim;
     public float doorCost;
     private bool isOpen;
-
-
     [SerializeField]
     private Transform[] adjacentRooms;
 
-
+	//Sets starting values
     void Start()
     {
         anim = GetComponent<Animation>();
         isOpen = false;
     }
-    //This displays the door cost if the player approaches it
+    
+	//This displays the door cost if the player approaches it
     private void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Player")
@@ -25,7 +24,8 @@ public class Door : MonoBehaviour
             col.transform.GetComponent<HUDManager>().displayMsg("Door costs " + doorCost + " exp",.1f);
         }
     }
-    //Plays the open door animation and removes the colliders
+    
+	//Plays the open door animation and removes the colliders
     [PunRPC]
     public void openDoor()
     {

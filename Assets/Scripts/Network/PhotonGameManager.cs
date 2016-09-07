@@ -12,10 +12,12 @@ public class PhotonGameManager : MonoBehaviour
 	void Start () 
 	{
 		/*
+		//Temporary
 		if (PhotonNetwork.connected) 
 		{
 			addPlayer ();
 		} 
+		//
 		else 
 		{
 			PhotonNetwork.autoJoinLobby = true;
@@ -45,6 +47,7 @@ public class PhotonGameManager : MonoBehaviour
 	}
 	#endregion
 
+	//Adds player to the scene and enables its components
 	private void addPlayer()
 	{
 		GameObject spawn = GameObject.Find("Spawn"+(int)Random.Range (1f, 4f)).gameObject;
@@ -61,27 +64,29 @@ public class PhotonGameManager : MonoBehaviour
         GetComponent<EnemyManager>().setUp();
 	}
 
+	//Checks if there's a player still alive. If there isn't, then end the game.
     public void checkGameEnded()
     {
+		//Gets a list of players
         Player[] players = PhotonView.FindObjectsOfType<Player>();
         int playersAlive = players.Length;
-
+		//Go through each player and check if it is alive
         for (int i = 0; i < players.Length; i++)
         {
             if(players[i].GetComponent<StatsManager>().getAlive() == false)
             {
+				//If it's not alive, subtract from the number of 'playersAlive'
                 playersAlive--;
             }
         }
-
+		//If there are no players alive, then end the game
         if(playersAlive<= 0)
         {
             currentplayer.GetComponent<PersonControlller>().toggleCursorLock(false);
             GetComponent<PhotonView>().RPC("endGame", PhotonTargets.AllBuffered, null);
         }
-
-        Debug.Log("players aliveL: " + playersAlive + " out of " + players.Length);
     }
+	//Sends everyone back to the menu
     [PunRPC]
     void endGame()
     {

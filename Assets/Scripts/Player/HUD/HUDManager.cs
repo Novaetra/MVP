@@ -13,25 +13,29 @@ public class HUDManager : MonoBehaviour
     public Image revivingBarBG;
 
 	private StatsManager sm;
-    private PersonControlller pc;
+	private PersonControlller pc;
 
 	private GameObject currentPlayer;
-	private PersonControlller controller;
 	private GameObject canvasObj;
 	private GameObject panel;
+	private GameObject tooltip;
+
     private Text revivingTxt;
     private Text upgradePnts;
 	private Text shortMsg;
+	private Text expText;
     private Text roundsTxt;
-	private GameObject tooltip;
 	private Text tooltipName;
 	private Text tooltipDesc;
 	private Text tooltipLvl;
+	private Text currentLvlTxt;
+
 	private float timer;
 	private float currentTime;
 
 	private bool setUpDone = false;
 
+	//Assigns all the variables to their correspinding values
 	public void postSetUp()
 	{
         currentTime = 0;
@@ -39,29 +43,29 @@ public class HUDManager : MonoBehaviour
 		currentPlayer = gameObject;
         pc = currentPlayer.GetComponent<PersonControlller>();
 		sm = currentPlayer.GetComponent<StatsManager> ();
-		controller = currentPlayer.GetComponent<PersonControlller> ();
 		canvasObj = currentPlayer.GetComponentInChildren<Canvas> ().gameObject;
 		panel = canvasObj.transform.FindChild ("Panel").gameObject;
         roundsTxt = canvasObj.transform.FindChild("RoundsTxt").GetComponent<Text>();
         roundsTxt.enabled = false;
 		shortMsg = canvasObj.transform.FindChild ("ShortMessage").GetComponent<Text> ();
         upgradePnts = panel.transform.FindChild("UpgradePoints").GetComponent<Text>();
+		currentLvlTxt = panel.transform.FindChild ("CurrentLevelText").GetComponent<Text> ();
         revivingBarBG = canvasObj.transform.FindChild("ReviveBarBG").GetComponent<Image>();
         revivingTxt = revivingBarBG.transform.FindChild("Text").GetComponent<Text>();
         revivingBar = revivingBarBG.transform.FindChild("Image").GetComponent<Image>();
 		tooltip = canvasObj.transform.FindChild ("Tooltip").gameObject;
 		tooltipName = tooltip.transform.FindChild ("Name").GetComponent<Text> ();;
-		tooltipDesc = tooltip.transform.FindChild ("Description").GetComponent<Text> ();;
-		tooltipLvl = tooltip.transform.FindChild ("LvlRequired").GetComponent<Text> ();;
+		tooltipDesc = tooltip.transform.FindChild ("Description").GetComponent<Text> ();
+		tooltipLvl = tooltip.transform.FindChild ("LvlRequired").GetComponent<Text> ();
+		expText = canvasObj.transform.FindChild ("Exp Counter").GetComponent<Text> ();
 		tooltip.SetActive (false);
         panel.SetActive(false);
         upgradePnts.enabled = false;
 		setUpDone = true;
 	}
-
+	//
 	private void Update()
 	{
-		checkTab ();
 		updateBars ();
 		updateTimer ();
 	}
@@ -78,20 +82,15 @@ public class HUDManager : MonoBehaviour
 		}
 	}
 
-	private void checkTab()
+	public void updateCurrentLvlTxt()
 	{
-		if (Input.GetButtonUp ("Tab") && setUpDone == true) 
-		{
-			controller.toggleCursorLock (!controller.cursorLocked);
-			if (controller.cursorLocked == false) 
-			{
-				panel.SetActive (true);
-			}
-			else 
-			{
-				panel.SetActive (false);
-			}
-		}
+		currentLvlTxt.text = "Level " + sm.getCurrentLvl ();
+	}
+
+
+	public GameObject getPanel()
+	{
+		return panel;
 	}
 
 	public void updateBars()
@@ -102,7 +101,7 @@ public class HUDManager : MonoBehaviour
 			manabar.fillAmount = sm.getCurrentMana () / sm.getTotalMana ();
 			staminabar.fillAmount = sm.getCurrentStamina () / sm.getTotalStamina ();
 			expbar.fillAmount = sm.getCurrentExp () / sm.getGoalExp ();
-
+			expText.text = sm.getCurrentExp () + " / " + sm.getGoalExp ();
             if(pc.getReviving() == true)
             {
                 StatsManager personReviving = pc.getPersonReviving().GetComponent<StatsManager>();
@@ -162,7 +161,7 @@ public class HUDManager : MonoBehaviour
         }
 		catch(System.NullReferenceException o)
         {
-            Debug.LogError("Error msg null");
+            //Debug.LogError("Error msg null");
         }
 	}
 
@@ -190,5 +189,13 @@ public class HUDManager : MonoBehaviour
 		tooltip.SetActive(false);
 	}
 
+	public void showPanel()
+	{
+		panel.SetActive (true);
+	}
 
+	public void hidePanel()
+	{
+		panel.SetActive (false);
+	}
 }

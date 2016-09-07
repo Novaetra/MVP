@@ -5,24 +5,25 @@ using System.Linq;
 
 public class EnemyController : MonoBehaviour
 {
-
-    public Transform targetPlayer;
+    private Transform targetPlayer;
     private NavMeshAgent agent;
     private Animator anim;
     private Player[] players;
+
     private float distanceToPlayer;
     private float minDistance = Mathf.Infinity;
     private float playerDistance;
-    private float meleeRange = 4.0f;
-    [SerializeField]
-    private float meleeDamage = 20f;
-    [SerializeField]
+	[SerializeField]
+    private float meleeRange = 2.0f;
+	private float meleeDamage = 20f;
+	[SerializeField]
     private float health = 100f;
-    private int expOnKill = 10;
-    private float pntValue = 100;
+	private float pntValue = 100;
+	private int expOnKill = 10;
+
     private bool doneSettingUp = false;
     private bool isAlive = true;
-    [SerializeField]
+
     private Raycaster[] casters;
 
     //Assigns the enemy's nav agent, animator, and list of players
@@ -35,7 +36,8 @@ public class EnemyController : MonoBehaviour
         doneSettingUp = true;
     }
 
-    //Finds closest player, follow it, and if within melee range, attacks player
+    //Finds closest player, follow it, and if player is within melee range, attacks player
+	//Check if enemy is alive
     void Update()
     {
         if (doneSettingUp == true && isAlive == true)
@@ -45,6 +47,7 @@ public class EnemyController : MonoBehaviour
         checkAlive();
     }
 
+	//Checks if enemy's health is greater than 0 (if enemy is alive)
     private void checkAlive()
     {
         if (health <= 0)
@@ -53,21 +56,29 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+	//Chases the closest player
     private void chasePlayer()
     {
+		//Gets a list of all the players
         players = PhotonView.FindObjectsOfType<Player>();
+		//Gets a list of all the ALIVE players from the list of all players
         IEnumerable<Player> livePlayers = from player in players where player.GetComponent<StatsManager>().getAlive() select player;
-        List<Player> playersList = new List<Player>(players);
+
+		//Get closest player and assign it as the target
         targetPlayer = GetClosestEnemy(livePlayers.ToList());
+
         if (targetPlayer != null && isAlive == true)
         {
+			//Gets the distance between the player and the enemy
             playerDistance = Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position);
+			//If the distance is greater than the enemy's melee range, then walk toward the target player
             if (playerDistance > meleeRange)
             {
                 agent.enabled = true;
                 agent.SetDestination(targetPlayer.position);
                 GetComponent<PhotonView>().RPC("walkAnim", PhotonTargets.AllBuffered, null);
             }
+			//Else if the player is within melee range, attack
             else
             {
                 GetComponent<PhotonView>().RPC("idleAnim", PhotonTargets.AllBuffered, null);
@@ -78,6 +89,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+	//Rotate towards the target player
     private void rotateTowards(Transform target)
     {
         Vector3 direction = (target.position - transform.position).normalized;
@@ -104,7 +116,8 @@ public class EnemyController : MonoBehaviour
         }
         return bestTarget;
     }
-
+	//Throws rays to check if the melee attack hit a player
+	//If it hit a player, then apply damage
     public void checkAttack()
     {
         RaycastHit hit;
@@ -123,12 +136,14 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+	//Lower the enemy's health by x amt
     public void recieveDamage(float dmg)
     {
         health -= dmg;
         anim.SetFloat("Health", health);
     }
 
+	//Start death animation and trigger everything needed to kill the dying enemy
     public void startDeath()
     {
         if (isAlive == true)
@@ -140,6 +155,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+	//Firsts starts the death animation, waits x seconds, and then destroys the enemy
     private IEnumerator die()
     {
 
@@ -148,11 +164,14 @@ public class EnemyController : MonoBehaviour
         GetComponent<PhotonView>().RPC("destroyRPC", PhotonTargets.AllBuffered, null);
     }
 
+	//Destroys the enemy
     public void destroy()
     {
         PhotonNetwork.Destroy(gameObject);
     }
 
+	//Temporary...might just give the person with the killing blow any exp
+	//Send all players exp
     [PunRPC]
     void sendPlayersExp()
     {
@@ -160,6 +179,7 @@ public class EnemyController : MonoBehaviour
         PhotonGameManager.currentplayer.GetComponent<StatsManager>().addCurrentPoints(pntValue);
     }
 
+	//Destroys the enemy on all clients
     [PunRPC]
     void destroyRPC()
     {
@@ -169,18 +189,22 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+	//Triggers an attack animation on all clients
     [PunRPC]
     void attackAnim()
     {
         GetComponent<Animator>().SetInteger("Skill", 1);
     }
 
+
+	//Triggers an walk animation on all clients
     [PunRPC]
     void walkAnim()
     {
         GetComponent<Animator>().SetFloat("Speed", 5);
     }
 
+	//Triggers an idle animation on all clients
     [PunRPC]
     void idleAnim()
     {

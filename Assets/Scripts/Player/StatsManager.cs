@@ -11,8 +11,11 @@ public class StatsManager : MonoBehaviour
     private float totalStamina;
     private float currentStamina;
     private float sprintStamCost;
-    private float meleeCost;
-    private int currentLevel;
+	private float meleeCost;
+	[SerializeField]
+	private float baseMeleeDamage;
+
+	private int currentLvl;
 	[SerializeField]
     private float currentExp;
 	private float currentPoints;
@@ -54,7 +57,8 @@ public class StatsManager : MonoBehaviour
         currentStamina = 100f;
         sprintStamCost = 20f;
         meleeCost = 5f;
-        currentLevel = 1;
+		baseMeleeDamage = 100f;
+        currentLvl = 1;
         currentExp = 0f;
         totalExpRequiredToLvlUp = 40f;
         currentPoints = 0f;
@@ -76,6 +80,8 @@ public class StatsManager : MonoBehaviour
         hudman = GetComponent<HUDManager>();
         anim = GetComponent<Animator>();
         pgm = GameObject.Find("Network").GetComponent<PhotonGameManager>();
+		hudman.updateCurrentLvlTxt ();
+		GetComponent<PersonControlller> ().set_Up ();
 
     }
 
@@ -125,24 +131,17 @@ public class StatsManager : MonoBehaviour
     public void recieveExp(int exp)
     {
         currentExp += exp;
-        if (currentExp >= totalExpRequiredToLvlUp)
-        {
-            levelUp(currentExp - totalExpRequiredToLvlUp);
-        }
     }
 
-    private void levelUp(float leftOver)
+	public void lvlUp(float leftOver)
     {
         currentExp = leftOver;
         totalExpRequiredToLvlUp *= 1.5f;
-        currentLevel++;
+        currentLvl++;
         upgradePoints++;
         activateUnlockable();
+		hudman.updateCurrentLvlTxt ();
         StartCoroutine(lvlUpTxt());
-        if (currentExp >= totalExpRequiredToLvlUp)
-        {
-            levelUp(currentExp - totalExpRequiredToLvlUp);
-        }
     }
 
     public void recieveDamage(float dmg)
@@ -243,7 +242,7 @@ public class StatsManager : MonoBehaviour
         }
     }
 
-    #region getters
+    #region gettersSetters
     public bool getReviving()
     {
         return isReviving;
@@ -316,7 +315,7 @@ public class StatsManager : MonoBehaviour
 
     public int getCurrentLvl()
     {
-        return currentLevel;
+        return currentLvl;
     }
 
     public int getUpgradePnts()
@@ -354,11 +353,37 @@ public class StatsManager : MonoBehaviour
 	{
 		return sprintStamCost;
 	}
+
+	public float getMeleeDamage()
+	{
+		return baseMeleeDamage;
+	} 
+
+	public void setMeleeDamage(float dmg)
+	{
+		baseMeleeDamage = dmg;
+	}
+
+	public void setTotalStamina(float stam)
+	{
+		totalStamina = stam;
+	}
+
+	public void setTotalHealth(float health)
+	{
+		totalHealth = health;
+	}
+
+	public void dealDamage(RaycastHit hit)
+	{
+		hit.transform.SendMessage("recieveDamage", baseMeleeDamage);
+	}
+
 	#endregion
 
 	private IEnumerator lvlUpTxt()
 	{
-        hudman.displayMsg("You have reached level " + currentLevel, 2f);
+        hudman.displayMsg("You have reached level " + currentLvl, 2f);
         yield return new WaitForSeconds(2);
         hudman.displayMsg("You can now unlock a new skill!",2f);
 	}

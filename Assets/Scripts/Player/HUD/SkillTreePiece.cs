@@ -34,10 +34,11 @@ public class SkillTreePiece : MonoBehaviour
 		}
 	}
 
+	//Unlocks/Upgrades skills
 	public void unlockOrUpgradeSkill()
     {
-		if (!isUnlocked) {
-			Debug.Log ("already");
+		if (!isUnlocked) 
+		{
 			isUnlocked = true;
 			GetComponentInParent<Toggle> ().interactable = false;
 			sm.addUpgradePoint (-1);
@@ -50,6 +51,28 @@ public class SkillTreePiece : MonoBehaviour
 			Debug.Log ("upgrade");
 		}
     }
+
+
+	//This is for one-time effects (passives)
+	#region passives
+
+	public void healthUpgradeOnUnlock()
+	{
+		sm.setTotalHealth (sm.getTotalHealth() + skill.getEffectAmount());
+	}
+
+	public void meleeUpgradeOnUnlock()
+	{
+		Debug.Log (skill.getEffectAmount ());
+		sm.setMeleeDamage (sm.getMeleeDamage() + skill.getEffectAmount());
+	}
+
+	public void staminaUpgradeOnUnlock()
+	{
+		sm.setTotalStamina (sm.getTotalStamina() + skill.getEffectAmount());
+	}
+
+	#endregion
 
 	public void showTooltip()
 	{

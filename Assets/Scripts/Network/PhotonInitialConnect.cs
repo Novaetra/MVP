@@ -8,6 +8,7 @@ public class PhotonInitialConnect : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		//If client is not connected, connect to Photon
         if(PhotonNetwork.connected == false)
         {
             PhotonNetwork.autoJoinLobby = true;
@@ -16,10 +17,11 @@ public class PhotonInitialConnect : MonoBehaviour
         }
         else
         {
+			//If already connected, load the lobby
             PhotonNetwork.LoadLevel(1);
         }
 	}
-
+	//When client joines a lobby, assign the client a name, and loads to the menu
 	private void OnJoinedLobby() 
 	{
 		PhotonNetwork.playerName = "" + Random.Range (0.0f, 50.0f);

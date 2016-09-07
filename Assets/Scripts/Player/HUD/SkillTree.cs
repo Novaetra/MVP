@@ -33,7 +33,7 @@ public class SkillTree : MonoBehaviour
 			}
 		}
 	}
-    
+
     public void activateUnlockable(StatsManager sm)
     {
         try
@@ -42,7 +42,7 @@ public class SkillTree : MonoBehaviour
             foreach (SkillTreePiece piece in treePieces)
             {
 				if (piece.getUnlocked() == false && piece.getSkill().getRequirement() <= sm.getCurrentLvl() && sm.getUpgradePnts() > 0 && x <= skillsUnlocked)
-                {
+				{
                     toggles[x].interactable = true;
                 }
                 else

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PhotonMenu : MonoBehaviour 
 {
-
+	//Just a loading screen
 	void Start()
 	{
 		if (!PhotonNetwork.connected) {

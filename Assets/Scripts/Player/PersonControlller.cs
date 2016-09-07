@@ -3,6 +3,10 @@ using System.Collections;
 
 public class PersonControlller : MonoBehaviour 
 {
+
+	//Temp
+	public int expIncreaseAmt;
+
 	public float walkSpeed = 5f;
 	public float runSpeed = 8f;
 	public float currentSpeed;
@@ -18,10 +22,10 @@ public class PersonControlller : MonoBehaviour
 	private float YSensitivity = 2f;
 	private float MinimumY = 80f;
 	private float MaximumY = 70f;
-    private float meleeDistance = 2f;
-    private float meleeDamage = 100f;
+	private float meleeDistance = 2f;
     private float interactDistance = 2f;
     private StatsManager sm;
+	private HUDManager hudman;
 
     private Raycaster[] raycasters;
 
@@ -29,9 +33,10 @@ public class PersonControlller : MonoBehaviour
 
     private bool isSettingUp = true;
 
-	private void setUp () 
+	public void set_Up () 
 	{
 		cs = GetComponent<CharacterController> ();
+		hudman = GetComponent<HUDManager> ();
 		currentSpeed = walkSpeed;
 		anim = GetComponent<Animator> ();
 		lastUpperRot = 0f;
@@ -54,29 +59,47 @@ public class PersonControlller : MonoBehaviour
                 movement();
                 updateCursorLock();
                 checkInteract();
-                debugControls();
+				checkTab ();
+				debugControls();
+				checkLvlUp ();
             }
         }
-
-
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            toggleCursorLock(!cursorLocked);
-        }
     }
+
+	private void checkTab()
+	{
+		if (Input.GetButtonUp ("Tab")) 
+		{
+			toggleCursorLock (!cursorLocked);
+			if (cursorLocked == false) 
+			{
+				hudman.showPanel ();
+			}
+			else 
+			{
+				
+				hudman.hidePanel ();
+				hudman.hideTooltip ();
+			}
+		}
+	}
     
     void debugControls()
     {
-
         if (Input.GetKeyUp(KeyCode.M))
         {
-            sm.recieveExp(5);
+			sm.recieveExp(expIncreaseAmt);
         }
 
         if (Input.GetKeyUp(KeyCode.N))
         {
             sm.recieveDamage(10);
         }
+
+		if (Input.GetKeyUp(KeyCode.Escape))
+		{
+			toggleCursorLock(!cursorLocked);
+		}
     }
 		
 	void LateUpdate ()
@@ -115,6 +138,19 @@ public class PersonControlller : MonoBehaviour
         }
     }
 
+	private void checkLvlUp()
+	{
+		if (sm.getCurrentExp () >= sm.getGoalExp ()) 
+		{
+			hudman.displayMsg ("Press L to level up", .1f);
+			if (Input.GetKeyUp (KeyCode.L)) 
+			{
+				//Level up
+				sm.lvlUp(sm.getCurrentExp() - sm.getGoalExp());
+			}
+		}
+	}
+
     private void throwRays()
     {
         RaycastHit hit;
@@ -129,7 +165,8 @@ public class PersonControlller : MonoBehaviour
             }
         }
     }
-    private void checkRevive(RaycastHit hit)
+   
+	private void checkRevive(RaycastHit hit)
     {
         if (hit.transform.tag == "Player")
         {
@@ -141,7 +178,6 @@ public class PersonControlller : MonoBehaviour
             }
         }
     }
-
 
     private void checkDoor(RaycastHit hit)
     {
@@ -167,7 +203,7 @@ public class PersonControlller : MonoBehaviour
                 {
                     if (hit.transform.tag == "Enemy")
                     {
-                        hit.transform.SendMessage("recieveDamage", meleeDamage);
+						sm.dealDamage (hit);
                         return;
                     }
                 }
@@ -209,6 +245,7 @@ public class PersonControlller : MonoBehaviour
 		finalMove = transform.rotation * finalMove;
 		cs.SimpleMove (finalMove);
 	}
+
 	private void cameraRot()
 	{
 		if (cursorLocked == true) 
@@ -269,4 +306,8 @@ public class PersonControlller : MonoBehaviour
         personReviving = g;
     }
 
+	public void resetAnimator()
+	{
+		anim.SetInteger ("Skill", -1);
+	}
 }

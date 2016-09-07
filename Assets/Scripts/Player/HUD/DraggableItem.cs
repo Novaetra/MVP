@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
+	[SerializeField]
+	private bool isDraggable = true;
+
 	public static Skill skillBeingDragged;
 	public static Sprite imgBeingDragged;
 
@@ -20,6 +23,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 	public void OnBeginDrag(PointerEventData data)
 	{
+		if (isDraggable) 
+		{
+			
 			//Sets the object being dragged
 			skillBeingDragged = GetComponent<SkillTreePiece> ().getSkill ();
 			//Sets the image of the object being dragged
@@ -31,30 +37,37 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			//Changes the parent to Canvas so it can be dragged outside the skill tree mask
 
 			//Temporary
-			gameObject.transform.SetParent (currentPlayer.GetComponentInChildren<Canvas>().transform);
+			gameObject.transform.SetParent (currentPlayer.GetComponentInChildren<Canvas> ().transform);
 			gameObject.transform.SetAsLastSibling ();
 			//Allows the event system to pass through the object being dragged
 			GetComponent<CanvasGroup> ().blocksRaycasts = false;
+		}
 	}
 
 	public void OnDrag(PointerEventData data)
 	{
-		//Update position of object
-		transform.position = Camera.main.ScreenToWorldPoint(new Vector3(data.position.x,data.position.y,0.5f));
+		if (isDraggable)
+		{
+			//Update position of object
+			transform.position = Camera.main.ScreenToWorldPoint (new Vector3 (data.position.x, data.position.y, 0.5f));
+		}
 	}
 
 	public void OnEndDrag(PointerEventData data)
 	{
-		//Reset raycast block
-		GetComponent<CanvasGroup> ().blocksRaycasts = true;
-		//Reset skill being dragged
-		skillBeingDragged = null;
-		//Reset img being dragged
-		imgBeingDragged=null;
-		//Reset parent to its original
-		gameObject.transform.SetParent(originalParent);
-		//Reset object to start position
-		transform.localPosition = startPos;
+		if (isDraggable) 
+		{
+			//Reset raycast block
+			GetComponent<CanvasGroup> ().blocksRaycasts = true;
+			//Reset skill being dragged
+			skillBeingDragged = null;
+			//Reset img being dragged
+			imgBeingDragged = null;
+			//Reset parent to its original
+			gameObject.transform.SetParent (originalParent);
+			//Reset object to start position
+			transform.localPosition = startPos;
+		}
 	}
 
 	public void OnPointerEnter(PointerEventData data)
