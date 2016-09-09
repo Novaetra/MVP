@@ -191,12 +191,11 @@ ModelImporter:
       - time: 0.41336116
         functionName: checkMelee
         data: 
-        objectReferenceParameter: {fileID: 104502, guid: 96adb2ec07b91406cacbba4a033313b9,
-          type: 2}
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9563636
+      - time: 0.4874747
         functionName: resetAnimator
         data: 
         objectReferenceParameter: {fileID: 167750, guid: b754e523db2a7f94dbc0292ed3cc7ac7,

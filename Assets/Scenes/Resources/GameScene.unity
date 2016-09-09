@@ -1081,19 +1081,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2392616, guid: 4a1019ec9cd6b0e479c2bc3ead4c60ba, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2315888, guid: 4a1019ec9cd6b0e479c2bc3ead4c60ba, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2354762, guid: 4a1019ec9cd6b0e479c2bc3ead4c60ba, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2361500, guid: 4a1019ec9cd6b0e479c2bc3ead4c60ba, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 429788, guid: 4a1019ec9cd6b0e479c2bc3ead4c60ba, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1354,7 +1354,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2002971432}
   m_RootOrder: 0
---- !u!1001 &1447748766
+--- !u!1001 &1196342900
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1363,15 +1363,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 402172, guid: b754e523db2a7f94dbc0292ed3cc7ac7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -25.62
+      value: 9.269205
       objectReference: {fileID: 0}
     - target: {fileID: 402172, guid: b754e523db2a7f94dbc0292ed3cc7ac7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.5
+      value: -2.7674332
       objectReference: {fileID: 0}
     - target: {fileID: 402172, guid: b754e523db2a7f94dbc0292ed3cc7ac7, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -26.23
+      value: -4.926987
       objectReference: {fileID: 0}
     - target: {fileID: 402172, guid: b754e523db2a7f94dbc0292ed3cc7ac7, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1391,11 +1391,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 402172, guid: b754e523db2a7f94dbc0292ed3cc7ac7, type: 2}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 167750, guid: b754e523db2a7f94dbc0292ed3cc7ac7, type: 2}
-      propertyPath: m_Name
-      value: Player (1)
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11411884, guid: b754e523db2a7f94dbc0292ed3cc7ac7, type: 2}
       propertyPath: viewIdField
@@ -1720,4 +1716,4 @@ Transform:
   m_Children:
   - {fileID: 2002971432}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
