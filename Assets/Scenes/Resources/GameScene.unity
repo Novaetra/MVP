@@ -981,7 +981,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 02c07345313cb814eb6dcd63462e338a, type: 2}
     - target: {fileID: 159604, guid: 4a1019ec9cd6b0e479c2bc3ead4c60ba, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 440222, guid: 4a1019ec9cd6b0e479c2bc3ead4c60ba, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
