@@ -196,7 +196,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.98281455
+      - time: 1
         functionName: resetAnimator
         data: 
         objectReferenceParameter: {fileID: 167750, guid: b754e523db2a7f94dbc0292ed3cc7ac7,
