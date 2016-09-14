@@ -16,10 +16,10 @@ public class EnemyController : MonoBehaviour
 	[SerializeField]
     private float meleeRange = 2.0f;
 	private float meleeDamage = 20f;
-	[SerializeField]
-    private float health = 100f;
-	private float pntValue = 100;
-	private int expOnKill = 10;
+	private float totalHealth = 100f;
+    private float health;
+	private float pntValue = 100f;
+	private float expOnKill = 10f;
 
     private bool doneSettingUp = false;
     private bool isAlive = true;
@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour
     //Assigns the enemy's nav agent, animator, and list of players
     public void Start()
     {
+		health = totalHealth;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         anim.SetFloat("Health", health);
@@ -97,7 +98,6 @@ public class EnemyController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
     }
 
-
     //Returns the cloest enemy
     private Transform GetClosestEnemy(List<Player> players)
     {
@@ -116,6 +116,7 @@ public class EnemyController : MonoBehaviour
         }
         return bestTarget;
     }
+
 	//Throws rays to check if the melee attack hit a player
 	//If it hit a player, then apply damage
     public void checkAttack()
@@ -169,6 +170,22 @@ public class EnemyController : MonoBehaviour
     {
         PhotonNetwork.Destroy(gameObject);
     }
+
+	public void setTotalHealth(float h)
+	{
+		totalHealth = h;
+		health = h;
+	}
+
+	public void setMeleeDamage(float d)
+	{
+		meleeDamage = d;
+	}
+
+	public void setExpOnKill(float exp)
+	{
+		expOnKill = exp;
+	}
 
 	//Temporary...might just give the person with the killing blow any exp
 	//Send all players exp

@@ -57,7 +57,7 @@ public class StatsManager : MonoBehaviour
         currentStamina = 100f;
         sprintStamCost = 20f;
         meleeCost = 5f;
-		baseMeleeDamage = 100f;
+		baseMeleeDamage = 200f;
         currentLvl = 1;
         currentExp = 0f;
         totalExpRequiredToLvlUp = 40f;
@@ -128,21 +128,28 @@ public class StatsManager : MonoBehaviour
         }
     }
 
-    public void recieveExp(int exp)
+	public void recieveExp(float exp)
     {
         currentExp += exp;
     }
 
 	public void lvlUp(float leftOver)
     {
+		upgradeStats ();
         currentExp = leftOver;
-        totalExpRequiredToLvlUp *= 1.5f;
+        totalExpRequiredToLvlUp *= .1f;
         currentLvl++;
         upgradePoints++;
         activateUnlockable();
 		hudman.updateCurrentLvlTxt ();
         StartCoroutine(lvlUpTxt());
     }
+
+	private void upgradeStats()
+	{
+		totalHealth += totalHealth * .02f;
+		baseMeleeDamage += baseMeleeDamage * .05f;
+	}
 
     public void recieveDamage(float dmg)
     {

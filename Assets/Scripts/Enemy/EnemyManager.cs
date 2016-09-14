@@ -7,8 +7,13 @@ public class EnemyManager : MonoBehaviour
     public bool spawnEnemies;
 
     private int currentEnemyCount;
+	[SerializeField]
     private int currentWaveCount;
+	[SerializeField]
+	private int maxEnemies;
+	[SerializeField]
     private int enemysToSpawn;
+	private int enemiesSpawned;
 
     private float timeBetweenRounds;
     private float timeBetweenSpawns;
@@ -17,6 +22,8 @@ public class EnemyManager : MonoBehaviour
 
 	//This dictionary holds all the spawn points per room
     private Dictionary<string, Transform[]> spawnPointsInRoom = new Dictionary<string, Transform[]>();
+
+	private Dictionary<string,float[]> statsPerEnemy = new Dictionary<string, float[]>();
 
 	//This list keeps track of the rooms are adjacent to other rooms and which ones
     private List<Transform[]> adjacentRooms = new List<Transform[]>();
@@ -40,12 +47,16 @@ public class EnemyManager : MonoBehaviour
             hudMan = PhotonGameManager.currentplayer.GetComponent<HUDManager>();
             enemysToSpawn = 3;
             currentWaveCount = 0;
+			enemiesSpawned = 0;
             timeBetweenRounds = 3f;
             timeBetweenSpawns = 2f;
             setupSpawnLists();
             StartCoroutine(waitToStartNewRound());
             doors = GameObject.FindObjectsOfType<Door>();
         }
+
+		statsPerEnemy["BasicMelee"] = new float[3]{0f, 20f, 10f };
+
     }
     
     //Fills the list that contains all adjacent rooms and links the room to its spawn points
@@ -198,16 +209,34 @@ public class EnemyManager : MonoBehaviour
             int randIndx = (int)Random.Range(0, (spawnPointsAvailable.Count - 1));
             Transform spawn = spawnPointsAvailable[randIndx];
             GameObject enemy = (GameObject)PhotonNetwork.Instantiate("Enemy", spawn.position, spawn.rotation, 0);
+			if (currentWaveCount < 9) 
+			{
+				enemy.GetComponent<EnemyController> ().setTotalHealth (statsPerEnemy["BasicMelee"][0]+20f);
+				statsPerEnemy["BasicMelee"] [0] =  statsPerEnemy["BasicMelee"] [0] + 20f;
+			}
+			else
+			{
+				enemy.GetComponent<EnemyController> ().setTotalHealth ((statsPerEnemy["BasicMelee"][0] + statsPerEnemy["BasicMelee"] [0]*.05f));
+				enemy.GetComponent<EnemyController> ().setExpOnKill ((statsPerEnemy["BasicMelee"][1] + statsPerEnemy["BasicMelee"] [1]*.02f));
+				statsPerEnemy ["BasicMelee"] [0] = statsPerEnemy ["BasicMelee"] [0] + statsPerEnemy ["BasicMelee"] [0] * .05f;
+				statsPerEnemy ["BasicMelee"] [1] = statsPerEnemy ["BasicMelee"] [1] + statsPerEnemy ["BasicMelee"] [1] * .02f;
+			}
         }
     }
 
 	//Spawns the whole wave of enemies
     private IEnumerator spawnWave()
     {
+		enemiesSpawned = 0;
+
         for(int x = 0; x<enemysToSpawn; x++)
         {
-            yield return new WaitForSeconds(timeBetweenSpawns);
-            spawnEnemy();
+			if (enemiesSpawned < maxEnemies) 
+			{
+
+				yield return new WaitForSeconds(timeBetweenSpawns);
+				spawnEnemy();
+			}
         }
     }
 

@@ -2276,7 +2276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeRange: 1
-  health: 200
+  totalHealth: 100
 --- !u!114 &11417370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2473,7 +2473,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 160680}
   m_Enabled: 1
   m_Radius: 0.3
-  m_Speed: 2
+  m_Speed: 1
   m_Acceleration: 9
   avoidancePriority: 50
   m_AngularSpeed: 360
