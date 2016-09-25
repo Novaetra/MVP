@@ -26,13 +26,10 @@ public class FireballScript : MonoBehaviour
 
 	private IEnumerator destroyFire()
 	{
-        //GetComponent<ParticleSystem> ().Stop (true);
+        GetComponent<ParticleSystem> ().Stop (true);
 
-        //yield return new WaitForSeconds (1f);
-        //Destroy(transform.parent.gameObject);
-
+        yield return new WaitForSeconds (1f);
         Destroy(transform.parent.gameObject);
-        yield return new WaitForSeconds(1f);
     }
 
     public void destroyFireball()
@@ -48,8 +45,8 @@ public class FireballScript : MonoBehaviour
             RaycastHit hit;
             foreach (Raycaster caster in casters)
             {
-                Debug.DrawRay(caster.transform.position, -caster.transform.forward * range, Color.red);
-                if (Physics.Raycast(caster.transform.position, -caster.transform.forward, out hit, range))
+                Debug.DrawRay(caster.transform.position, caster.transform.forward * range, Color.red);
+                if (Physics.Raycast(caster.transform.position, caster.transform.forward, out hit, range))
                 {
                     if (hit.transform.gameObject.tag == "Enemy")
                     {
