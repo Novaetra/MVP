@@ -137,7 +137,7 @@ public class StatsManager : MonoBehaviour
     {
 		upgradeStats ();
         currentExp = leftOver;
-        totalExpRequiredToLvlUp *= .1f;
+		totalExpRequiredToLvlUp += totalExpRequiredToLvlUp*.1f;
         currentLvl++;
         upgradePoints++;
         activateUnlockable();

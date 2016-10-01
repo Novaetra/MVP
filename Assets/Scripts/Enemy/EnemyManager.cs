@@ -209,7 +209,7 @@ public class EnemyManager : MonoBehaviour
             int randIndx = (int)Random.Range(0, (spawnPointsAvailable.Count - 1));
             Transform spawn = spawnPointsAvailable[randIndx];
             GameObject enemy = (GameObject)PhotonNetwork.Instantiate("Enemy", spawn.position, spawn.rotation, 0);
-			if (currentWaveCount < 9) 
+			if (currentWaveCount < 5) 
 			{
 				enemy.GetComponent<EnemyController> ().setTotalHealth (statsPerEnemy["BasicMelee"][0]+20f);
 				statsPerEnemy["BasicMelee"] [0] =  statsPerEnemy["BasicMelee"] [0] + 20f;
