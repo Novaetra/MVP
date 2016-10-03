@@ -13,7 +13,7 @@ public class HUDManager : MonoBehaviour
     public Image revivingBarBG;
 
 	private StatsManager sm;
-	private PersonControlller pc;
+	private PlayerController pc;
 
 	private GameObject currentPlayer;
 	private GameObject canvasObj;
@@ -41,7 +41,7 @@ public class HUDManager : MonoBehaviour
         currentTime = 0;
         timer = 0;
 		currentPlayer = gameObject;
-        pc = currentPlayer.GetComponent<PersonControlller>();
+        pc = currentPlayer.GetComponent<PlayerController>();
 		sm = currentPlayer.GetComponent<StatsManager> ();
 		canvasObj = currentPlayer.GetComponentInChildren<Canvas> ().gameObject;
 		panel = canvasObj.transform.FindChild ("Panel").gameObject;

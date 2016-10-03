@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     private float minDistance = Mathf.Infinity;
     private float playerDistance;
 	[SerializeField]
-    private float meleeRange = 2.0f;
+    private float meleeRange = 1.0f;
 	private float meleeDamage = 20f;
 	private float totalHealth = 100f;
     private float health;
@@ -121,17 +121,20 @@ public class EnemyController : MonoBehaviour
 	//If it hit a player, then apply damage
     public void checkAttack()
     {
-        RaycastHit hit;
-        foreach (Raycaster caster in casters)
+        if(isAlive)
         {
-            Transform raycaster = caster.transform;
-            Debug.DrawRay(raycaster.position, raycaster.forward * meleeRange, Color.blue, 1);
-            if (Physics.Raycast(raycaster.position, raycaster.forward, out hit, meleeRange))
+            RaycastHit hit;
+            foreach (Raycaster caster in casters)
             {
-                if (hit.transform.tag == "Player")
+                Transform raycaster = caster.transform;
+                Debug.DrawRay(raycaster.position, raycaster.forward * meleeRange, Color.blue, 1);
+                if (Physics.Raycast(raycaster.position, raycaster.forward, out hit, meleeRange))
                 {
-                    hit.transform.GetComponent<StatsManager>().recieveDamage(meleeDamage);
-                    return;
+                    if (hit.transform.tag == "Player")
+                    {
+                        hit.transform.GetComponent<StatsManager>().recieveDamage(meleeDamage);
+                        return;
+                    }
                 }
             }
         }

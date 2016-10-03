@@ -81,7 +81,7 @@ public class StatsManager : MonoBehaviour
         anim = GetComponent<Animator>();
         pgm = GameObject.Find("Network").GetComponent<PhotonGameManager>();
 		hudman.updateCurrentLvlTxt ();
-		GetComponent<PersonControlller> ().set_Up ();
+		GetComponent<PlayerController> ().set_Up ();
 
     }
 
@@ -183,7 +183,7 @@ public class StatsManager : MonoBehaviour
         if (isReviving == true)
         {
             float distance = Vector3.Distance(transform.position, currentReviver.transform.position);
-            if (distance <= reviveDistance && currentReviver.GetComponent<PersonControlller>().getReviving() == true && isAlive == false)
+            if (distance <= reviveDistance && currentReviver.GetComponent<PlayerController>().getReviving() == true && isAlive == false)
             {
                 if (currentReviveTimer < reviveTimer)
                 {
@@ -198,7 +198,7 @@ public class StatsManager : MonoBehaviour
             {
                 isReviving = false;
                 currentReviveTimer = 0;
-                currentReviver.GetComponent<PersonControlller>().setPersonReviving(null);
+                currentReviver.GetComponent<PlayerController>().setPersonReviving(null);
             }
         }
     }

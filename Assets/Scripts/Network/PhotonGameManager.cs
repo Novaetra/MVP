@@ -42,7 +42,6 @@ public class PhotonGameManager : MonoBehaviour
 
 	public void OnJoinedRoom()
 	{
-		Debug.Log ("Joined Room");
 		addPlayer ();
 	}
 	#endregion
@@ -50,10 +49,10 @@ public class PhotonGameManager : MonoBehaviour
 	//Adds player to the scene and enables its components
 	private void addPlayer()
 	{
-		GameObject spawn = GameObject.Find("Spawn"+(int)Random.Range (1f, 4f)).gameObject;
+        GameObject spawn = GameObject.Find("Spawn1");
         currentplayer = (GameObject)PhotonNetwork.Instantiate("Player", spawn.transform.position, spawn.transform.rotation, 0);
         playerID = currentplayer.GetComponent<PhotonView> ().viewID;
-		currentplayer.GetComponent<PersonControlller> ().enabled = true;
+		currentplayer.GetComponent<PlayerController> ().enabled = true;
 		currentplayer.GetComponent<CharacterController> ().enabled = true;
         currentplayer.GetComponent<HUDManager>().enabled = true;
         currentplayer.GetComponent<SkillManager>().enabled = true;
@@ -82,7 +81,7 @@ public class PhotonGameManager : MonoBehaviour
 		//If there are no players alive, then end the game
         if(playersAlive<= 0)
         {
-            currentplayer.GetComponent<PersonControlller>().toggleCursorLock(false);
+            currentplayer.GetComponent<PlayerController>().toggleCursorLock(false);
             GetComponent<PhotonView>().RPC("endGame", PhotonTargets.AllBuffered, null);
         }
     }

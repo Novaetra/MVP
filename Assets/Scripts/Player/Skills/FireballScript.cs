@@ -8,6 +8,9 @@ public class FireballScript : MonoBehaviour
     private float range = 0.75f;
     private Raycaster[] casters;
     private bool isDestroyed;
+    private int enemiesHit = 0;
+    private int maxEnemiesHit = 2;
+
 	void Start()
 	{
         sm = PhotonGameManager.currentplayer.GetComponent<SkillManager>();
@@ -37,25 +40,14 @@ public class FireballScript : MonoBehaviour
         isDestroyed = true;
         StartCoroutine (destroyFire ());
 	}
-
-	void Update()
-	{
-        if (!isDestroyed)
+    
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.gameObject.tag == "Enemy" && enemiesHit<maxEnemiesHit)
         {
-            RaycastHit hit;
-            foreach (Raycaster caster in casters)
-            {
-                Debug.DrawRay(caster.transform.position, caster.transform.forward * range, Color.red);
-                if (Physics.Raycast(caster.transform.position, caster.transform.forward, out hit, range))
-                {
-                    if (hit.transform.gameObject.tag == "Enemy")
-                    {
-                        hit.transform.BroadcastMessage("recieveDamage", dmg, SendMessageOptions.DontRequireReceiver);
-                        destroyFireball();
-                        return;
-                    }
-                }
-            }
+            col.transform.BroadcastMessage("recieveDamage", dmg, SendMessageOptions.DontRequireReceiver);
+            destroyFireball();
+            enemiesHit++;
         }
-	}
+    }
 }

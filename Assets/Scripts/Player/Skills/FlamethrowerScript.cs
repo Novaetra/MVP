@@ -9,7 +9,7 @@ public class FlamethrowerScript : MonoBehaviour {
     [SerializeField]
     private float dmg;
 
-	private PersonControlller ps;
+	private PlayerController ps;
 
 	void Start ()
     {
@@ -25,7 +25,7 @@ public class FlamethrowerScript : MonoBehaviour {
             }
         }
 
-		ps = GetComponentInParent<PersonControlller> ();
+		ps = GetComponentInParent<PlayerController> ();
 
         doneSetup = true;
 	}

@@ -15,6 +15,18 @@ public class Door : MonoBehaviour
         anim = GetComponent<Animation>();
         isOpen = false;
     }
+
+    public void interact(object[] parameters)
+    {
+        RaycastHit hit = (RaycastHit)parameters[0];
+        GameObject player = (GameObject)parameters[1];
+        StatsManager sm = player.GetComponent<StatsManager>();
+        if (sm.getCurrentExp() - hit.transform.GetComponentInParent<Door>().getCost() >= 0 && hit.transform.GetComponentInParent<Door>().getOpen() == false)
+        {
+            hit.transform.GetComponentInParent<PhotonView>().RPC("openDoor", PhotonTargets.AllBuffered, null);
+            sm.subtractExp(hit.transform.GetComponentInParent<Door>().getCost());
+        }
+    }
     
 	//This displays the door cost if the player approaches it
     private void OnTriggerStay(Collider col)

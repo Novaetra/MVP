@@ -29,6 +29,7 @@ public class EnemyManager : MonoBehaviour
     private List<Transform[]> adjacentRooms = new List<Transform[]>();
 
 	//This list is the list that holds all the spawn points an enemy can spawn in
+    [SerializeField]
     private List<Transform> spawnPointsAvailable = new List<Transform>();
 
 	//List of doors so we can figure out the adjacent rooms
@@ -86,18 +87,25 @@ public class EnemyManager : MonoBehaviour
         foreach(Transform door in floor.FindChild("Doors"))
         {
 			//Temporary list to store adjacent rooms for later use
-            Transform[] _adjacentRooms = new Transform[3];
+            List<Transform> _adjacentRoomsList = new List<Transform>(0);
+            //Transform[] _adjacentRooms = new Transform[3];
             int i = 0;
 			//For each adjacent room
             foreach (Transform t in door.GetComponent<Door>().getAdjacentRooms())
             {
-				//Add the adjacent rooms to the temporary list of adjacent rooms
-                _adjacentRooms[i] = t;
+                //Add the adjacent rooms to the temporary list of adjacent rooms
+                _adjacentRoomsList.Add(t);
                 i++;
+            }
+            //Create a final array of all adjacent rooms to that door
+            Transform[] finalAdjacentRoomsList = new Transform[_adjacentRoomsList.Count];
+            for(int x = 0; x<_adjacentRoomsList.Count;x++)
+            {
+                finalAdjacentRoomsList[x] = _adjacentRoomsList[x];
             }
 
 			//Use the temporary list of adjacent rooms to populate the dictionary storing the adjacent rooms
-            adjacentRooms.Add(new Transform[] { _adjacentRooms[0], _adjacentRooms[1], _adjacentRooms[2] } );
+            adjacentRooms.Add(finalAdjacentRoomsList);
         }
     }
     
@@ -127,36 +135,33 @@ public class EnemyManager : MonoBehaviour
     {
         //first it clears the list
         spawnPointsAvailable.Clear();
-        //Then it goes through the list of adjacent rooms and picks out all the elements that contain the player's current location (room)
-        for(int i = 0; i<adjacentRooms.Count;i++)
+        if (adjacentRooms.Count > 0)
         {
-			//If you are in a room with an adjacent room
-            if(adjacentRooms[i][0] == currentRoom)
+            //Then it goes through the list of adjacent rooms and picks out all the elements that contain the player's current location (room)
+            //I = each indivual group of adjacent rooms declared in each door object
+            for (int i = 0; i < adjacentRooms.Count; i++)
             {
-                //If the door linking the two rooms is open, then it adds the spawn points of that adjacent room to the list of available points
-                if(adjacentRooms[i][2].GetComponentInChildren<Door>().getOpen())
+                for (int a = 0; a < adjacentRooms[i].Length-1; a++)
                 {
-                    foreach (Transform spawn in spawnPointsInRoom[adjacentRooms[i][1].name])
+                    //If a room in the list == player current room
+                    if (adjacentRooms[i][a] == currentRoom)
                     {
-                        if (spawnPointsAvailable.Contains(spawn) == false)
+                        //If the door linking the two rooms is open, then it adds the spawn points of that adjacent room to the list of available points
+                        //(The last element in array will always be the door)
+                        if (adjacentRooms[i][adjacentRooms[i].Length-1].GetComponentInChildren<Door>().getOpen())
                         {
-                            spawnPointsAvailable.Add(spawn);
-                        }
-                    }
-                }
-            }
-
-			//If you are in a room with an adjacent room
-            else if(adjacentRooms[i][1] == currentRoom)
-            {
-				//If the door linking the two rooms is open, then it adds the spawn points of that adjacent room to the list of available points
-				if (adjacentRooms[i][2].GetComponentInChildren<Door>().getOpen())
-                {
-                    foreach (Transform spawn in spawnPointsInRoom[adjacentRooms[i][0].name])
-                    {
-                        if(spawnPointsAvailable.Contains(spawn) == false)
-                        {
-                            spawnPointsAvailable.Add(spawn);
+                            //For each spawn point in _______ room 
+                            for(int b=0; b<adjacentRooms[i].Length-1;b++)
+                            {
+                                foreach (Transform spawn in spawnPointsInRoom[adjacentRooms[i][b].name])
+                                {
+                                    //If the list of available spawns doesn't contain the current spawn, then add it
+                                    if (!spawnPointsAvailable.Contains(spawn))
+                                    {
+                                        spawnPointsAvailable.Add(spawn);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -165,9 +170,12 @@ public class EnemyManager : MonoBehaviour
 
         //Add current room's spawn points
 
-        foreach(Transform spawn in spawnPointsInRoom[currentRoom.name])
+        foreach (Transform spawn in spawnPointsInRoom[currentRoom.name])
         {
-            spawnPointsAvailable.Add(spawn);
+            if(!spawnPointsAvailable.Contains(spawn))
+            {
+                spawnPointsAvailable.Add(spawn);
+            }
         }
     }
 
@@ -233,7 +241,6 @@ public class EnemyManager : MonoBehaviour
         {
 			if (enemiesSpawned < maxEnemies) 
 			{
-
 				yield return new WaitForSeconds(timeBetweenSpawns);
 				spawnEnemy();
 			}
