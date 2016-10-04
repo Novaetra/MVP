@@ -13,6 +13,7 @@ public class DraggableSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	public bool isDraggable;
 	public static bool foundTarget;
 
+	private static float planeDistance = .11f;
 
 	private Vector3 startPos;
 	private Transform background;
@@ -57,7 +58,7 @@ public class DraggableSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		//Update position of object
 		if (isDraggable) 
 		{
-			transform.position = Camera.main.ScreenToWorldPoint(new Vector3(data.position.x,data.position.y,0.5f));
+			transform.position = Camera.main.ScreenToWorldPoint(new Vector3(data.position.x,data.position.y,planeDistance));
 		}
 	}
 

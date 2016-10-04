@@ -7,11 +7,8 @@ public class EnemyManager : MonoBehaviour
     public bool spawnEnemies;
 
     private int currentEnemyCount;
-	[SerializeField]
     private int currentWaveCount;
-	[SerializeField]
 	private int maxEnemies;
-	[SerializeField]
     private int enemysToSpawn;
 	private int enemiesSpawned;
 
@@ -41,22 +38,21 @@ public class EnemyManager : MonoBehaviour
     public void setUp()
     {
 		//This if statement is for development purposes
-        if(spawnEnemies == true)
-        {
+		if (spawnEnemies == true) 
+		{
 			//Sets all the starting values for the variables
-            hudMan = PhotonGameManager.currentplayer.GetComponent<HUDManager>();
-            enemysToSpawn = 3;
-            currentWaveCount = 0;
+			hudMan = PhotonGameManager.currentplayer.GetComponent<HUDManager> ();
+			enemysToSpawn = 1;
+			maxEnemies = 20;
+			currentWaveCount = 0;
 			enemiesSpawned = 0;
-            timeBetweenRounds = 3f;
-            timeBetweenSpawns = 2f;
-            setupSpawnLists();
-            StartCoroutine(waitToStartNewRound());
-            doors = GameObject.FindObjectsOfType<Door>();
-        }
-
+			timeBetweenRounds = 3f;
+			timeBetweenSpawns = 2f;
+			setupSpawnLists ();
+			StartCoroutine (waitToStartNewRound ());
+			doors = GameObject.FindObjectsOfType<Door> ();
+		}
 		statsPerEnemy["BasicMelee"] = new float[3]{0f, 20f, 10f };
-
     }
     
     //Fills the list that contains all adjacent rooms and links the room to its spawn points

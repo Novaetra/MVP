@@ -16,20 +16,23 @@ public class Door : MonoBehaviour
         isOpen = false;
     }
 
+	//Opens the door upon user interaction
     public void interact(object[] parameters)
     {
         RaycastHit hit = (RaycastHit)parameters[0];
         GameObject player = (GameObject)parameters[1];
         StatsManager sm = player.GetComponent<StatsManager>();
+		//If the player has enough to buy the door, open the door (on all clients)
         if (sm.getCurrentExp() - hit.transform.GetComponentInParent<Door>().getCost() >= 0 && hit.transform.GetComponentInParent<Door>().getOpen() == false)
         {
             hit.transform.GetComponentInParent<PhotonView>().RPC("openDoor", PhotonTargets.AllBuffered, null);
+			//Subtract the exp from the player
             sm.subtractExp(hit.transform.GetComponentInParent<Door>().getCost());
         }
     }
     
 	//This displays the door cost if the player approaches it
-    private void OnTriggerStay(Collider col)
+    private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Player")
         {

@@ -11,14 +11,18 @@ public class Elevator : MonoBehaviour
 	public void interact(object[] paramtrs)
     {
         player = (GameObject)paramtrs[1];
+		//If the elevator isn't moving
 		if (!isMoving) 
 		{
+			//If the elevator is downstairs, make it go up
 			if(isDown)
 			{
 				GetComponent<Animation>().Play("ElevatorUp");
 				isDown = false;
 				isMoving = true;
-			}else
+			}
+			//if the elevator is upstairs, make it go down
+			else
 			{
 				GetComponent<Animation>().Play("ElevatorDown");
 				isDown = true;
@@ -28,16 +32,19 @@ public class Elevator : MonoBehaviour
 		}
     }
 
+	//Reset the player's parent so it isn't attached to elevator anymore
     private void resetPlayerParent()
     {
         player.transform.parent = null;
     }
     
+	//Sets moving to false so it can be interacted with again
 	private void stoppedMoving()
 	{
 		isMoving = false;
 	}
 
+	//Once the player leaves the elevator, remove him as a child
     private void OnTriggerExit(Collider col)
     {
         resetPlayerParent();

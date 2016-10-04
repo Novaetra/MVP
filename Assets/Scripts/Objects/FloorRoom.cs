@@ -18,7 +18,7 @@ public class FloorRoom : MonoBehaviour
         {
 			//Set the room the player is currently in to this one
             em.setCurrentRoom(transform);
-			//Updates the spawns available for enemies
+			//Updates the spawns available for enemies so they spawn in this room too
             em.updateSpawnsAvailable();
         }
     }

@@ -100,6 +100,14 @@ public class PlayerController : MonoBehaviour
 		{
 			toggleCursorLock(!cursorLocked);
 		}
+
+		if (Input.GetKeyUp (KeyCode.P)) 
+		{
+			UnityEditor.EditorApplication.isPaused = true;
+		}
+		if (Input.GetKeyUp (KeyCode.O)) {
+			UnityEditor.EditorApplication.isPaused = false;
+		}
     }
 		
 	void LateUpdate ()

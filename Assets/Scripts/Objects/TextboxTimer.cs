@@ -7,23 +7,27 @@ public class TextboxTimer : MonoBehaviour {
 	private float totalTimer = 0f;
 	private float currentTimer  = 0f;
 
-	// Update is called once per frame
+
 	void Update () 
 	{
+		//If the currnent time is less than timer amount, increase it by one over time
 		if (currentTimer < totalTimer) {
 			currentTimer += Time.deltaTime;
-		} else
+		} 
+		//Once the timer is done, hide the msg box
+		else
 		{
-			hideTimer ();
+			hideMsg ();
 		}
 	}
-
+	//Setter for total timer
 	public void setTimer(float dur)
 	{
 		totalTimer = dur;
 	}
 
-	private void hideTimer()
+	//Hides message box and destroys this timer component
+	private void hideMsg()
 	{	
 		Text txt = GetComponent<Text> ();
 		txt.enabled = false;

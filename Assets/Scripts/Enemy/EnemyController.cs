@@ -13,9 +13,10 @@ public class EnemyController : MonoBehaviour
     private float distanceToPlayer;
     private float minDistance = Mathf.Infinity;
     private float playerDistance;
-	[SerializeField]
     private float meleeRange = 1.0f;
+	[SerializeField]
 	private float meleeDamage = 20f;
+	[SerializeField]
 	private float totalHealth = 100f;
     private float health;
 	private float pntValue = 100f;

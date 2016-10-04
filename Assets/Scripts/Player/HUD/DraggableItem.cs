@@ -11,6 +11,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	public static Skill skillBeingDragged;
 	public static Sprite imgBeingDragged;
 
+	private static float planeDistance = .11f;
 	private static Transform originalParent;
 	private static Vector3 startPos;
 
@@ -49,7 +50,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		if (isDraggable)
 		{
 			//Update position of object
-			transform.position = Camera.main.ScreenToWorldPoint (new Vector3 (data.position.x, data.position.y, 0.5f));
+
+			transform.position = Camera.main.ScreenToWorldPoint (new Vector3 (data.position.x, data.position.y, planeDistance));
 		}
 	}
 
