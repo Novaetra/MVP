@@ -64773,7 +64773,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1447992993}
-  - 65: {fileID: 1447992994}
   m_Layer: 0
   m_Name: Ceiling
   m_TagString: Untagged
@@ -64843,18 +64842,6 @@ Transform:
   - {fileID: 286600286}
   m_Father: {fileID: 1885876569}
   m_RootOrder: 2
---- !u!65 &1447992994
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1447992992}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 31.913315, y: 1, z: 36.2276}
-  m_Center: {x: -12.901657, y: 0, z: 5.741579}
 --- !u!1 &1449103322
 GameObject:
   m_ObjectHideFlags: 0
