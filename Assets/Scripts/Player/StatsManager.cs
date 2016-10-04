@@ -12,14 +12,13 @@ public class StatsManager : MonoBehaviour
     private float currentStamina;
     private float sprintStamCost;
 	private float meleeCost;
-	[SerializeField]
 	private float baseMeleeDamage;
+	private float healthUpgradeAmntOnLvlUp = 5f;
+	private float staminaUpgradeAmtOnLvlUp = 10f;
 
 	private int currentLvl;
-	[SerializeField]
     private float currentExp;
 	private float currentPoints;
-	[SerializeField]
     private float totalExpRequiredToLvlUp;
     private int upgradePoints;
     private bool isAlive;
@@ -56,7 +55,7 @@ public class StatsManager : MonoBehaviour
         totalStamina = 100f;
         currentStamina = 100f;
         sprintStamCost = 20f;
-        meleeCost = 5f;
+        meleeCost = 30f;
 		baseMeleeDamage = 200f;
         currentLvl = 1;
         currentExp = 0f;
@@ -131,6 +130,7 @@ public class StatsManager : MonoBehaviour
 	public void recieveExp(float exp)
     {
         currentExp += exp;
+		checkIfDisplayLvlUpHint ();
     }
 
 	public void lvlUp(float leftOver)
@@ -142,13 +142,14 @@ public class StatsManager : MonoBehaviour
         upgradePoints++;
         activateUnlockable();
 		hudman.updateCurrentLvlTxt ();
-        StartCoroutine(lvlUpTxt());
+        displayLvlUpTxt();
     }
-
 	private void upgradeStats()
 	{
-		totalHealth += totalHealth * .02f;
+		totalHealth += healthUpgradeAmntOnLvlUp;
+		totalStamina += staminaUpgradeAmtOnLvlUp;
 		baseMeleeDamage += baseMeleeDamage * .05f;
+
 	}
 
     public void recieveDamage(float dmg)
@@ -353,7 +354,6 @@ public class StatsManager : MonoBehaviour
     public void subtractExp(float pnts)
     {
 		currentExp -= pnts;
-        //hudman.updatePntsTxt();
     }
 
 	public float getSprintStamCost()
@@ -381,17 +381,24 @@ public class StatsManager : MonoBehaviour
 		totalHealth = health;
 	}
 
-	public void dealDamage(RaycastHit hit)
+	public void dealMeleeDamage(RaycastHit hit)
 	{
 		hit.transform.SendMessage("recieveDamage", baseMeleeDamage);
 	}
 
 	#endregion
 
-	private IEnumerator lvlUpTxt()
+	private void displayLvlUpTxt()
 	{
         hudman.displayMsg("You have reached level " + currentLvl, 2f);
-        yield return new WaitForSeconds(2);
-        hudman.displayMsg("You can now unlock a new skill!",2f);
+	}
+
+
+	private void checkIfDisplayLvlUpHint()
+	{
+		if (currentExp >= totalExpRequiredToLvlUp) 
+		{
+			hudman.displayMsg ("Press L to level up", 1f);
+		}
 	}
 }

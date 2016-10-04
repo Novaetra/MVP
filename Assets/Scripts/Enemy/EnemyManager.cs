@@ -29,7 +29,6 @@ public class EnemyManager : MonoBehaviour
     private List<Transform[]> adjacentRooms = new List<Transform[]>();
 
 	//This list is the list that holds all the spawn points an enemy can spawn in
-    [SerializeField]
     private List<Transform> spawnPointsAvailable = new List<Transform>();
 
 	//List of doors so we can figure out the adjacent rooms

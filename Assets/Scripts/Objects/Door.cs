@@ -33,7 +33,7 @@ public class Door : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.transform.GetComponent<HUDManager>().displayMsg("Door costs " + doorCost + " exp",.1f);
+            col.transform.GetComponent<HUDManager>().displayMsg("Door costs " + doorCost + " exp",2f);
         }
     }
     
@@ -47,7 +47,7 @@ public class Door : MonoBehaviour
         isOpen = true;
         //Update rooms list in enemy manager
     }
-
+	#region getters
     public float getCost()
     {
         return doorCost;
@@ -58,9 +58,9 @@ public class Door : MonoBehaviour
         return isOpen;
     }
 
-
     public Transform[] getAdjacentRooms()
     {
         return adjacentRooms;
     }
+	#endregion
 }

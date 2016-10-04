@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
 	//Temp
 	public int expIncreaseAmt;
 
-	public float walkSpeed = 5f;
-	public float runSpeed = 8f;
+	public float walkSpeed = 4f;
+	public float runSpeed = 6f;
 	public float currentSpeed;
     public Transform upperBody;
 	public float lastUpperRot;
@@ -140,14 +140,10 @@ public class PlayerController : MonoBehaviour
 
 	private void checkLvlUp()
 	{
-		if (sm.getCurrentExp () >= sm.getGoalExp ()) 
+		if (Input.GetKeyUp (KeyCode.L)) 
 		{
-			hudman.displayMsg ("Press L to level up", .1f);
-			if (Input.GetKeyUp (KeyCode.L)) 
-			{
-				//Level up
-				sm.lvlUp(sm.getCurrentExp() - sm.getGoalExp());
-			}
+			//Level up
+			sm.lvlUp(sm.getCurrentExp() - sm.getGoalExp());
 		}
 	}
 
@@ -205,7 +201,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (hit.transform.tag == "Enemy")
                     {
-						sm.dealDamage (hit);
+						sm.dealMeleeDamage (hit);
                         return;
                     }
                 }

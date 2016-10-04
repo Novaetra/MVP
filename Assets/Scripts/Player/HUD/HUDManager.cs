@@ -19,10 +19,10 @@ public class HUDManager : MonoBehaviour
 	private GameObject canvasObj;
 	private GameObject panel;
 	private GameObject tooltip;
+	private GameObject containerForMessageBoxes;
 
     private Text revivingTxt;
     private Text upgradePnts;
-	private Text shortMsg;
 	private Text expText;
     private Text roundsTxt;
 	private Text tooltipName;
@@ -30,16 +30,11 @@ public class HUDManager : MonoBehaviour
 	private Text tooltipLvl;
 	private Text currentLvlTxt;
 
-	private float timer;
-	private float currentTime;
-
 	private bool setUpDone = false;
 
 	//Assigns all the variables to their correspinding values
 	public void postSetUp()
 	{
-        currentTime = 0;
-        timer = 0;
 		currentPlayer = gameObject;
         pc = currentPlayer.GetComponent<PlayerController>();
 		sm = currentPlayer.GetComponent<StatsManager> ();
@@ -47,7 +42,7 @@ public class HUDManager : MonoBehaviour
 		panel = canvasObj.transform.FindChild ("Panel").gameObject;
         roundsTxt = canvasObj.transform.FindChild("RoundsTxt").GetComponent<Text>();
         roundsTxt.enabled = false;
-		shortMsg = canvasObj.transform.FindChild ("ShortMessage").GetComponent<Text> ();
+		containerForMessageBoxes = canvasObj.transform.FindChild ("Message Boxes").gameObject;
         upgradePnts = panel.transform.FindChild("UpgradePoints").GetComponent<Text>();
 		currentLvlTxt = panel.transform.FindChild ("CurrentLevelText").GetComponent<Text> ();
         revivingBarBG = canvasObj.transform.FindChild("ReviveBarBG").GetComponent<Image>();
@@ -67,20 +62,8 @@ public class HUDManager : MonoBehaviour
 	private void Update()
 	{
 		updateBars ();
-		updateTimer ();
 	}
 
-	private void updateTimer()
-	{
-		if (currentTime < timer) 
-		{
-			currentTime += Time.deltaTime;
-		}
-		else
-        {
-            hideMsg ();
-		}
-	}
 
 	public void updateCurrentLvlTxt()
 	{
@@ -101,7 +84,7 @@ public class HUDManager : MonoBehaviour
 			manabar.fillAmount = sm.getCurrentMana () / sm.getTotalMana ();
 			staminabar.fillAmount = sm.getCurrentStamina () / sm.getTotalStamina ();
 			expbar.fillAmount = sm.getCurrentExp () / sm.getGoalExp ();
-			expText.text = sm.getCurrentExp () + " / " + sm.getGoalExp ();
+			expText.text = (int)sm.getCurrentExp () + " / " + (int)sm.getGoalExp ();
             if(pc.getReviving() == true)
             {
                 StatsManager personReviving = pc.getPersonReviving().GetComponent<StatsManager>();
@@ -147,22 +130,33 @@ public class HUDManager : MonoBehaviour
 
 	public void displayMsg(string msg, float dur)
 	{
-		shortMsg.text = msg;
-		shortMsg.enabled = true;
-		timer = dur;
-		currentTime = 0f;
-	}
+		bool alreadyBeingDisplayed = false;
+		//Go through each textbox
+		foreach (Text textbox in containerForMessageBoxes.GetComponentsInChildren<Text>())
+		{
+			//Check if a textbox is already displaying your message
+			if (textbox.text.Equals (msg)) {
+				alreadyBeingDisplayed = true;
+			}
+		}
 
-	private void hideMsg()
-	{
-        try
-        {
-            shortMsg.enabled = false;
-        }
-		catch(System.NullReferenceException o)
-        {
-            //Debug.LogError("Error msg null");
-        }
+		//Go through each textbox
+		foreach (Text textbox in containerForMessageBoxes.GetComponentsInChildren<Text>())
+		{
+			//If the text is null, it means it's not being used. 
+			if (textbox.text == null || textbox.text.Equals("") && !alreadyBeingDisplayed) 
+			{
+				//Since it's not being used, use it here
+				textbox.text = msg;
+				textbox.enabled = true;
+				TextboxTimer txtboxTimer = textbox.gameObject.AddComponent <TextboxTimer>() as TextboxTimer;
+				txtboxTimer.setTimer (dur);
+				break;
+			}
+		}
+
+		//If no box is open, queue it to be displayed next
+
 	}
 
     public void updateRoundsTxt(int round)
