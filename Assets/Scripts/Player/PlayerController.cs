@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 	public bool cursorLocked = true;
     private bool isReviving;
     private bool isGrounded = true;
+	private bool isCheckingReady = false;
 	private CharacterController cs;
 	private Animator anim;
 	private float lastFullRot;
@@ -24,8 +25,9 @@ public class PlayerController : MonoBehaviour
 	private float MaximumY = 70f;
 	private float meleeDistance = 2f;
     private float interactDistance = 2f;
-    private StatsManager sm;
-	private HUDManager hudman;
+	private StatsManager statsManager;
+	private HUDManager hudManager;
+	private EnemyManager enemyManager;
 
     private Raycaster[] raycasters;
 
@@ -36,12 +38,13 @@ public class PlayerController : MonoBehaviour
 	public void set_Up () 
 	{
 		cs = GetComponent<CharacterController> ();
-		hudman = GetComponent<HUDManager> ();
+		hudManager = GetComponent<HUDManager> ();
+		enemyManager = GameObject.Find ("Network").GetComponent<EnemyManager> ();
 		currentSpeed = walkSpeed;
 		anim = GetComponent<Animator> ();
 		lastUpperRot = 0f;
 		lastFullRot = 0f;
-		sm = GetComponent<StatsManager> ();
+		statsManager = GetComponent<StatsManager> ();
         isReviving = false;
         personReviving = null;
         raycasters = GetComponentsInChildren<Raycaster>();
@@ -50,10 +53,14 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-        if(sm.getAlive() == true)
+        if(statsManager.getAlive() == true)
         {
             if (!isSettingUp)
-            {
+			{
+				if (isCheckingReady) 
+				{
+					checkReady ();
+				}
                 checkClick();
                 checkSprint();
                 movement();
@@ -73,13 +80,13 @@ public class PlayerController : MonoBehaviour
 			toggleCursorLock (!cursorLocked);
 			if (cursorLocked == false) 
 			{
-				hudman.showPanel ();
+				hudManager.showPanel ();
 			}
 			else 
 			{
 				
-				hudman.hidePanel ();
-				hudman.hideTooltip ();
+				hudManager.hidePanel ();
+				hudManager.hideTooltip ();
 			}
 		}
 	}
@@ -88,12 +95,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.M))
         {
-			sm.recieveExp(expIncreaseAmt);
+			statsManager.recieveExp(expIncreaseAmt);
         }
 
         if (Input.GetKeyUp(KeyCode.N))
         {
-            sm.recieveDamage(10);
+            statsManager.recieveDamage(10);
         }
 
 		if (Input.GetKeyUp(KeyCode.Escape))
@@ -112,7 +119,7 @@ public class PlayerController : MonoBehaviour
 		
 	void LateUpdate ()
     {
-        if (sm.getAlive() == true)
+        if (statsManager.getAlive() == true)
         {
             cameraRot();
         }
@@ -123,9 +130,9 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonUp ("Click")&& (cursorLocked)) 
 		{
             //Attack
-            if (sm.getCurrentStamina() - sm.getMeleeCost() >= 0 && anim.GetInteger("Skill") != (int)Skills.BasicAttack)  
+            if (statsManager.getCurrentStamina() - statsManager.getMeleeCost() >= 0 && anim.GetInteger("Skill") != (int)Skills.BasicAttack)  
 			{
-				sm.useStamina (sm.getMeleeCost(),false);
+				statsManager.useStamina (statsManager.getMeleeCost(),false);
 
 				anim.SetInteger("Skill",(int)Skills.BasicAttack);
 			}
@@ -151,7 +158,7 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKeyUp (KeyCode.L)) 
 		{
 			//Level up
-			sm.lvlUp(sm.getCurrentExp() - sm.getGoalExp());
+			statsManager.lvlUp(statsManager.getCurrentExp() - statsManager.getGoalExp());
 		}
 	}
 
@@ -209,7 +216,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (hit.transform.tag == "Enemy")
                     {
-						sm.dealMeleeDamage (hit);
+						statsManager.dealMeleeDamage (hit);
                         return;
                     }
                 }
@@ -223,10 +230,10 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButton ("Sprint"))
 		{
 			//Sprint
-			if (sm.getCurrentStamina() > 0) 
+			if (statsManager.getCurrentStamina() > 0) 
 			{
 				currentSpeed = runSpeed;
-				sm.useStamina ((sm.getSprintStamCost() /* - (sm.sprintStaminaCost  (sm.dexterity / 100))*/),true);
+				statsManager.useStamina ((statsManager.getSprintStamCost() /* - (sm.sprintStaminaCost  (sm.dexterity / 100))*/),true);
 			} 
 			else 
 			{
@@ -315,5 +322,19 @@ public class PlayerController : MonoBehaviour
 	public void resetAnimator()
 	{
 		anim.SetInteger ("Skill", -1);
+	}
+
+	public void startCheckingReady()
+	{
+		isCheckingReady = true;
+	}
+
+	private void checkReady()
+	{
+		if(Input.GetKeyUp(KeyCode.R))
+		{
+			enemyManager.startNextRound ();
+			isCheckingReady = false;
+		}
 	}
 }

@@ -33,7 +33,7 @@ public class HUDManager : MonoBehaviour
 	private bool setUpDone = false;
 
 	//Assigns all the variables to their correspinding values
-	public void postSetUp()
+	public void Start()
 	{
 		currentPlayer = gameObject;
         pc = currentPlayer.GetComponent<PlayerController>();
@@ -174,7 +174,6 @@ public class HUDManager : MonoBehaviour
 		tooltipDesc.text = desc;
 		tooltipLvl.text = "Level: " + lvlRequired;
 		tooltip.SetActive(true);
-
 	}
 
 	public void hideTooltip()
@@ -191,5 +190,10 @@ public class HUDManager : MonoBehaviour
 	public void hidePanel()
 	{
 		panel.SetActive (false);
+	}
+
+	public bool setupDone()
+	{
+		return setUpDone;
 	}
 }

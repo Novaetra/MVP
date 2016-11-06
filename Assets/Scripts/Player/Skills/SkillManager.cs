@@ -119,7 +119,7 @@ public class SkillManager : MonoBehaviour
         //Links all the skill tree pieces to the actual skill 
         gameObject.BroadcastMessage("setSkill");
         StartCoroutine(wait(.5f));
-        gameObject.BroadcastMessage("postSetUp");
+        //gameObject.BroadcastMessage("postSetUp");
     }
 
     private IEnumerator wait(float secs)
