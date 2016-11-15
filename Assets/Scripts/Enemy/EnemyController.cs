@@ -163,6 +163,7 @@ public class EnemyController : MonoBehaviour
 	//Firsts starts the death animation, waits x seconds, and then destroys the enemy
     private IEnumerator die()
     {
+
         startDeath();
         yield return new WaitForSeconds(2f);
         GetComponent<PhotonView>().RPC("destroyRPC", PhotonTargets.AllBuffered, null);

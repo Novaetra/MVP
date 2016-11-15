@@ -46,11 +46,11 @@ public class EnemyManager : MonoBehaviour
 			maxEnemies = 20;
 			currentWaveCount = 0;
 			enemiesSpawned = 0;
-			timeBetweenRounds = 10f;
+			timeBetweenRounds = 3f;
 			timeBetweenSpawns = 2f;
 			setupSpawnLists ();
-			doors = GameObject.FindObjectsOfType<Door> ();
 			StartCoroutine (waitToStartNewRound ());
+			doors = GameObject.FindObjectsOfType<Door> ();
 		}
 		statsPerEnemy["BasicMelee"] = new float[3]{0f, 20f, 10f };
     }
@@ -176,7 +176,7 @@ public class EnemyManager : MonoBehaviour
 
 	//Increases the current round by one, and starts spawning more enemies.
 	//The number of enemies to spawn increases as well
-    public void startNextRound()
+    private void startNextRound()
     {
         currentWaveCount++;
         hudMan.updateRoundsTxt(currentWaveCount);
@@ -245,17 +245,8 @@ public class EnemyManager : MonoBehaviour
 	//Waits x seconds before starting the next round
     private IEnumerator waitToStartNewRound()
     {
-		if (hudMan.setupDone ()) 
-		{
-			hudMan.displayMsg ("press 'r' to ready up", 1f);
-			hudMan.gameObject.GetComponent<PlayerController> ().startCheckingReady ();
-		}
-		int waveCount = currentWaveCount;
         yield return new WaitForSeconds(timeBetweenRounds);
-		if (waveCount == currentWaveCount) 
-		{
-			startNextRound();
-		}
+        startNextRound();
     }
 
 	//Sets the room the player is currently in
