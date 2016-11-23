@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
 	private void checkLvlUp()
 	{
-		if (Input.GetKeyUp (KeyCode.L)) 
+		if (Input.GetKeyUp (KeyCode.L) && sm.getCurrentExp() - sm.getGoalExp() >=0) 
 		{
 			//Level up
 			sm.lvlUp(sm.getCurrentExp() - sm.getGoalExp());
