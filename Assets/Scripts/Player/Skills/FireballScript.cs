@@ -13,7 +13,7 @@ public class FireballScript : MonoBehaviour
 
 	void Start()
 	{
-        sm = PhotonGameManager.currentplayer.GetComponent<SkillManager>();
+        sm = GameManager.currentplayer.GetComponent<SkillManager>();
         for(int i = 0; i<sm.getKnownSkills().Count;i++)
         {
             if(sm.getKnownSkills()[i].getName().Equals("Fireball"))

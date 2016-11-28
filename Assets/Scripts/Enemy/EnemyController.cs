@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour
     private void chasePlayer()
     {
 		//Gets a list of all the players
-        players = PhotonView.FindObjectsOfType<Player>();
+        players = GameObject.FindObjectsOfType<Player>();
 		//Gets a list of all the ALIVE players from the list of all players
         IEnumerable<Player> livePlayers = from player in players where player.GetComponent<StatsManager>().getAlive() select player;
 
@@ -78,13 +78,13 @@ public class EnemyController : MonoBehaviour
             {
                 agent.enabled = true;
                 agent.SetDestination(targetPlayer.position);
-                GetComponent<PhotonView>().RPC("walkAnim", PhotonTargets.AllBuffered, null);
+                walkAnim();
             }
 			//Else if the player is within melee range, attack
             else
             {
-                GetComponent<PhotonView>().RPC("idleAnim", PhotonTargets.AllBuffered, null);
-                GetComponent<PhotonView>().RPC("attackAnim", PhotonTargets.AllBuffered, null);
+                idleAnim();
+                attackAnim();
                 agent.enabled = false;
                 rotateTowards(targetPlayer);
             }
@@ -155,8 +155,8 @@ public class EnemyController : MonoBehaviour
         {
             isAlive = false;
             agent.enabled = false;
-            GetComponent<PhotonView>().RPC("sendPlayersExp", PhotonTargets.AllBuffered, null);
-            GameObject.Find("Network").transform.GetComponent<EnemyManager>().decreaseEnemyCount();
+            sendPlayersExp();
+            GameObject.Find("Managers").transform.GetComponent<EnemyManager>().decreaseEnemyCount();
         }
     }
 
@@ -166,13 +166,7 @@ public class EnemyController : MonoBehaviour
 
         startDeath();
         yield return new WaitForSeconds(2f);
-        GetComponent<PhotonView>().RPC("destroyRPC", PhotonTargets.AllBuffered, null);
-    }
-
-	//Destroys the enemy
-    public void destroy()
-    {
-        PhotonNetwork.Destroy(gameObject);
+        Destroy(gameObject);
     }
 
 	public void setTotalHealth(float h)
@@ -193,25 +187,14 @@ public class EnemyController : MonoBehaviour
 
 	//Temporary...might just give the person with the killing blow any exp
 	//Send all players exp
-    [PunRPC]
     void sendPlayersExp()
     {
-        PhotonGameManager.currentplayer.GetComponent<StatsManager>().recieveExp(expOnKill);
-        PhotonGameManager.currentplayer.GetComponent<StatsManager>().addCurrentPoints(pntValue);
+        GameManager.currentplayer.GetComponent<StatsManager>().recieveExp(expOnKill);
+        GameManager.currentplayer.GetComponent<StatsManager>().addCurrentPoints(pntValue);
     }
-
-	//Destroys the enemy on all clients
-    [PunRPC]
-    void destroyRPC()
-    {
-        if (GetComponent<PhotonView>().isMine)
-        {
-            destroy();
-        }
-    }
+    
 
 	//Triggers an attack animation on all clients
-    [PunRPC]
     void attackAnim()
     {
         GetComponent<Animator>().SetInteger("Skill", 1);
@@ -219,14 +202,12 @@ public class EnemyController : MonoBehaviour
 
 
 	//Triggers an walk animation on all clients
-    [PunRPC]
     void walkAnim()
     {
         GetComponent<Animator>().SetFloat("Speed", 5);
     }
 
 	//Triggers an idle animation on all clients
-    [PunRPC]
     void idleAnim()
     {
         GetComponent<Animator>().SetFloat("Speed", 0);

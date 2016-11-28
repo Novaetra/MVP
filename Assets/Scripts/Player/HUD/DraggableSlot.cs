@@ -22,7 +22,7 @@ public class DraggableSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 	public void setUp()
 	{
-		currentPlayer = PhotonView.Find (PhotonGameManager.playerID).gameObject;
+        currentPlayer = GameManager.currentplayer;
 	}
 
 	public void OnBeginDrag(PointerEventData data)

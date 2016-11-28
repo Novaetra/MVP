@@ -48,7 +48,7 @@ public class HealScript : MonoBehaviour
                 }
                 else
                 {
-                    GetComponent<PhotonView>().RPC("removeHeal", PhotonTargets.AllBuffered, null);
+                    removeHeal();
                 }
             }
         }
@@ -58,13 +58,9 @@ public class HealScript : MonoBehaviour
         }
     }
 
-    [PunRPC]
     void removeHeal()
     {
-        if(GetComponent<PhotonView>().isMine==true)
-        {
             StartCoroutine(destroy());
-        }
     }
 
     IEnumerator destroy()
@@ -75,6 +71,6 @@ public class HealScript : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-        PhotonNetwork.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

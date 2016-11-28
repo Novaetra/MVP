@@ -20,7 +20,7 @@ public class SkillTreePiece : MonoBehaviour
 	public void setSkill()
 	{
         isUnlocked = false;
-		skillList = PhotonView.Find (PhotonGameManager.playerID).gameObject.GetComponent<SkillManager> ().getAllSkills ();
+		skillList = GameObject.FindObjectOfType<Player>().gameObject.GetComponent<SkillManager> ().getAllSkills ();
         sm = GetComponentInParent<StatsManager>();
 		hudman = GetComponentInParent<HUDManager> ();
 		img = gameObject.GetComponent<Image> ();

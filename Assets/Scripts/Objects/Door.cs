@@ -25,7 +25,7 @@ public class Door : MonoBehaviour
 		//If the player has enough to buy the door, open the door (on all clients)
         if (sm.getCurrentExp() - hit.transform.GetComponentInParent<Door>().getCost() >= 0 && hit.transform.GetComponentInParent<Door>().getOpen() == false)
         {
-            hit.transform.GetComponentInParent<PhotonView>().RPC("openDoor", PhotonTargets.AllBuffered, null);
+            openDoor();
 			//Subtract the exp from the player
             sm.subtractExp(hit.transform.GetComponentInParent<Door>().getCost());
         }
@@ -41,7 +41,6 @@ public class Door : MonoBehaviour
     }
     
 	//Plays the open door animation and removes the colliders
-    [PunRPC]
     public void openDoor()
     {
         anim.Play("openDoor");

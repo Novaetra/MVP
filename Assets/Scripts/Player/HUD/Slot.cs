@@ -13,7 +13,7 @@ public class Slot : MonoBehaviour, IDropHandler
 
 	public void setUp()
 	{
-		currentPlayer = PhotonView.Find (PhotonGameManager.playerID).gameObject;
+        currentPlayer = GameManager.currentplayer;
 		//Gets the skill bar for iterating through it later
 		skillBar = currentPlayer.transform.GetComponentInChildren<Canvas>().transform.Find("SkillBar").transform;
 		//Get the skill manager

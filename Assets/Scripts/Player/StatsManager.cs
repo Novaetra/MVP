@@ -22,8 +22,8 @@ public class StatsManager : MonoBehaviour
     private float totalExpRequiredToLvlUp;
     private int upgradePoints;
     private bool isAlive;
-    private bool isReviving;
-    private float reviveDistance;
+    //private bool isReviving;
+    //private float reviveDistance;
     //Multipliers
     private float healthRegen;
     private float manaRegen;
@@ -35,19 +35,19 @@ public class StatsManager : MonoBehaviour
     private float manaTimer;
     private float manaCurrentTime;
 
-    private float reviveTimer;
-    private float currentReviveTimer;
+   // private float reviveTimer;
+    //private float currentReviveTimer;
 
     private HUDManager hudman;
     private Animator anim;
-    private GameObject currentReviver;
-    private PhotonGameManager pgm;
+    //private GameObject currentReviver;
+    private GameManager pgm;
     private SkillTree[] trees;
 
     void Start()
     {
         isAlive = true;
-        isReviving = false;
+        //isReviving = false;
         totalHealth = 100f;
         currentHealth = 100f;
         totalMana = 100f;
@@ -62,7 +62,7 @@ public class StatsManager : MonoBehaviour
         totalExpRequiredToLvlUp = 40f;
         currentPoints = 0f;
         upgradePoints = 0;
-        reviveDistance = 3.5f;
+        //reviveDistance = 3.5f;
 
         healthRegen = 0f;
         manaRegen = 2.5f;
@@ -73,12 +73,12 @@ public class StatsManager : MonoBehaviour
         manaTimer = 2f;
         manaCurrentTime = manaTimer;
 
-        reviveTimer = 2f;
-        currentReviveTimer = reviveTimer;
+        //reviveTimer = 2f;
+        //currentReviveTimer = reviveTimer;
 
         hudman = GetComponent<HUDManager>();
         anim = GetComponent<Animator>();
-        pgm = GameObject.Find("Network").GetComponent<PhotonGameManager>();
+        pgm = GameObject.Find("Managers").GetComponent<GameManager>();
 		hudman.updateCurrentLvlTxt ();
 		GetComponent<PlayerController> ().set_Up ();
 
@@ -87,10 +87,12 @@ public class StatsManager : MonoBehaviour
     void Update()
     {
         updateAttributes();
+        /*
         if (isReviving == true)
         {
             checkRevive();
         }
+        */
     }
     //HAVE TO SET TREES WHEN THE PANEL IS ACTIVE, OTHERWISE IT RETURNS NULL
     void setUp()
@@ -164,10 +166,10 @@ public class StatsManager : MonoBehaviour
         if (currentHealth <= 0f)
         {
             //Death
-            GetComponent<PhotonView>().RPC("death", PhotonTargets.AllBuffered, null);
+            death();
         }
     }
-
+    /*
     public void startRevive(GameObject reviver)
     {
         //So it doesn't get called more than once
@@ -192,7 +194,7 @@ public class StatsManager : MonoBehaviour
                 }
                 else if (currentReviveTimer >= reviveTimer)
                 {
-                    GetComponent<PhotonView>().RPC("revive", PhotonTargets.AllBuffered, null);
+                    
                 }
             }
             else
@@ -203,16 +205,15 @@ public class StatsManager : MonoBehaviour
             }
         }
     }
+    */
 
-    [PunRPC]
     void death()
     {
         isAlive = false;
         pgm.checkGameEnded();
         anim.SetBool("isAlive",isAlive);
     }
-
-    [PunRPC]
+    
     void revive()
     {
         isAlive = true;
@@ -251,11 +252,11 @@ public class StatsManager : MonoBehaviour
     }
 
     #region gettersSetters
-    public bool getReviving()
+
+    /*public bool getReviving()
     {
         return isReviving;
     }
-
     public float getCurrentReviveTimer()
     {
         return currentReviveTimer;
@@ -265,7 +266,7 @@ public class StatsManager : MonoBehaviour
     {
         return reviveTimer;
     }
-
+    */
     public bool getAlive()
     {
         return isAlive;

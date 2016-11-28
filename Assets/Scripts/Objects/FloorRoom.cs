@@ -7,7 +7,7 @@ public class FloorRoom : MonoBehaviour
 
     private void Start()
     {
-        em = GameObject.Find("Network").GetComponent<EnemyManager>();
+        em = GameObject.Find("Managers").GetComponent<EnemyManager>();
     }
 
     //This is to keep track of where the player is

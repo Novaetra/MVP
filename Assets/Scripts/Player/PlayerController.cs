@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(raycaster.transform.position, -raycaster.transform.forward, out hit, interactDistance))
             {
                 //Has to check these two separately because each one has their own specific protocols
-                checkRevive(hit);
+               // checkRevive(hit);
                 checkInteract(hit);
             }
         }
@@ -184,6 +184,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /*
 	private void checkRevive(RaycastHit hit)
     {
         if (hit.transform.tag == "Player")
@@ -196,6 +197,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    */
 
     public void checkMelee()
     {

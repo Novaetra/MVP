@@ -85,6 +85,7 @@ public class HUDManager : MonoBehaviour
 			staminabar.fillAmount = sm.getCurrentStamina () / sm.getTotalStamina ();
 			expbar.fillAmount = sm.getCurrentExp () / sm.getGoalExp ();
 			expText.text = (int)sm.getCurrentExp () + " / " + (int)sm.getGoalExp ();
+            /*
             if(pc.getReviving() == true)
             {
                 StatsManager personReviving = pc.getPersonReviving().GetComponent<StatsManager>();
@@ -110,6 +111,7 @@ public class HUDManager : MonoBehaviour
                 revivingTxt.enabled = false;
                 revivingBar.enabled = false;
             }
+            */
 
 		}
 	}

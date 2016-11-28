@@ -25,7 +25,7 @@ public class Skill
         cost = c;
         cooldown = cd;
         currentCooldown = cooldown;
-        anim = PhotonGameManager.currentplayer.GetComponent<Animator>();
+        anim = GameManager.currentplayer.GetComponent<Animator>();
         currentEnumSkill = enumSkill;
         stats = sm;
         requirement = req;

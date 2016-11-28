@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class EnemyManager : MonoBehaviour
 {
     public bool spawnEnemies;
+    public GameObject GRUNT_ENEMY_OBJECT;
 
     private int currentEnemyCount;
     private int currentWaveCount;
@@ -41,7 +42,7 @@ public class EnemyManager : MonoBehaviour
 		if (spawnEnemies == true) 
 		{
 			//Sets all the starting values for the variables
-			hudMan = PhotonGameManager.currentplayer.GetComponent<HUDManager> ();
+			hudMan = GameManager.currentplayer.GetComponent<HUDManager> ();
 			enemysToSpawn = 1;
 			maxEnemies = 20;
 			currentWaveCount = 0;
@@ -207,11 +208,9 @@ public class EnemyManager : MonoBehaviour
     public void spawnEnemy()
     {
         //Change this so it uses any of the spawn points in the array
-        if(PhotonNetwork.isMasterClient)
-        {
             int randIndx = (int)Random.Range(0, (spawnPointsAvailable.Count - 1));
             Transform spawn = spawnPointsAvailable[randIndx];
-            GameObject enemy = (GameObject)PhotonNetwork.Instantiate("Enemy", spawn.position, spawn.rotation, 0);
+            GameObject enemy = (GameObject)GameObject.Instantiate(GRUNT_ENEMY_OBJECT, spawn.position, spawn.rotation);
 			if (currentWaveCount < 5) 
 			{
 				enemy.GetComponent<EnemyController> ().setTotalHealth (statsPerEnemy["BasicMelee"][0]+20f);
@@ -224,7 +223,7 @@ public class EnemyManager : MonoBehaviour
 				statsPerEnemy ["BasicMelee"] [0] = statsPerEnemy ["BasicMelee"] [0] + statsPerEnemy ["BasicMelee"] [0] * .05f;
 				statsPerEnemy ["BasicMelee"] [1] = statsPerEnemy ["BasicMelee"] [1] + statsPerEnemy ["BasicMelee"] [1] * .02f;
 			}
-        }
+        
     }
 
 	//Spawns the whole wave of enemies
