@@ -11,23 +11,22 @@ public class SkillTree : MonoBehaviour
     private List<Toggle> toggles;
 	private int skillsUnlocked;
 
-
-	public void setUp()
-	{
-		skillsUnlocked = 0;
-		fillTreePiecesList ();
-	}
-
+    public void Awake()
+    {
+        fillTreePiecesList();
+        skillsUnlocked = 0;
+    }
+    
 	private void fillTreePiecesList()
 	{
-		toggles = new List<Toggle>();
+        toggles = new List<Toggle>();
 		treePieces = new List<SkillTreePiece>();
 		foreach (Transform child in transform.GetChild(0).transform) 
 		{
 			if (child.gameObject.GetComponentInChildren<SkillTreePiece> () != null) 
 			{
 				piece = child.gameObject.GetComponentInChildren<SkillTreePiece> ();
-				toggles.Add(child.GetComponent<Toggle>());
+                toggles.Add(child.GetComponent<Toggle>());
 				child.gameObject.GetComponent<Toggle>().interactable = false;
 				treePieces.Add (piece);
 			}
@@ -41,7 +40,7 @@ public class SkillTree : MonoBehaviour
             int x = 0;
             foreach (SkillTreePiece piece in treePieces)
             {
-				if (piece.getUnlocked() == false && piece.getSkill().getRequirement() <= sm.getCurrentLvl() && sm.getUpgradePnts() > 0 && x <= skillsUnlocked)
+                if (piece.getUnlocked() == false && piece.getSkill().getRequirement() <= sm.getCurrentLvl() && sm.getUpgradePnts() > 0 && x <= skillsUnlocked)
 				{
                     toggles[x].interactable = true;
                 }

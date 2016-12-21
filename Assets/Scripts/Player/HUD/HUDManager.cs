@@ -38,7 +38,7 @@ public class HUDManager : MonoBehaviour
 		currentPlayer = gameObject;
         pc = currentPlayer.GetComponent<PlayerController>();
 		sm = currentPlayer.GetComponent<StatsManager> ();
-		canvasObj = currentPlayer.GetComponentInChildren<Canvas> ().gameObject;
+        canvasObj = GameObject.Find("Canvas");
 		panel = canvasObj.transform.FindChild ("Panel").gameObject;
         roundsTxt = canvasObj.transform.FindChild("RoundsTxt").GetComponent<Text>();
         roundsTxt.enabled = false;
@@ -64,10 +64,12 @@ public class HUDManager : MonoBehaviour
 		updateBars ();
 	}
 
-
 	public void updateCurrentLvlTxt()
 	{
-		currentLvlTxt.text = "Level " + sm.getCurrentLvl ();
+        if(currentLvlTxt != null && sm.getCurrentLvl() != null)
+        {
+            currentLvlTxt.text = "Level " + sm.getCurrentLvl();
+        }
 	}
 
 
@@ -122,7 +124,6 @@ public class HUDManager : MonoBehaviour
         {
             upgradePnts.text = "Upgrade points: " + sm.getUpgradePnts();
             upgradePnts.enabled = true;
-
         }
         else
         {
@@ -169,9 +170,8 @@ public class HUDManager : MonoBehaviour
 
 	//Fills in tooltip information and adds it to screen
 
-	public void showTooltip(string name, string desc, string lvlRequired, Transform transform)
+	public void showTooltip(string name, string desc, string lvlRequired)
 	{
-		
 		tooltipName.text = name;
 		tooltipDesc.text = desc;
 		tooltipLvl.text = "Level: " + lvlRequired;

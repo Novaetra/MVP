@@ -22,7 +22,7 @@ public class SkillInitializer : MonoBehaviour
     {
         GameObject flameThrower = (GameObject)GameObject.Instantiate(FLAMETHROWER, leftSpawner.transform.position, leftSpawner.transform.rotation);
         flameThrower.transform.SetParent(leftSpawner.transform);
-        flameThrower.transform.localScale = new Vector3(3, 3, 3);
+        flameThrower.transform.localScale = new Vector3(1, 1, 1);
         flameThrower.transform.localEulerAngles += new Vector3(0f, 180, 0f);
     }
 

@@ -16,13 +16,24 @@ public class SkillTreePiece : MonoBehaviour
 	private HUDManager hudman;
     private bool isUnlocked;
     
+    public void Start()
+    {
+        StartCoroutine(setSkillTimer());
+    }
+
+    private IEnumerator setSkillTimer()
+    {
+        yield return new WaitForSeconds(0.3f);
+        setSkill();
+    }
+
     //Links the skill name to the actual skill in the list of all skills
 	public void setSkill()
 	{
         isUnlocked = false;
 		skillList = GameObject.FindObjectOfType<Player>().gameObject.GetComponent<SkillManager> ().getAllSkills ();
-        sm = GetComponentInParent<StatsManager>();
-		hudman = GetComponentInParent<HUDManager> ();
+        sm =  GameObject.Find("Player").GetComponent<StatsManager>();
+        hudman = GameObject.Find("Player").GetComponent<HUDManager>();
 		img = gameObject.GetComponent<Image> ();
 		foreach (Skill s in skillList) 
 		{
@@ -43,7 +54,7 @@ public class SkillTreePiece : MonoBehaviour
 			GetComponentInParent<Toggle> ().interactable = false;
 			sm.addUpgradePoint (-1);
 			sm.activateUnlockable ();
-			GetComponentInParent<HUDManager> ().updateUpgradePoints ();
+			hudman.updateUpgradePoints ();
 			GetComponentInParent<SkillTree> ().unlockSkill (sm);
 		} 
 		else 
@@ -63,7 +74,6 @@ public class SkillTreePiece : MonoBehaviour
 
 	public void meleeUpgradeOnUnlock()
 	{
-		Debug.Log (skill.getEffectAmount ());
 		sm.setMeleeDamage (sm.getMeleeDamage() + skill.getEffectAmount());
 	}
 
@@ -76,7 +86,7 @@ public class SkillTreePiece : MonoBehaviour
 
 	public void showTooltip()
 	{
-		hudman.showTooltip (skill.getName(),skill.getDescription(),skill.getRequirement().ToString(), transform);
+        hudman.showTooltip (skill.getName(),skill.getDescription(),skill.getRequirement().ToString());
 	}
 
 	public void hideTooltip()

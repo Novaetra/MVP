@@ -6,12 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Door
-  - 0
-  - 1
-  - 2
-  - 3
   - Floor
   - CraftMaterial
+  - Spawn Room
   layers:
   - Default
   - TransparentFX

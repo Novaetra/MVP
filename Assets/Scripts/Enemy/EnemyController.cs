@@ -10,17 +10,17 @@ public class EnemyController : MonoBehaviour
     private Animator anim;
     private Player[] players;
 
-    private float distanceToPlayer;
     private float minDistance = Mathf.Infinity;
     private float playerDistance;
-    private float meleeRange = 1.0f;
-	[SerializeField]
+    private float proximityRange = 2.5f;
+    private float attackRange = 1.5f;
+    [SerializeField]
 	private float meleeDamage = 20f;
-	[SerializeField]
-	private float totalHealth = 100f;
-    private float health;
-	private float pntValue = 100f;
-	private float expOnKill = 10f;
+    [SerializeField]
+    private float totalHealth = 100f;
+    private float currentHealth;
+    [SerializeField]
+    private float expOnKill = 10f;
 
     private bool doneSettingUp = false;
     private bool isAlive = true;
@@ -30,12 +30,14 @@ public class EnemyController : MonoBehaviour
     //Assigns the enemy's nav agent, animator, and list of players
     public void Start()
     {
-		health = totalHealth;
+		currentHealth = totalHealth;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        anim.SetFloat("Health", health);
+        anim.SetFloat("Health", currentHealth);
         casters = GetComponentsInChildren<Raycaster>();
         doneSettingUp = true;
+        targetPlayer = GameObject.Find("Player").transform;
+        proximityRange = agent.stoppingDistance + 1f;
     }
 
     //Finds closest player, follow it, and if player is within melee range, attacks player
@@ -52,7 +54,7 @@ public class EnemyController : MonoBehaviour
 	//Checks if enemy's health is greater than 0 (if enemy is alive)
     private void checkAlive()
     {
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             StartCoroutine(die());
         }
@@ -67,26 +69,27 @@ public class EnemyController : MonoBehaviour
         IEnumerable<Player> livePlayers = from player in players where player.GetComponent<StatsManager>().getAlive() select player;
 
 		//Get closest player and assign it as the target
-        targetPlayer = GetClosestEnemy(livePlayers.ToList());
+        //targetPlayer = GetClosestEnemy(livePlayers.ToList());
 
         if (targetPlayer != null && isAlive == true)
         {
 			//Gets the distance between the player and the enemy
             playerDistance = Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position);
-			//If the distance is greater than the enemy's melee range, then walk toward the target player
-            if (playerDistance > meleeRange)
+            //If the distance is greater than the enemy's melee range, then walk toward the target player
+            if (playerDistance > proximityRange)
             {
                 agent.enabled = true;
                 agent.SetDestination(targetPlayer.position);
                 walkAnim();
+                stopAttackAnim();
             }
 			//Else if the player is within melee range, attack
             else
             {
                 idleAnim();
                 attackAnim();
-                agent.enabled = false;
-                rotateTowards(targetPlayer);
+               // agent.enabled = false;
+                //rotateTowards(targetPlayer);
             }
         }
     }
@@ -99,6 +102,7 @@ public class EnemyController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
     }
 
+    /*
     //Returns the cloest enemy
     private Transform GetClosestEnemy(List<Player> players)
     {
@@ -117,7 +121,7 @@ public class EnemyController : MonoBehaviour
         }
         return bestTarget;
     }
-
+    */
 	//Throws rays to check if the melee attack hit a player
 	//If it hit a player, then apply damage
     public void checkAttack()
@@ -128,8 +132,8 @@ public class EnemyController : MonoBehaviour
             foreach (Raycaster caster in casters)
             {
                 Transform raycaster = caster.transform;
-                Debug.DrawRay(raycaster.position, raycaster.forward * meleeRange, Color.blue, 1);
-                if (Physics.Raycast(raycaster.position, raycaster.forward, out hit, meleeRange))
+                Debug.DrawRay(raycaster.position, raycaster.forward * attackRange, Color.blue, 1);
+                if (Physics.Raycast(raycaster.position, raycaster.forward, out hit, attackRange))
                 {
                     if (hit.transform.tag == "Player")
                     {
@@ -144,8 +148,8 @@ public class EnemyController : MonoBehaviour
 	//Lower the enemy's health by x amt
     public void recieveDamage(float dmg)
     {
-        health -= dmg;
-        anim.SetFloat("Health", health);
+        currentHealth -= dmg;
+        anim.SetFloat("Health", currentHealth);
     }
 
 	//Start death animation and trigger everything needed to kill the dying enemy
@@ -172,7 +176,7 @@ public class EnemyController : MonoBehaviour
 	public void setTotalHealth(float h)
 	{
 		totalHealth = h;
-		health = h;
+		currentHealth = h;
 	}
 
 	public void setMeleeDamage(float d)
@@ -190,7 +194,6 @@ public class EnemyController : MonoBehaviour
     void sendPlayersExp()
     {
         GameManager.currentplayer.GetComponent<StatsManager>().recieveExp(expOnKill);
-        GameManager.currentplayer.GetComponent<StatsManager>().addCurrentPoints(pntValue);
     }
     
 
@@ -200,8 +203,12 @@ public class EnemyController : MonoBehaviour
         GetComponent<Animator>().SetInteger("Skill", 1);
     }
 
+    void stopAttackAnim()
+    {
+        GetComponent<Animator>().SetInteger("Skill", 0);
+    }
 
-	//Triggers an walk animation on all clients
+    //Triggers an walk animation on all clients
     void walkAnim()
     {
         GetComponent<Animator>().SetFloat("Speed", 5);

@@ -6,6 +6,8 @@ public class Door : MonoBehaviour
     Animation anim;
     public float doorCost;
     private bool isOpen;
+    [Header("Last item in array must be the door")]
+
     [SerializeField]
     private Transform[] adjacentRooms;
 
@@ -34,7 +36,7 @@ public class Door : MonoBehaviour
 	//This displays the door cost if the player approaches it
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && isOpen == false)
         {
             col.transform.GetComponent<HUDManager>().displayMsg("Door costs " + doorCost + " exp",2f);
         }
@@ -43,7 +45,7 @@ public class Door : MonoBehaviour
 	//Plays the open door animation and removes the colliders
     public void openDoor()
     {
-        anim.Play("openDoor");
+        anim.Play("OpenDoor");
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<NavMeshObstacle>().enabled = false;
         isOpen = true;

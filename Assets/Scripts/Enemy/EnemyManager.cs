@@ -26,7 +26,8 @@ public class EnemyManager : MonoBehaviour
 	//This list keeps track of the rooms are adjacent to other rooms and which ones
     private List<Transform[]> adjacentRooms = new List<Transform[]>();
 
-	//This list is the list that holds all the spawn points an enemy can spawn in
+    //This list is the list that holds all the spawn points an enemy can spawn in
+    [SerializeField]
     private List<Transform> spawnPointsAvailable = new List<Transform>();
 
 	//List of doors so we can figure out the adjacent rooms
@@ -52,6 +53,7 @@ public class EnemyManager : MonoBehaviour
 			setupSpawnLists ();
 			StartCoroutine (waitToStartNewRound ());
 			doors = GameObject.FindObjectsOfType<Door> ();
+            setCurrentRoom(GameObject.FindGameObjectWithTag("Spawn Room").transform);
 		}
 		statsPerEnemy["BasicMelee"] = new float[3]{0f, 20f, 10f };
     }
@@ -147,7 +149,7 @@ public class EnemyManager : MonoBehaviour
                         if (adjacentRooms[i][adjacentRooms[i].Length-1].GetComponentInChildren<Door>().getOpen())
                         {
                             //For each spawn point in _______ room 
-                            for(int b=0; b<adjacentRooms[i].Length-1;b++)
+                            for (int b=0; b<adjacentRooms[i].Length-1;b++)
                             {
                                 foreach (Transform spawn in spawnPointsInRoom[adjacentRooms[i][b].name])
                                 {
@@ -165,12 +167,14 @@ public class EnemyManager : MonoBehaviour
         }
 
         //Add current room's spawn points
-
-        foreach (Transform spawn in spawnPointsInRoom[currentRoom.name])
+        if(spawnPointsInRoom[currentRoom.name] != null)
         {
-            if(!spawnPointsAvailable.Contains(spawn))
+            foreach (Transform spawn in spawnPointsInRoom[currentRoom.name])
             {
-                spawnPointsAvailable.Add(spawn);
+                if (!spawnPointsAvailable.Contains(spawn))
+                {
+                    spawnPointsAvailable.Add(spawn);
+                }
             }
         }
     }
@@ -179,6 +183,7 @@ public class EnemyManager : MonoBehaviour
 	//The number of enemies to spawn increases as well
     private void startNextRound()
     {
+        updateSpawnsAvailable();
         currentWaveCount++;
         hudMan.updateRoundsTxt(currentWaveCount);
         enemysToSpawn = Mathf.RoundToInt(enemysToSpawn * 1.5f);

@@ -11,11 +11,11 @@ public class Slot : MonoBehaviour, IDropHandler
 	private DraggableSlot dragSlot;
 	private GameObject currentPlayer;
 
-	public void setUp()
+	public void Start()
 	{
-        currentPlayer = GameManager.currentplayer;
+        currentPlayer = GameObject.Find("Player");
 		//Gets the skill bar for iterating through it later
-		skillBar = currentPlayer.transform.GetComponentInChildren<Canvas>().transform.Find("SkillBar").transform;
+		skillBar = GameObject.Find("Canvas").transform.Find("SkillBar").transform;
 		//Get the skill manager
 		manager = currentPlayer.GetComponent<SkillManager>();
 		//Gets the background object so that we can change it to gray or white

@@ -18,18 +18,20 @@ public class GameManager : MonoBehaviour
 	//Adds player to the scene and enables its components
 	private void addPlayer()
 	{
-        GameObject spawn = GameObject.Find("Spawn1");
-        currentplayer = (GameObject)GameObject.Instantiate(PLAYEROBJECT, spawn.transform.position, spawn.transform.rotation);
-		currentplayer.GetComponent<PlayerController> ().enabled = true;
-		currentplayer.GetComponent<CharacterController> ().enabled = true;
-        currentplayer.GetComponent<HUDManager>().enabled = true;
-        currentplayer.GetComponent<SkillManager>().enabled = true;
-		currentplayer.transform.GetComponentInChildren<Canvas> ().enabled = true;
-		currentplayer.transform.GetComponentInChildren<Camera> ().enabled = true;
-		currentplayer.transform.GetComponentInChildren<AudioListener> ().enabled = true;
-		currentplayer.transform.BroadcastMessage ("setUp");
+        //GameObject spawn = GameObject.Find("PlayerSpawn");
+        //currentplayer = (GameObject)GameObject.Instantiate(PLAYEROBJECT, spawn.transform.position, spawn.transform.rotation);
+        currentplayer = GameObject.Find("Player");
+        currentplayer.transform.BroadcastMessage("set_Up");
+        StartCoroutine(waitPostSetUp());
         GetComponent<EnemyManager>().setUp();
 	}
+
+    private IEnumerator waitPostSetUp()
+    {
+        yield return new WaitForSeconds(0.5f);
+        currentplayer.transform.BroadcastMessage("postSetUp");
+
+    }
 
 	//Checks if there's a player still alive. If there isn't, then end the game.
     public void checkGameEnded()

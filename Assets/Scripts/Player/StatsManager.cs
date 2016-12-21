@@ -18,7 +18,6 @@ public class StatsManager : MonoBehaviour
 
 	private int currentLvl;
     private float currentExp;
-	private float currentPoints;
     private float totalExpRequiredToLvlUp;
     private int upgradePoints;
     private bool isAlive;
@@ -42,11 +41,13 @@ public class StatsManager : MonoBehaviour
     private Animator anim;
     //private GameObject currentReviver;
     private GameManager pgm;
+    [SerializeField]
     private SkillTree[] trees;
 
     void Start()
     {
         isAlive = true;
+        trees = GameObject.Find("Canvas").GetComponentsInChildren<SkillTree>();
         //isReviving = false;
         totalHealth = 100f;
         currentHealth = 100f;
@@ -60,7 +61,6 @@ public class StatsManager : MonoBehaviour
         currentLvl = 1;
         currentExp = 0f;
         totalExpRequiredToLvlUp = 40f;
-        currentPoints = 0f;
         upgradePoints = 0;
         //reviveDistance = 3.5f;
 
@@ -93,11 +93,6 @@ public class StatsManager : MonoBehaviour
             checkRevive();
         }
         */
-    }
-    //HAVE TO SET TREES WHEN THE PANEL IS ACTIVE, OTHERWISE IT RETURNS NULL
-    void setUp()
-    {
-        trees = GetComponentsInChildren<SkillTree>();
     }
 
     private void updateAttributes()
@@ -245,6 +240,7 @@ public class StatsManager : MonoBehaviour
     public void activateUnlockable()
     {
         hudman.updateUpgradePoints();
+
         foreach (SkillTree tree in trees)
         {
             tree.activateUnlockable(this);
@@ -341,16 +337,6 @@ public class StatsManager : MonoBehaviour
 	{
 		return totalExpRequiredToLvlUp;
 	}
-
-    public float getCurrentPoints()
-    {
-        return currentPoints;
-    }
-
-    public void addCurrentPoints(float pnts)
-    {
-        currentPoints += pnts;
-    }
 
     public void subtractExp(float pnts)
     {

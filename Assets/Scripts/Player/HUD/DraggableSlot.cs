@@ -45,7 +45,7 @@ public class DraggableSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 				originalParent = gameObject.transform.parent.transform;
 				originalSlot = originalParent.GetChild (1);
 				//Changes the parent to Canvas so it can be dragged outside the skill tree mask
-				gameObject.transform.SetParent (currentPlayer.GetComponentInChildren<Canvas>().transform);
+				gameObject.transform.SetParent (GameObject.Find("Canvas").transform);
 				gameObject.transform.SetAsLastSibling ();
 				//Allows the event system to pass through the object being dragged
 				GetComponent<CanvasGroup> ().blocksRaycasts = false;

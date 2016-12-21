@@ -19,7 +19,7 @@ public enum SkillType
 public class SkillManager : MonoBehaviour
 {
 
-    private List<Skill> allSkills;
+    public List<Skill> allSkills;
     public List<Skill> knownSkills;
     private GameObject skillBar;
     private StatsManager sm;
@@ -117,7 +117,7 @@ public class SkillManager : MonoBehaviour
         allSkills.Add(new Skill("Flamethrower", "Throws flames", 10f, 35f, 10f, Skills.Flamethrower, SkillType.Magic, 4,sm));
         allSkills.Add(new Skill("", "Empty", 0f, 0f, 0f, Skills.Empty, SkillType.Empty, 0,sm));
         //Links all the skill tree pieces to the actual skill 
-        gameObject.BroadcastMessage("setSkill");
+        GameObject.Find("Canvas").BroadcastMessage("setSkill");
         StartCoroutine(wait(.5f));
         gameObject.BroadcastMessage("postSetUp");
     }

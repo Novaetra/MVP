@@ -25,7 +25,7 @@ public class Skill
         cost = c;
         cooldown = cd;
         currentCooldown = cooldown;
-        anim = GameManager.currentplayer.GetComponent<Animator>();
+        anim =GameObject.Find("Player").GetComponent<Animator>();
         currentEnumSkill = enumSkill;
         stats = sm;
         requirement = req;

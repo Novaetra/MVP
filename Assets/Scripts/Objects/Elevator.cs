@@ -47,7 +47,10 @@ public class Elevator : MonoBehaviour
 	//Once the player leaves the elevator, remove him as a child
     private void OnTriggerExit(Collider col)
     {
-        resetPlayerParent();
+        if(player!=null && col.tag == "Player")
+        {
+            resetPlayerParent();
+        }
     }
 
 }

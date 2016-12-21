@@ -38,7 +38,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 			//Changes the parent to Canvas so it can be dragged outside the skill tree mask
 
 			//Temporary
-			gameObject.transform.SetParent (currentPlayer.GetComponentInChildren<Canvas> ().transform);
+			gameObject.transform.SetParent (GameObject.Find("Canvas").transform);
 			gameObject.transform.SetAsLastSibling ();
 			//Allows the event system to pass through the object being dragged
 			GetComponent<CanvasGroup> ().blocksRaycasts = false;
