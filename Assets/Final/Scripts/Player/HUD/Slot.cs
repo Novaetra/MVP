@@ -76,18 +76,25 @@ public class Slot : MonoBehaviour, IDropHandler
 		{
 			//Swap the two skills
 			Skill dragged = DraggableSlot.skillBeingDragged;
-			Sprite img = DraggableSlot.imgBeingDragged;
-				DraggableSlot.originalSlot.GetComponent<SkillTreePiece> ().setSkill (GetComponent<SkillTreePiece> ().getSkill ());
-				DraggableSlot.originalSlot.GetComponent<SkillTreePiece> ().getSkill ().assignSlot (gameObject);
-				DraggableSlot.originalSlot.GetComponent<Image> ().sprite = GetComponent<Image> ().sprite;
-				DraggableSlot.originalParent.GetChild (0).GetComponent<Image> ().sprite = GetComponent<Image> ().sprite;
-				GetComponent<SkillTreePiece> ().setSkill (dragged);
-				GetComponent<SkillTreePiece> ().getSkill ().assignSlot (DraggableSlot.originalSlot.gameObject);
-				GetComponent<Image> ().sprite = img;
-				bg.GetComponent<Image> ().sprite = img;
-				DraggableSlot.foundTarget = true;
+            DraggableSlot.foundTarget = true;
+            if (GetComponent<SkillTreePiece>().getSkill()!=null)
+            {
+                Skill thisSkill = GetComponent<SkillTreePiece>().getSkill();
+                if (dragged != null && thisSkill.getCurrentCooldown() >= thisSkill.getCooldown())
+                {
+                    Sprite img = DraggableSlot.imgBeingDragged;
+                    DraggableSlot.originalSlot.GetComponent<SkillTreePiece>().setSkill(thisSkill);
+                    DraggableSlot.originalSlot.GetComponent<SkillTreePiece>().getSkill().assignSlot(gameObject);
+                    DraggableSlot.originalSlot.GetComponent<Image>().sprite = GetComponent<Image>().sprite;
+                    DraggableSlot.originalParent.GetChild(0).GetComponent<Image>().sprite = GetComponent<Image>().sprite;
+                    GetComponent<SkillTreePiece>().setSkill(dragged);
+                    thisSkill.assignSlot(DraggableSlot.originalSlot.gameObject);
+                    GetComponent<Image>().sprite = img;
+                    bg.GetComponent<Image>().sprite = img;
+                }
+            }
 		}
-
+        
 		//Adds the skill to the list of known skills
 		manager.addToKnown (GetComponent<SkillTreePiece> ().getSkill ());
 		//Assign the skill to the slot

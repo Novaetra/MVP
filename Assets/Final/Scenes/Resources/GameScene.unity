@@ -21374,7 +21374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396bcb555fc4fe7409b850b2114519aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnEnemies: 1
+  spawnEnemies: 0
   GRUNT_ENEMY_OBJECT: {fileID: 119504, guid: 724b434865b34e44e8fe16f47d4a2340, type: 2}
   spawnPointsAvailable: []
 --- !u!1 &709097729
