@@ -5,11 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Final/Scenes/Resources/LoadingScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Final/Scenes/Resources/MenuScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Final/Scenes/Resources/LobbyScene.unity
+  - enabled: 1
+    path: Assets/Final/Scenes/Resources/Login.unity
   - enabled: 1
     path: Assets/Final/Scenes/Resources/GameScene.unity

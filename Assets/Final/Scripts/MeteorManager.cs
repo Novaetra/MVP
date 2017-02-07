@@ -1,11 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MeteorManager : MonoBehaviour
 {
+    //Text componets to get user input
+    private Text email, password;
+    //Strings that will hold the actual user input
+    private string emailStr, passwordStr;
+
     void Start()
     {
+        //Set the email and password text components
+        email = GameObject.Find("EmailText").GetComponent<Text>();
+        password = GameObject.Find("PasswordText").GetComponent<Text>();
         StartCoroutine(ConnectToMeteor());
     }
 
@@ -15,24 +24,22 @@ public class MeteorManager : MonoBehaviour
         Debug.Log("attempting to connect");
         yield return Meteor.Connection.Connect("ws://meteor-tommsy.rhcloud.com:8000/websocket");
         Debug.Log("connected");
-        StartCoroutine(MeteorLogin());
     }
 
-    IEnumerator tests()
+    public void Login()
     {
-        var method = Meteor.Method<string>.Call("GetCollection", "PlayerStats");
-        yield return (Coroutine)method;
-        Debug.Log(method.Response);
+        StartCoroutine(MeteorLogin());
     }
 
     //Logs user into his/her account
     IEnumerator MeteorLogin()
     {
         Debug.Log("attempting to log in");
-        string emailStr = "lenny", passwordStr = "123";
+        emailStr = email.text;
+        passwordStr = password.text;
         var login = Meteor.Accounts.LoginWith(emailStr, passwordStr);
         yield return (Coroutine)login;
-        Debug.Log("Ok proceed");
+
         if (Meteor.Accounts.IsLoggedIn)
         {
             Debug.Log("login success!");
@@ -44,8 +51,8 @@ public class MeteorManager : MonoBehaviour
             Debug.Log("Failed to log in...");
             emailStr = "";
             passwordStr = "";
-            //email.text = "";
-            //password.text = "";
+            email.text = "";
+            password.text = "";
         }
     }
 }

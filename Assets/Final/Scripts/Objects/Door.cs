@@ -47,7 +47,7 @@ public class Door : MonoBehaviour
     {
         anim.Play("OpenDoor");
         GetComponent<BoxCollider>().enabled = false;
-        GetComponent<NavMeshObstacle>().enabled = false;
+        GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = false;
         isOpen = true;
         //Update rooms list in enemy manager
     }

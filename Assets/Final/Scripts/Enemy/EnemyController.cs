@@ -6,7 +6,7 @@ using System.Linq;
 public class EnemyController : MonoBehaviour
 {
     private Transform targetPlayer;
-    private NavMeshAgent agent;
+    private UnityEngine.AI.NavMeshAgent agent;
     private Animator anim;
     private Player[] players;
 
@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
     public void Start()
     {
 		currentHealth = totalHealth;
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         anim = GetComponent<Animator>();
         anim.SetFloat("Health", currentHealth);
         casters = GetComponentsInChildren<Raycaster>();
