@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 
 	//Temp
 	public int expIncreaseAmt;
-
+    //------------
 	public float walkSpeed = 4f;
 	public float runSpeed = 6f;
 	public float currentSpeed;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 	private float YSensitivity = 2f;
 	private float MinimumY = 80f;
 	private float MaximumY = 70f;
-	private float meleeDistance = 2f;
+	private float meleeDistance = 1.5f;
     private float interactDistance = 2f;
     private StatsManager sm;
 	private HUDManager hudman;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
             {
                 checkClick();
                 checkSprint();
-                movement();
+                checkMovement();
                 updateCursorLock();
                 checkInteract();
 				checkTab ();
@@ -126,7 +126,6 @@ public class PlayerController : MonoBehaviour
             if (sm.getCurrentStamina() - sm.getMeleeCost() >= 0 && anim.GetInteger("Skill") != (int)Skills.BasicAttack)  
 			{
 				sm.useStamina (sm.getMeleeCost(),false);
-
 				anim.SetInteger("Skill",(int)Skills.BasicAttack);
 			}
 		}
@@ -242,17 +241,16 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
-	private void movement()
+	private void checkMovement()
 	{
-
-		float speed = Input.GetAxis ("Vertical") * currentSpeed;
-		float direction = Input.GetAxis ("Horizontal") * currentSpeed;
+        float speed = Input.GetAxis("Vertical") * currentSpeed;
+        float direction = Input.GetAxis("Horizontal") * currentSpeed;
         anim.SetFloat("Speed", speed);
         anim.SetFloat("Direction", direction);
         Vector3 finalMove = new Vector3 (direction, 0f, speed);
-		finalMove = transform.rotation * finalMove;
-		cs.SimpleMove (finalMove);
-	}
+		finalMove = transform.rotation * finalMove;;
+        cs.Move(finalMove * Time.deltaTime);
+    }
 
 	private void cameraRot()
 	{
@@ -263,19 +261,22 @@ public class PlayerController : MonoBehaviour
             
 			if ((lastUpperRot - vertical < MinimumY && lastUpperRot - vertical > -MaximumY)) 
 			{
-				upperBody.transform.Rotate ((lastUpperRot - vertical),0f, 0f);
-				lastUpperRot = lastUpperRot - vertical;
+                //upperBody.transform.Rotate ((lastUpperRot - vertical),0f, 0f);
+                upperBody.transform.Rotate(0f, 0f, (lastUpperRot - vertical));
+                lastUpperRot = lastUpperRot - vertical;
                 
             }
 			else
             {
-                upperBody.transform.Rotate((lastUpperRot), 0f, 0f);
+                //upperBody.transform.Rotate((lastUpperRot), 0f, 0f);
+                upperBody.transform.Rotate(0f, 0f, (lastUpperRot));
             }
             transform.Rotate(0f, horizontal, 0f);
         }
 		else
         {
-            upperBody.transform.Rotate((lastUpperRot), 0f, 0f);
+            //upperBody.transform.Rotate((lastUpperRot), 0f, 0f);
+            upperBody.transform.Rotate(0f, 0f, (lastUpperRot));
         }
 	}
 

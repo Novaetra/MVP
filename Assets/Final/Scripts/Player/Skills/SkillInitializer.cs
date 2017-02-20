@@ -3,15 +3,14 @@ using System.Collections;
 
 public class SkillInitializer : MonoBehaviour 
 {
-    public GameObject SPAWNER, FIREBALL, FLAMETHROWER, HEAL;
+    public GameObject SPAWNER, FIREBALL, SPARK, FLAMETHROWER, HEAL;
 	public Transform leftSpawner;
     public Transform middleSpawner;
     public Transform floorSpawner;
 
 	public void createFireball()
 	{
-		//Instantiate a spell spawner at the location, then instantite a fireball. Set the rotation of the spell spawner to make the fireball go straight
-
+        //Instantiate a spell spawner at the location, then instantite a fireball. Set the rotation of the spell spawner to make the fireball go straight
 		GameObject spellSpawner = (GameObject)GameManager.Instantiate (SPAWNER, leftSpawner.position, leftSpawner.rotation);
 		GameObject fireBall = (GameObject)GameObject.Instantiate (FIREBALL, spellSpawner.transform.position, spellSpawner.transform.rotation);
 		fireBall.transform.SetParent(spellSpawner.transform);

@@ -111,7 +111,7 @@ public class SkillManager : MonoBehaviour
     private void setUpList()
     {
         //(string name, string description, float effect amount, float cost, float cd, Skills enumSkill, SkillType type int requirement, StatsManager sm)
-        allSkills.Add(new Skill("Fireball", "Hurls a flaming ball of fire forward", 100f, 25f, 4f, Skills.Fireball, SkillType.Magic, 2,sm));
+        allSkills.Add(new Skill("Fireball", "Hurls a flaming ball of fire forward", 200f, 25f, 4f, Skills.Fireball, SkillType.Magic, 2,sm));
         allSkills.Add(new Skill("Heal", "Heals self", 50f, 25f, 5f, Skills.Heal, SkillType.Magic, 2,sm));
 		allSkills.Add(new Skill("MeleeDamageUpgrade","Melee does 100 more damage", 100f,0f,0f,Skills.Empty,SkillType.Empty,5,sm));
         allSkills.Add(new Skill("Flamethrower", "Throws flames", 10f, 35f, 10f, Skills.Flamethrower, SkillType.Magic, 4,sm));
@@ -119,7 +119,6 @@ public class SkillManager : MonoBehaviour
         //Links all the skill tree pieces to the actual skill 
         GameObject.Find("Canvas").BroadcastMessage("setSkill");
         StartCoroutine(wait(.5f));
-        gameObject.BroadcastMessage("postSetUp");
     }
 
     private IEnumerator wait(float secs)

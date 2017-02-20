@@ -3,10 +3,11 @@ using System.Collections;
 
 public class FlamethrowerScript : MonoBehaviour {
 
-    private float currentTime, totalTimer;
+    private float currentTime;
+    [SerializeField]
+    private float totalTimer;
     private bool doneSetup = false;
     private SkillManager sm;
-    [SerializeField]
     private float dmg;
 
 	private PlayerController ps;
@@ -14,7 +15,7 @@ public class FlamethrowerScript : MonoBehaviour {
 	void Start ()
     {
 		currentTime = 0f;
-		totalTimer = 3f;
+		totalTimer = 2f;
 
         sm = GameManager.currentplayer.GetComponent<SkillManager>();
         for (int i = 0; i < sm.getKnownSkills().Count; i++)
@@ -34,7 +35,7 @@ public class FlamethrowerScript : MonoBehaviour {
     {
         if (doneSetup)
         {
-            if (currentTime < totalTimer)
+            if (currentTime < totalTimer-1f)
             {
                 currentTime+=Time.deltaTime;
             }
@@ -49,7 +50,7 @@ public class FlamethrowerScript : MonoBehaviour {
     {
         GetComponent<ParticleSystem>().Stop();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(totalTimer);
 
         Destroy(gameObject);
     }

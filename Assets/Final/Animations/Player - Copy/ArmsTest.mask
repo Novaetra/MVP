@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ArmsTest
+  m_Mask: 00000000010000000000000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: CC_Global01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Be_Hip01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_L_Thigh01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_L_Thigh01/Bn_L_Shin01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_L_Thigh01/Bn_L_Shin01/Bn_L_Ankle01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_L_Thigh01/Bn_L_Shin01/Bn_L_Ankle01/Bn_L_BallFoot01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_L_Thigh01/Bn_L_Shin01/Bn_L_Ankle01/Bn_L_BallFoot01/Be_L_ToeEnd01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_R_Thigh01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_R_Thigh01/Bn_R_Shin01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_R_Thigh01/Bn_R_Shin01/Bn_R_Ankle01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_R_Thigh01/Bn_R_Shin01/Bn_R_Ankle01/Bn_R_BallFoot01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_Hip01/Bn_R_Thigh01/Bn_R_Shin01/Bn_R_Ankle01/Bn_R_BallFoot01/Be_R_ToeEnd01
+    m_Weight: 0
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Be_L_ShldrEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Be_L_HandEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_IndexBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_IndexBase01/Bn_L_IndexMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_IndexBase01/Bn_L_IndexMiddle01/Bn_L_IndexEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_IndexBase01/Bn_L_IndexMiddle01/Bn_L_IndexEnd01/Be_L_IndexEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_MiddleBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_MiddleBase01/Bn_L_MiddleMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_MiddleBase01/Bn_L_MiddleMiddle01/Bn_L_MiddleEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_MiddleBase01/Bn_L_MiddleMiddle01/Bn_L_MiddleEnd01/Be_L_MiddleMEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_PinkyBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_PinkyBase01/Bn_L_PinkyMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_PinkyBase01/Bn_L_PinkyMiddle01/Bn_L_PinkyEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_PinkyBase01/Bn_L_PinkyMiddle01/Bn_L_PinkyEnd01/Be_L_PinkyEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_RingBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_RingBase01/Bn_L_RingMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_RingBase01/Bn_L_RingMiddle01/Bn_L_RingEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_RingBase01/Bn_L_RingMiddle01/Bn_L_RingEnd01/Be_L_RingEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_ThumbBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_ThumbBase01/Bn_L_ThumbMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_ThumbBase01/Bn_L_ThumbMiddle01/Bn_L_ThumbEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_L_Shld01/Bn_L_Arm01/Bn_L_Elbow01/Bn_L_Wrist01/Bn_L_ThumbBase01/Bn_L_ThumbMiddle01/Bn_L_ThumbEnd01/Be_L_ThumbEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_Neck01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_Neck01/Be_NeckEnd
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Be_R_ShldrEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Be_R_HandEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_IndexBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_IndexBase01/Bn_R_IndexMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_IndexBase01/Bn_R_IndexMiddle01/Bn_R_IndexEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_IndexBase01/Bn_R_IndexMiddle01/Bn_R_IndexEnd01/Be_R_IndexEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_MiddleBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_MiddleBase01/Bn_R_MiddleMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_MiddleBase01/Bn_R_MiddleMiddle01/Bn_R_MiddleEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_MiddleBase01/Bn_R_MiddleMiddle01/Bn_R_MiddleEnd01/Be_R_MiddleMEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_PinkyBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_PinkyBase01/Bn_R_PinkyMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_PinkyBase01/Bn_R_PinkyMiddle01/Bn_R_PinkyEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_PinkyBase01/Bn_R_PinkyMiddle01/Bn_R_PinkyEnd01/Be_R_PinkyEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_RingBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_RingBase01/Bn_R_RingMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_RingBase01/Bn_R_RingMiddle01/Bn_R_RingEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_RingBase01/Bn_R_RingMiddle01/Bn_R_RingEnd01/Be_R_RingEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_ThumbBase01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_ThumbBase01/Bn_R_ThumbMiddle01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_ThumbBase01/Bn_R_ThumbMiddle01/Bn_R_ThumbEnd01
+    m_Weight: 1
+  - m_Path: CC_Global01/CC_SOG01/BRoot_SpA01/Bn_SpB01/Bn_Chest01/Bn_R_Shld01/Bn_R_Arm01/Bn_R_Elbow01/Bn_R_Wrist01/Bn_R_ThumbBase01/Bn_R_ThumbMiddle01/Bn_R_ThumbEnd01/Be_R_ThumbEnd01
+    m_Weight: 1
+  - m_Path: Characfter2
+    m_Weight: 0

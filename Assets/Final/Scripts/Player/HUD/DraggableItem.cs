@@ -11,16 +11,18 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	public static Skill skillBeingDragged;
 	public static Sprite imgBeingDragged;
 
-	private static float planeDistance = .11f;
-	private static Transform originalParent;
+    //private static float planeDistance = .11f;
+    private static float planeDistance;
+    private static Transform originalParent;
 	private static Vector3 startPos;
 
 	private static GameObject currentPlayer;
 
-	public void setUp()
+	public void Start()
 	{
         currentPlayer = GameManager.currentplayer;
-	}
+        planeDistance = GameObject.Find("Canvas").GetComponent<Canvas>().planeDistance;
+    }
 
 	public void OnBeginDrag(PointerEventData data)
 	{

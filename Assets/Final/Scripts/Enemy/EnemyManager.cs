@@ -5,14 +5,15 @@ using System.Collections.Generic;
 public class EnemyManager : MonoBehaviour
 {
     public bool spawnEnemies;
-    public GameObject GRUNT_ENEMY_OBJECT;
-
+    public GameObject[] ENEMY_OBJECTS;
+    private MeteorManager meteorMan;
+    private StatsManager playerSM;
     private int currentEnemyCount;
     private int currentWaveCount;
 	private int maxEnemies;
     private int enemysToSpawn;
 	private int enemiesSpawned;
-
+    private int enemiesKilled;
     private float timeBetweenRounds;
     private float timeBetweenSpawns;
 
@@ -22,6 +23,7 @@ public class EnemyManager : MonoBehaviour
     private Dictionary<string, Transform[]> spawnPointsInRoom = new Dictionary<string, Transform[]>();
 
 	private Dictionary<string,float[]> statsPerEnemy = new Dictionary<string, float[]>();
+    private ArrayList enemyNames = new ArrayList();
 
 	//This list keeps track of the rooms are adjacent to other rooms and which ones
     private List<Transform[]> adjacentRooms = new List<Transform[]>();
@@ -55,8 +57,13 @@ public class EnemyManager : MonoBehaviour
 			doors = GameObject.FindObjectsOfType<Door> ();
             setCurrentRoom(GameObject.FindGameObjectWithTag("Spawn Room").transform);
 		}
-                                               //health, exp, melee damage 
-		statsPerEnemy["BasicMelee"] = new float[3]{100f, 20f, 2f};
+        playerSM = GameManager.currentplayer.GetComponent<StatsManager>();
+        enemiesKilled = 0;
+        meteorMan = GameObject.Find("MeteorManager").GetComponent<MeteorManager>();   //health, exp, melee damagem, attack distance, movement speed
+		statsPerEnemy["Grunt"] = new float[5]{100f, 20f, 10f, 2.6f, 1.75f};
+        enemyNames.Add("Grunt");
+        statsPerEnemy["Weakling"] = new float[5] { 100f, 20f, 10f, 3.6f,1.25f};
+        enemyNames.Add("Weakling");
     }
     
     //Fills the list that contains all adjacent rooms and links the room to its spawn points
@@ -72,6 +79,7 @@ public class EnemyManager : MonoBehaviour
             {
 				//Add the room's spawns to the list "spawnPointsInRoom"
                 Transform room = rooms.GetChild(r);
+                Debug.Log("linked");
                 linkRoomsToSpawns(room);
             }
 			//Add the rooms that are adjacent to each other to the list "adjacentRooms"
@@ -166,7 +174,7 @@ public class EnemyManager : MonoBehaviour
                 }
             }
         }
-
+        Debug.Log(currentRoom.name);
         //Add current room's spawn points
         if(spawnPointsInRoom[currentRoom.name] != null)
         {
@@ -200,7 +208,16 @@ public class EnemyManager : MonoBehaviour
         {
             UpdateEnemyValues();
             StartCoroutine(waitToStartNewRound());
+            StartCoroutine(meteorMan.UpdateStats(currentWaveCount,(int) playerSM.getExpGained(), enemiesKilled));
+            enemiesKilled = 0;
+            playerSM.resetExpGained();
         }
+    }
+
+    public int[] getStats()
+    {
+        int[] stats = new int[3] {currentWaveCount,(int)playerSM.getExpGained(),enemiesKilled};
+        return stats;
     }
 
 	//Decreases the number of enemies alive 
@@ -208,6 +225,7 @@ public class EnemyManager : MonoBehaviour
     public void decreaseEnemyCount()
     {
         currentEnemyCount--;
+        enemiesKilled++;
         checkIfRoundEnd();
     }
 
@@ -215,12 +233,21 @@ public class EnemyManager : MonoBehaviour
     public void spawnEnemy()
     {
         //Change this so it uses any of the spawn points in the array
-        int randIndx = (int)Random.Range(0, (spawnPointsAvailable.Count - 1));
+        int randIndx = (int)Random.Range(0, (spawnPointsAvailable.Count));
         Transform spawn = spawnPointsAvailable[randIndx];
-        GameObject enemy = (GameObject)GameObject.Instantiate(GRUNT_ENEMY_OBJECT, spawn.position, spawn.rotation);
-        enemy.GetComponent<EnemyController>().setTotalHealth(statsPerEnemy["BasicMelee"][0]);
-        enemy.GetComponent<EnemyController>().setExpOnKill(statsPerEnemy["BasicMelee"][1]);
-        enemy.GetComponent<EnemyController>().setMeleeDamage(statsPerEnemy["BasicMelee"][2]);
+        randIndx = (int)Random.Range(0, 2);
+        GameObject enemy = (GameObject)GameObject.Instantiate(ENEMY_OBJECTS[randIndx], spawn.position, spawn.rotation);
+        string enemytype = (string)enemyNames[randIndx];
+        setStartingStats(enemy.GetComponent<EnemyController>(),enemytype);
+    }
+
+    private void setStartingStats(EnemyController enemy, string enemyName)
+    {
+        enemy.setTotalHealth(statsPerEnemy[enemyName][0]);
+        enemy.setExpOnKill(statsPerEnemy[enemyName][1]);
+        enemy.setMeleeDamage(statsPerEnemy[enemyName][2]);
+        enemy.setAttackProximity(statsPerEnemy[enemyName][3]);
+        enemy.setMovementSpeed(statsPerEnemy[enemyName][4]);
     }
 
     //Every round increase enemy health, exp value, and dmg
@@ -228,15 +255,21 @@ public class EnemyManager : MonoBehaviour
     {
         if (currentWaveCount < 5)
         {
-            statsPerEnemy["BasicMelee"][0] += 20f;
-            statsPerEnemy["BasicMelee"][1] += 5f;
-            statsPerEnemy["BasicMelee"][2] += 5f;
+            for(int i = 0;i<enemyNames.Count;i++)
+            {
+                statsPerEnemy[(string)enemyNames[i]][0] += 20f;
+                statsPerEnemy[(string)enemyNames[i]][1] += 5f;
+                statsPerEnemy[(string)enemyNames[i]][2] += 5f;
+            }
         }
         else
         {
-            statsPerEnemy["BasicMelee"][0] += statsPerEnemy["BasicMelee"][0] * .05f;
-            statsPerEnemy["BasicMelee"][1] += statsPerEnemy["BasicMelee"][1] * .05f;
-            statsPerEnemy["BasicMelee"][2] += statsPerEnemy["BasicMelee"][2] * .05f;
+            for (int i = 0; i < enemyNames.Count; i++)
+            {
+                //Temporary values....These will escalate out of control in higher rounds
+                statsPerEnemy[(string)enemyNames[i]][0] += statsPerEnemy[(string)enemyNames[i]][0] * .05f;
+                statsPerEnemy[(string)enemyNames[i]][2] += statsPerEnemy[(string)enemyNames[i]][2] * .05f;
+            }
         }
     }
 

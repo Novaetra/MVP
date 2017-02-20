@@ -13,17 +13,18 @@ public class DraggableSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	public bool isDraggable;
 	public static bool foundTarget;
 
-	private static float planeDistance = .11f;
+	private static float planeDistance;
 
 	private Vector3 startPos;
 	private Transform background;
 	private static GameObject currentPlayer;
     private Skill skill;
 
-	public void setUp()
+	public void Start()
 	{
         currentPlayer = GameManager.currentplayer;
-	}
+        planeDistance = GameObject.Find("Canvas").GetComponent<Canvas>().planeDistance;
+    }
 
 	public void OnBeginDrag(PointerEventData data)
 	{

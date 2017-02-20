@@ -17,17 +17,17 @@ public class GameManager : MonoBehaviour
 	private void setupPlayer()
 	{
         currentplayer = GameObject.Find("Player");
-        currentplayer.transform.BroadcastMessage("set_Up");
-        StartCoroutine(waitPostSetUp());
+        //currentplayer.transform.BroadcastMessage("set_Up");
+        //StartCoroutine(waitPostSetUp());
         GetComponent<EnemyManager>().setUp();
 	}
 
-    private IEnumerator waitPostSetUp()
-    {
-        yield return new WaitForSeconds(0.5f);
-        currentplayer.transform.BroadcastMessage("postSetUp");
+    //private IEnumerator waitPostSetUp()
+    //{
+       // yield return new WaitForSeconds(0.5f);
+        //currentplayer.transform.BroadcastMessage("postSetUp");
 
-    }
+    //}
 
 	//Checks if there's a player still alive. If there isn't, then end the game.
     public void checkGameEnded()
@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
 	//Sends everyone back to the menu
     void endGame()
     {
+        int[] stats = GetComponent<EnemyManager>().getStats();
+        StartCoroutine(GetComponent<MeteorManager>().UpdateStats(stats[0], stats[1], stats[2]));
         Application.LoadLevel(0);
     }
 

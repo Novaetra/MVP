@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: WeaklingArms
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_C_UpperLeg
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_C_UpperLeg/Bn_C_MiddleLeg
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_C_UpperLeg/Bn_C_MiddleLeg/Bn_C_LowerLeg
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_C_UpperLeg/Bn_C_MiddleLeg/Bn_C_LowerLeg/Be_R_LegEnd
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_Head
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_Head/Be_HeadEnd
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperArm
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperArm/Bn_L_LowerArm
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperArm/Bn_L_LowerArm/Bn_L_Hand
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperArm/Bn_L_LowerArm/Bn_L_Hand/Bn_L_Claw1
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperArm/Bn_L_LowerArm/Bn_L_Hand/Bn_L_Claw1/Be_L_Claw1End
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperArm/Bn_L_LowerArm/Bn_L_Hand/Bn_L_Claw2
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperArm/Bn_L_LowerArm/Bn_L_Hand/Bn_L_Claw2/Be_R_Claw1End
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperLeg
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperLeg/Bn_L_MiddleLeg
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperLeg/Bn_L_MiddleLeg/Bn_L_LowerLeg
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_L_UpperLeg/Bn_L_MiddleLeg/Bn_L_LowerLeg/Be_L_LegEnd
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperArm
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperArm/Bn_R_LowerArm
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperArm/Bn_R_LowerArm/Bn_R_Hand
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperArm/Bn_R_LowerArm/Bn_R_Hand/Bn_R_Claw1
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperArm/Bn_R_LowerArm/Bn_R_Hand/Bn_R_Claw1/Be_R_Claw1End
+      1
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperArm/Bn_R_LowerArm/Bn_R_Hand/Bn_R_Claw2
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperArm/Bn_R_LowerArm/Bn_R_Hand/Bn_R_Claw2/Be_R_Claw1End
+      2
+    m_Weight: 1
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperLeg
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperLeg/Bn_R_MiddleLeg
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperLeg/Bn_R_MiddleLeg/Bn_R_LowerLeg
+    m_Weight: 0
+  - m_Path: CC_FullBodyControl/CC_CenterOfGravity/Bn_Hips/Bn_R_UpperLeg/Bn_R_MiddleLeg/Bn_R_LowerLeg/Be_R_LegEnd
+      1
+    m_Weight: 0
+  - m_Path: Weakling
+    m_Weight: 0

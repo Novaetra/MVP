@@ -498,6 +498,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Collab: 1
+    UNet: 1
   cloudProjectId: dedc9380-f2b9-4b46-973d-bee0948c016b
   projectName: TheOthers
   organizationId: lenny-parisi

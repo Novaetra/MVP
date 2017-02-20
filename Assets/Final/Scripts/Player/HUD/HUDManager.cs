@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour 
 {
-
 	public Image healthbar;
 	public Image manabar;
 	public Image staminabar;
@@ -33,7 +32,7 @@ public class HUDManager : MonoBehaviour
 	private bool setUpDone = false;
 
 	//Assigns all the variables to their correspinding values
-	public void postSetUp()
+	void Start()
 	{
 		currentPlayer = gameObject;
         pc = currentPlayer.GetComponent<PlayerController>();
@@ -58,8 +57,8 @@ public class HUDManager : MonoBehaviour
         upgradePnts.enabled = false;
 		setUpDone = true;
 	}
-	//
-	private void Update()
+
+	void Update()
 	{
 		updateBars ();
 	}
@@ -80,13 +79,14 @@ public class HUDManager : MonoBehaviour
 
 	public void updateBars()
 	{
-		if (sm != null) 
+        if (sm != null) 
 		{
 			healthbar.fillAmount = sm.getCurrentHealth () / sm.getTotalHealth ();
 			manabar.fillAmount = sm.getCurrentMana () / sm.getTotalMana ();
 			staminabar.fillAmount = sm.getCurrentStamina () / sm.getTotalStamina ();
 			expbar.fillAmount = sm.getCurrentExp () / sm.getGoalExp ();
 			expText.text = (int)sm.getCurrentExp () + " / " + (int)sm.getGoalExp ();
+            
             /*
             if(pc.getReviving() == true)
             {

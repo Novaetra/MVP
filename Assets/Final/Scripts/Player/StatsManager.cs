@@ -12,6 +12,7 @@ public class StatsManager : MonoBehaviour
     private float currentStamina;
     private float sprintStamCost;
 	private float meleeCost;
+    [SerializeField]
 	private float baseMeleeDamage;
 	private float healthUpgradeAmntOnLvlUp = 5f;
 	private float staminaUpgradeAmtOnLvlUp = 10f;
@@ -19,8 +20,10 @@ public class StatsManager : MonoBehaviour
 	private int currentLvl;
     private float currentExp;
     private float totalExpRequiredToLvlUp;
+    private float expGained;
     private int upgradePoints;
     private bool isAlive;
+
     //private bool isReviving;
     //private float reviveDistance;
     //Multipliers
@@ -53,8 +56,8 @@ public class StatsManager : MonoBehaviour
         currentHealth = 100f;
         totalMana = 100f;
         currentMana = 100f;
-        totalStamina = 100f;
-        currentStamina = 100f;
+        totalStamina = 300f;
+        currentStamina = totalStamina;
         sprintStamCost = 20f;
         meleeCost = 30f;
 		baseMeleeDamage = 160f;
@@ -62,11 +65,12 @@ public class StatsManager : MonoBehaviour
         currentExp = 0f;
         totalExpRequiredToLvlUp = 40f;
         upgradePoints = 0;
+        expGained = 0f;
         //reviveDistance = 3.5f;
 
         healthRegen = 0f;
         manaRegen = 2.5f;
-        staminaRegen = 40f;
+        staminaRegen = 100f;
 
         stamTimer = 2f;
         stamCurrentTime = stamTimer;
@@ -127,7 +131,18 @@ public class StatsManager : MonoBehaviour
 	public void recieveExp(float exp)
     {
         currentExp += exp;
-		checkIfDisplayLvlUpHint ();
+        expGained += exp;
+        checkIfDisplayLvlUpHint ();
+    }
+
+    public float getExpGained()
+    {
+        return expGained;
+    }
+
+    public void resetExpGained()
+    {
+        expGained = 0f;
     }
 
 	public void lvlUp(float leftOver)

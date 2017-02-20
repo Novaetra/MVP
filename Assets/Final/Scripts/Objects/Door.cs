@@ -36,6 +36,7 @@ public class Door : MonoBehaviour
 	//This displays the door cost if the player approaches it
     private void OnTriggerEnter(Collider col)
     {
+        Debug.Log("ok");
         if (col.gameObject.tag == "Player" && isOpen == false)
         {
             col.transform.GetComponent<HUDManager>().displayMsg("Door costs " + doorCost + " exp",2f);

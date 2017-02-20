@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MeteorManager : MonoBehaviour
 {
+	private const string CONNECTION_URL = @"wss://meteor-tommsy.rhcloud.com:8443/websocket";
+
     //Text componets to get user input
     private Text email, password;
     //Strings that will hold the actual user input
@@ -21,9 +23,9 @@ public class MeteorManager : MonoBehaviour
 
     IEnumerator ConnectToMeteor()
     {
-        Debug.Log("attempting to connect");
-        yield return Meteor.Connection.Connect("ws://meteor-tommsy.rhcloud.com:8000/websocket");
-        Debug.Log("connected");
+		Debug.Log("Attempting to connect to: " + CONNECTION_URL);
+        yield return Meteor.Connection.Connect(CONNECTION_URL);
+        Debug.Log("Connected!");
     }
 
     public void Login()
@@ -53,6 +55,20 @@ public class MeteorManager : MonoBehaviour
             passwordStr = "";
             email.text = "";
             password.text = "";
+        }
+    }
+
+    public IEnumerator UpdateStats(int roundsSurvived, int experienceGained, int enemiesKilled)
+    {
+        if(Meteor.Accounts.IsLoggedIn)
+        {
+            var update = Meteor.Method.Call("SetStats", roundsSurvived, experienceGained, enemiesKilled, Meteor.Accounts.UserId);
+            yield return (Coroutine)update;
+            Debug.Log("Updated");
+        }
+        else
+        {
+            Debug.LogError("User is not logged in");
         }
     }
 }
